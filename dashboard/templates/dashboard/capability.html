@@ -1,0 +1,152 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Get Capabilities {% endblock %} {% block js %}
+
+<script>
+    $(document).ready(function() {
+        // function-list [selct box]
+        var sel = $("#protocol-functions");
+        var port = $("#portnumber");
+        // alert("working");//#portnumber
+        $("#protocol-list").change(function() {
+            port[0].options.length = 0;
+            sel[0].options.length = 0;
+            document.getElementById("function").style.display = "block";
+            var protocol = $(this).val();
+            //  alert(protocol);
+            if (protocol == "snmp") {
+                /*$("#portnumber").attr({
+                    "min": 161,
+                    "max": 165,
+                });*/
+                sel.append($("<option></option>").attr("value", "getdata").text("Get Data"));
+                port.append($("<option></option>").attr("value", "161").text("161"));
+                port.append($("<option></option>").attr("value", "162").text("162"));
+                document.getElementById("community").style.display = "block";
+                document.getElementById("communitystring").required = true;
+            } else if (protocol == "restconf") {
+                /*$("#portnumber").attr({
+                    "min": 161,
+                    "max": 165,
+                });*/
+                document.getElementById("community").style.display = "none";
+                document.getElementById("communitystring").required = false;
+                sel.append($("<option></option>").attr("value", "show run").text("Run"));
+                sel.append($("<option></option>").attr("value", "show version").text("Version"));
+                sel.append($("<option></option>").attr("value", "show interface trunk").text("Interface Trunk"));
+                sel.append($("<option></option>").attr("value", "show vlan").text("VLAN"));
+                sel.append($("<option></option>").attr("value", "show ip interface brief").text("IP Interface Brief"));
+                port.append($("<option></option>").attr("value", "443").text("443"));
+            } else if (protocol == "netconf") {
+                /*$("#portnumber").attr({
+                    "min": 830,
+                    "max": 835,
+                });*/
+                document.getElementById("community").style.display = "none";
+                document.getElementById("communitystring").required = false;
+                sel.append($("<option></option>").attr("value", "config").text("Configration"));
+                sel.append($("<option></option>").attr("value", "capabilities").text("Capabilities"));
+                port.append($("<option></option>").attr("value", "830").text("830"));
+                port.append($("<option></option>").attr("value", "831").text("831"));
+                port.append($("<option></option>").attr("value", "832").text("832"));
+                port.append($("<option></option>").attr("value", "833").text("833"));
+                port.append($("<option></option>").attr("value", "834").text("834"));
+                port.append($("<option></option>").attr("value", "835").text("835"));
+            }
+        });
+
+    });
+</script>
+{% if msg %}
+<script>
+    alert('{{msg}}');
+</script>
+{% endif %} {% endblock %} {% block css %} {% endblock %} {% block content %}
+<center>
+    <div class="col-md-6 col-md-offset-3 boxStyle" style="border:1px solid black;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+                <!-- <label for="fname" class="control-label col-sm-2">cOMMENT</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fname" placeholder="First name">
+        </div> -->
+            </div>
+            <div class="form-group row">
+                <label for="device" class="control-label col-sm-4">Name of Device</label>
+                <div class="col-sm-8">
+                    <datalist id="devicenamelist">
+				<option>CISCO</option>
+				<option>UBUNTU</option>
+			  </datalist>
+                    <input type="text" class="form-control" name="devicename" list="devicenamelist" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="host" class="control-label col-sm-4">Host</label>
+                <div class="col-sm-2">
+                    <input name="ippart1" type="number" id="ippart1" min="0" max="255" class="form-control" required />
+                </div>
+                <div class="col-sm-2">
+                    <input name="ippart2" type="number" id="ippart2" min="0" max="255" class="form-control" required />
+                </div>
+                <div class="col-sm-2">
+                    <input name="ippart3" type="number" id="ippart3" min="0" max="255" class="form-control" required />
+                </div>
+                <div class="col-sm-2">
+                    <input name="ippart4" type="number" id="ippart4" min="0" max="255" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="protocol" class="control-label col-sm-4">Protocol</label>
+                <div class="col-sm-8">
+                    <select class="form-control" id="protocol-list" name="protocol-list">
+				<option selected disabled hidden>Choose Protocol</option>
+				<option value="snmp">SNMP</option>
+				<option value="netconf">NETCONF</option>
+				<option value="restconf">RESTCONF</option>
+			</select>
+                </div>
+            </div>
+            <div class="form-group row" id="function" style="display: none;">
+                <label for="function" class="control-label col-sm-4">Function</label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="protocol-functions" id="protocol-functions">
+			        </select>
+                </div>
+            </div>
+            <div class="form-group row" id="community" style="display: none;">
+                <label for="community" class="control-label col-sm-4">Community String</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="communitystring" id="communitystring" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="port" class="control-label col-sm-4">Port Number</label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="portnumber" id="portnumber" required>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="control-label col-sm-4">Username</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="username" id="username" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="control-label col-sm-4">Password</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" name="password" id="password" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10 pull-right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</center>
+<div class="row" style="height:400px;">
+
+</div>
+{% endblock %}

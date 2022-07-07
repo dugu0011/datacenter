@@ -1,0 +1,14 @@
+{"jsonrpc": "2.0", "result": {"body": {"TABLE_allowed_vlans": {"ROW_allowed_vlans": {"interface": "Ethernet1/3", "allowedvlans": "1"
+                }
+            }, "TABLE_vtp_pruning": {"ROW_vtp_pruning": {"interface": "Ethernet1/3", "vtppruning_vlans": "1"
+                }
+            }, "TABLE_stp_forward": {"ROW_stp_forward": {"interface": "Ethernet1/3", "stpfwd_vlans": "1"
+                }
+            }, "TABLE_errored_vlans": {"ROW_errored_vlans": {"interface": "Ethernet1/3", "erroredvlans": "none"
+                }
+            }, "TABLE_interface": {"ROW_interface": {"interface": "Ethernet1/3", "native": 1, "status": "trunking", "portchannel": "--"
+                }
+            }
+        }
+    }, "id": 1
+}

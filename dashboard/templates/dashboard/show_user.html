@@ -1,0 +1,43 @@
+
+
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+Change User Status
+{% endblock %}
+
+{% block js  %}
+{% endblock %}
+
+{% block css %}
+<style>
+th{
+    text-align:center;
+}
+</style>
+{% endblock %}
+{% block title_header %}Users{% endblock %}
+{% block content %}
+<h1>User access</h1>
+<br>
+<!--#SHOW USER NEW FILE-->
+<table class="table">
+<thead>
+<tr><th>Username</th><th>Current Status</th><th>Edit</th></tr>
+</thead>
+<tbody>
+{% for users in allusers %}
+<tr><td>{{users}}</td>
+<td>{% if users.is_active %}Enabed {% else %} Disabled{% endif %}</td>
+<td><a href="{% url 'change_status' users.id %}">Change Status</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,219 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %} Dashboard {% endblock title %}{% block content %}
+<style>
+    .col {
+        border: 0;
+    }
+    
+    .card-counter {
+        box-shadow: 2px 2px 10px #DADADA;
+        margin: -13px;
+        padding: 20px 10px;
+        background-color: #fff;
+        height: 70px;
+        border-radius: 5px;
+        transition: .3s linear all;
+    }
+    
+    .card-counter:hover {
+        box-shadow: 4px 4px 20px #DADADA;
+        transition: .3s linear all;
+    }
+    
+    .card-counter.primary {
+        background-color: #007bff;
+        color: #FFF;
+    }
+    
+    .card-counter.danger {
+        background-color: #ef5350;
+        color: #FFF;
+    }
+    
+    .card-counter.success {
+        background-color: #66bb6a;
+        color: #FFF;
+    }
+    
+    .card-counter.info {
+        background-color: #26c6da;
+        color: #FFF;
+    }
+    
+    .card-counter i {
+        font-size: 5em;
+        opacity: 0.2;
+    }
+    
+    .card-counter .count-numbers {
+        position: absolute;
+        text-align: center;
+        right: 91px;
+        top: -15px;
+        font-size: 32px;
+        display: block;
+    }
+    
+    .card-counter .count-name {
+        position: relative;
+        /*right: 72px;*/
+        top: 25px;
+        font-style: italic;
+        text-transform: capitalize;
+        opacity: 0.5;
+        display: block;
+        font-size: 18px;
+        text-align:center;
+    }
+    
+    .container-chart {
+        display: flex;
+        flex-flow: row nowrap;
+        /* Align on the same line */
+        justify-content: space-between;
+        /* Equal margin between the child elements */
+    }
+    /* For Presentation, not needed */
+    
+    .container-chart>div {
+        background: #5F85DB;
+        padding: 5px;
+        color: #fff;
+        font-weight: bold;
+        font-family: Tahoma;
+    }
+    
+    #container {
+        margin: 10px;
+        padding: 10px;
+        height: 40px;
+    }
+    
+    .col {
+        float: left;
+        width: 33.33333333%;
+        border: 1px solid #07f;
+        padding: 0;
+        margin: 20px;
+    }
+    
+    #left {
+        text-align: left;
+    }
+    
+    #center {
+        text-align: center;
+    }
+    
+    #right {
+        text-align: right;
+    }
+</style>
+<div class="container" style="margin:0px;">
+
+    <div class="row" style="margin-top: -69px;">
+        <div class="col-md-2">
+            <div class="card-counter primary">
+                <span class="count-numbers">{{device_count}}</span>
+                <span class="count-name">Total Devices</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card-counter danger">
+
+                <span class="count-numbers">0</span>
+                <span class="count-name">Notifications</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card-counter success">
+                <span class="count-numbers">{{data_centers_count}}</span>
+                <span class="count-name">Data Centers</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card-counter info">
+
+                <span class="count-numbers">5</span>
+                <span class="count-name">Users</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card-counter primary">
+
+                <span class="count-numbers">0</span>
+                <span class="count-name">Applications</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card-counter info">
+
+                <span class="count-numbers">5</span>
+                <span class="count-name">Websites</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-left: -80px;height:500px">
+    <div class="row" style="transform: scale(0.8, 0.8);margin-top: -10px;max-height: 10px;">
+        <div class="col-md-4">
+            <p><b>CPU Analysis</b></p>
+            <div class="row" style="transform: scale(0.8, 0.8);margin-top: -20px;">
+                <div class="col-md-6"><embed type="image/svg+xml" src="{{ test1|safe }}" /></div>
+                <div class="col-md-6"><embed type="image/svg+xml" src="{{ test2|safe }}" /></div>
+            </div>
+            <div class="row" style="transform: scale(0.8, 0.8);margin-top: -600px;">
+                <div class="col-md-6"><embed type="image/svg+xml" src="{{ test3|safe }}" /></div>
+                <div class="col-md-6"><embed type="image/svg+xml" src="{{ test4|safe }}" /></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <p><b>Usage Analytics</b></p>
+            <div><embed type="image/svg+xml" src="{{ barchart2|safe }}" /></div>
+        </div>
+        <div class="col-md-4">
+            <p><b>Utilization of poller data collector processes, in %</b></p>
+            <div>
+                {% autoescape on %}{{ trap_collector|safe }}{% endautoescape %}
+            </div>
+        </div>
+        <div class="col-md-5">
+            <p><b>Network Analysis</b></p>
+            <div>
+                {% autoescape on %}{{ network_line_graph|safe}}{% endautoescape %}
+            </div>
+        </div>
+        <div class="col-md-3" style="width: 28%;">
+            <p><b>Memory Analysis</b></p>
+            <div>
+                <embed type="image/svg+xml" src="{{ full_solid_gauge|safe }}" />
+            </div>
+        </div>
+
+        <div class="col-md-4" style="width: 30%;">
+            <p><b>Database Storage Analysis</b></p>
+            <div>
+                <embed type="image/svg+xml" src="{{ piechart|safe }}" />
+            </div>
+        </div>
+        {% comment %} <div class="col-md-4">
+            <p><b>uptime</b></p>
+            <div>
+                {% autoescape on %}{{ uptime_graph|safe}}{% endautoescape %}
+            </div>
+        </div> {% endcomment %}
+        <div class="col-md-4" style="margin-top:-250px;">
+        {% comment %} {{ days }}Days {{ hours}}Hours {{ minutes }}Min {% endcomment %}
+            <p><b></b></p><br><br>
+            <div class="row" style="margin-left: -555px; margin-top: -151px;">
+                <div class="col-4" style="padding: 10px;background: red;border-radius: 30px;color:white;margin-left:100px;width: 8%;"><span class="">{{uptime11}} </span><span class=""></span></div>
+                <div class="col-4" style="padding: 10px;background: green;border-radius: 30px;color:white;width: 8%;margin-left: 200px;margin-top: -40px;"><span class="">{{uptime12}}</span> <span class=""></span></div> 
+                <div class="col-4" style="padding: 10px;background: blue;border-radius: 30px;color:white;width: 8%;margin-left:300px;margin-top: -40px;"><span class="">{{uptime13}}</span> <span class=""></span></div> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

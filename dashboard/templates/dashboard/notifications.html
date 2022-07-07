@@ -1,0 +1,42 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Notifications {% endblock %}
+{% block js %}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready( function () {
+    $('#notification_table').DataTable({
+    searching: true
+    });
+} );
+</script>
+{% endblock %} 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<style>
+td{
+    text-align:left;
+}
+</style>
+ {% endblock %} 
+ {% block title_header %}Notifications{% endblock %}
+ {% block content %}
+<table id="notification_table">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for notification in data %}
+        <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{notification.name}}:<br>{{notification.desc}}</td>
+        <td>{{notification.date}}</td>
+        <td><a href="{% url 'notification_delete' notification.id %}">Delete</a></td>
+        </tr>
+        {% endfor %} 
+    </tbody>
+</table>
+{% endblock %}

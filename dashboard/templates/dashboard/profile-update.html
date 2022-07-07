@@ -1,0 +1,136 @@
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+Profile Update
+{% endblock %}
+
+{% block css %}
+<style>
+  .border{
+      border:1px solid black;
+      padding:10px 10px 10px 10px;
+  }
+</style>
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript" src="{% static 'dashboard/js/profile-update.js' %}"></script>
+{% endblock %}
+{% block title_header %}Profile{% endblock %}
+{% block content %}
+
+
+<br>
+
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+  <div class="col-md-8">
+    <div class="border">
+      <form class="form" action="{% url 'edit-profile' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="form-group">
+	  
+	  
+	  
+	  <div class="row">
+	    <div class="col-md-4 text-center">
+	      <label>First Name</label>
+	    </div>
+	    <div class="col-md-6">
+	      <input class="form-control" readonly="False" type="text" id="input-f_name" name="input-f_name" value="{{request.user.first_name}}"/>
+	      <!--<p style="color:red;">Error!!</p>-->
+	    </div>
+	    <div class="col-md-2">
+	      
+	      <button type="button" id="edit-f_name" >Edit</button>
+	      
+	    </div>
+	  </div>
+	  
+	  <br>
+	  
+	  <div class="row">
+	    <div class="col-md-4 text-center">
+	      <label>Last Name</label>
+	    </div>
+	    <div class="col-md-6">
+	      <input class="form-control" readonly="False" type="text" id="input-l_name" name="input-l_name" value="{{request.user.last_name}}"/>
+	      
+	    </div>
+	    <div class="col-md-2">
+	      
+	      <button type="button" id="edit-l_name" >Edit</button>
+	      
+	    </div>
+	  </div>
+	  
+	  <br>
+
+	  <div class="row">
+	    <div class="col-md-4 text-center">
+	      <label>Bio</label>
+	    </div>
+	    <div class="col-md-6">
+	      <input class="form-control" readonly="False" type="text" id="input-bio" name="input-bio" value="{{request.user.userprofile.bio}}"/>
+	      
+	    </div>
+	    <div class="col-md-2">
+	      
+	      <button type="button" id="edit-bio" >Edit</button>
+	      
+	    </div>
+	  </div>
+	  
+	  <br>
+
+	  
+
+	  <div class="row">
+		  <div class="col-md-4 text-center">
+			  <label>Image</label>
+		  </div>
+		  <div class="col-md-6">
+			  <input class="form-control" readonly="False" type="file" id="input-img" name="input-img" />
+
+		  </div>
+		  <div class="col-md-2">
+
+			  <button type="button" id="edit-img">Edit</button>
+
+		  </div>
+	  </div>
+	  <br>
+	  <hr>
+	  <br>
+
+
+	  <div class="row">
+	    <div class="col-md-4">
+	      
+	    </div>
+	    <div class="col-md-4">
+	      <input class="form-control" type="submit" name="username" value="Update"/>
+	    </div>
+	    <div class="col-md-4">
+	      
+	    </div>
+	  </div>
+	  
+	  
+	</div>
+
+
+      </form>
+    </div>
+  </div>
+  
+  <div class="col-md-2">
+  </div>
+  
+</div>
+{% endblock %}

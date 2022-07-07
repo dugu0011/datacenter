@@ -1,0 +1,536 @@
+{% extends 'dashboard/header_footer.html' %}
+{% block title %}
+AboutUs
+
+{% endblock %}
+{% block title_header %}AboutUs{% endblock %}
+{% block content %}
+
+
+<style>
+    
+
+a {
+	color: #658ad0;
+	transition: all 0.5s ease;
+}
+
+a:hover {
+	color: #3e6cc4;
+	text-decoration: none;
+}
+
+a:active {
+	outline: none;
+	text-decoration: none;
+}
+
+a:focus {
+	outline: none;
+	text-decoration: none;
+}
+
+button:focus {
+	outline: none;
+	text-decoration: none;
+}
+
+img {
+	line-height: 0;
+	transition: all 0.5s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 700;
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	text-align: center;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: #353535;
+	margin-bottom: 20px;
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.clear {
+	clear: both;
+	content: '';
+	display: block;
+	width: 100%;
+}
+
+.clear:after {
+	clear: both;
+	content: '';
+	display: block;
+	width: 100%;
+}
+
+.form-control:focus {
+	border-color: #3b0600;
+	outline: none;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.center {
+	text-align: center;
+}
+
+body {}
+
+@font-face {
+	font-family: 'Calibri';
+	src: url('../fonts/Calibri.eot') format('woff'), url('../fonts/Calibri.ttf') format('truetype'), url('../fonts/Calibri.svg#Calibri') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Calibri-Bold';
+	src: url('../fonts/Calibri-Bold.eot') format('woff'), url('../fonts/Calibri-Bold.ttf') format('truetype'), url('../fonts/Calibri-Bold.svg#Calibri-Bold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TimesNewRomanPS-BoldMT';
+	src: url('../fonts/TimesNewRomanPS-BoldMT.eot') format('woff'), url('../fonts/TimesNewRomanPS-BoldMT.ttf') format('truetype'), url('../fonts/TimesNewRomanPS-BoldMT.svg#TimesNewRomanPS-BoldMT') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TimesNewRomanPSMT';
+	src: url('../fonts/TimesNewRomanPSMT.eot') format('woff'), url('../fonts/TimesNewRomanPSMT.ttf') format('truetype'), url('../fonts/TimesNewRomanPSMT.svg#TimesNewRomanPSMT') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.tab_sec {
+	/* background: #f2f1f1 url('https://images.unsplash.com/photo-1454817481404-7e84c1b73b4a?ixlib=rb-0.3.5&s=3c94be63fa4b48f56ec815ec8df28732&auto=format&fit=crop&w=1534&q=80')no-repeat center top; */
+	padding: 85px 0px 50px 0;
+	min-height: 650px;
+	/* background-size:100%; */
+}
+
+.tab_in_sec {
+	max-width: 775px;
+	width: 100%;
+	margin:66px auto;
+}
+
+.tab_in_sec .panel-default>.panel-heading {
+	padding: 0;
+}
+
+.tab_in_sec .panel-default>.panel-heading a {
+	display: block;
+	padding: 20px 15px;
+	font-size: 17px;
+	color: #4f4f4f;
+	text-transform: uppercase;
+	background: #fff;
+	border: solid 1px #ccc;
+	margin:10px 0;
+}
+
+.collapse.in {}
+
+.panel {
+	background: none;
+	border: none;
+}
+
+.panel-body {
+	background: #fff;
+	margin-top: 7px;
+	border: solid 1px #ccc;
+	padding: 40px 35px 25px 35px;
+}
+
+.tab_in_sec h2 {
+	color: #228697;
+	font-family: 'TimesNewRomanPS-BoldMT';
+	text-transform: inherit;
+	position: relative;
+	margin: 0 25px 35px 25px;
+}
+
+.in++.panel-title {
+	color: #228697;
+}
+
+.tab_in_sec h2 span {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	height: 1px;
+	display: block;
+	width: 100%;
+	background: #228697;
+	z-index: 0;
+}
+
+.tab_in_sec h2 strong {
+    display: inline-block;
+    background: #f2f1f1;
+    position: relative;
+    z-index: 1;
+    padding: 10px 15px;
+    font-family: raleway;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 1px 0px #000;
+    border: 5px solid #d82029;
+    color: #000;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+{
+	margin: 0px;
+	position: relative;
+	top: 14px;
+	border-color: #bfbfbf;
+}
+
+.tab_in_sec .panel-default>.panel-heading a {
+	background:#000;
+	color:#fff;
+}
+
+.tab_in_sec .panel-default>.panel-heading a.active {
+	background:#000;
+	color: #f00;
+}
+
+.tab_first {
+	background: none;
+	position: absolute;
+	top: 66px;
+	left: 320px;
+	width: 100%;
+}
+
+.tab_first .panel-heading {
+	background: none;
+	border-bottom: none;
+	box-shadow: none;
+	padding: 0px;
+}
+
+.tab_first .panel-heading {}
+
+.tab_sec {
+	position: relative;
+}
+
+.tab_first .panel-heading ul li {
+	display: inline-block;
+	text-align: center;
+}
+
+.tab_first .panel-heading ul li a {
+	padding: 15px 35px;
+	font-weight: bold;
+	background: #fff;
+	color: #000000;
+	text-transform: uppercase;
+}
+
+.tab_first .panel-primary {
+	box-shadow: none;
+	padding-left: 30px;
+}
+
+.actives {
+	background: #d82028 !important;
+	color: #fff !important;
+}
+
+.panel-body p {
+	margin-bottom: 15px;
+}
+@media (min-width:1681px) and (max-width:1920px){
+   .tab_first {
+    left: 600px;
+} 
+}
+@media (min-width:1599px) and (max-width:1680px){
+   .tab_first {
+    left: 476px;
+} 
+}
+@media (min-width:1439px) and (max-width:1600px){
+   .tab_first {
+    left:430px;
+} 
+}
+@media (min-width:1367px) and (max-width:1440px){
+   .tab_first {
+    left:342px;
+} 
+}
+@media only screen and (max-width:1280px){
+   .tab_first {
+    left: 270px;
+} 
+}
+@media only screen and (max-width:1024px){
+   .tab_first {
+    left: 135px;
+} 
+}
+
+@media only screen and (max-width: 992px) {
+	.tab_first .panel-primary {
+		padding-left: 0px;
+	}
+	.tab_first .panel-heading ul li a {
+		padding: 12px 20px;
+	}
+	.tab_first {
+		top: -38px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.tab_first {
+		display: none;
+	}
+	.top_appy {
+		width: 192px;
+		margin-top: 5px;
+		position: relative;
+		z-index: 101;
+		float: none;
+		margin: 5px auto 0 auto;
+	}
+	.top_appy a {
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+	}
+	.tab_sec {
+		background: none;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.top_appy {
+		margin-top: 0px;
+	}
+	.tab_in_sec h2 span {
+		display: none;
+	}
+	.tab_in_sec h2 strong {
+		background: none;
+	}
+	.tab_sec {
+		padding: 25px 0 25px 0px;
+	}
+	.tab_in_sec h2 {
+		margin: 0px;
+		margin-bottom: 15px;
+	}
+}
+</style>
+<!------ Include the above in your HEAD tag ---------->
+
+
+	<!-- main site wrapper -->
+	<div class="site_wrapper">
+
+		<!-- content sec -->
+		<div class="content_sec">
+            <h1 align="center">About US</h1>
+		
+			<!-- launch -->
+			<section class="tab_sec" id="tab-sec">
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="tab_in_sec">
+								
+								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+								  <div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingOne">
+									  <h4 class="panel-title">
+										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="active" onclick="ga('send', 'event', 'Button', 'Click', 'Program Overview', 1);">
+										   Program Overview
+										</a>
+									  </h4>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+									  <div class="panel-body">
+										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>								
+										
+									</div>
+									</div>
+								  </div>
+								  <div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingTwo">
+									  <h4 class="panel-title">
+										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="ga('send', 'event', 'Button', 'Click', 'Program Eligibility', 1);">
+											Program Eligibility
+										</a>
+									  </h4>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+										<div class="panel-body">
+											<p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Ut sed eros tempor, varius ipsum vel, viverra nisl.
+                                            Nam elementum lacus vitae dui ultrices, quis scelerisque ex gravida.
+                                            Nulla feugiat nulla et ligula luctus, non placerat urna pulvinar.
+                                            Nullam vitae neque vitae sem volutpat scelerisque mattis nec tortor.
+                                            Nullam condimentum est eu magna sagittis, a pretium ligula rhoncus.
+                                            Curabitur sollicitudin erat at dui vulputate, dignissim pharetra tellus facilisis.
+                                            Nam ornare ipsum id lectus cursus, eget molestie sem tempus.
+                                            Quisque faucibus elit sed sapien viverra, sit amet pellentesque est egestas.
+                                            Praesent sit amet lacus a libero commodo blandit sit amet a diam.
+                                            Quisque vitae metus non leo aliquam convallis eget facilisis nulla.
+                                            Quisque sit amet urna ullamcorper, volutpat turpis quis, ornare diam.
+                                            Ut vitae felis ac mi viverra sagittis.
+                                            Nam euismod erat vel ipsum maximus, sed gravida eros posuere.</p>
+										</div>
+									</div>
+								  </div>
+								  <div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingThree">
+									  <h4 class="panel-title">
+										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="ga('send', 'event', 'Button', 'Click', 'Why NMIMS', 1);">
+										 Program Arrangement
+										</a>
+									  </h4>
+									</div>
+									<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+									  <div class="panel-body">
+                                        <p>Sed ultricies nulla id nulla rhoncus efficitur.
+                                        Sed eu mi et tortor imperdiet pellentesque.
+                                        Aenean eu mi vitae urna tempor imperdiet rutrum ac tortor.
+                                        Maecenas pharetra erat non est condimentum tempor.</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+				
+			
+		</div>
+		<!-- End content sec -->
+
+			
+	</div>
+	<!-- end site wrapper -->
+
+
+{% block js %}
+<script>
+    
+
+
+//use trigger click to call the parent class
+
+$(document).ready(function (e) {
+
+	$(".tab_in_sec .panel-default>.panel-heading a").click(function () {
+		if ($(this).is('.active')) {
+			$(this).removeClass("active");
+		} else {
+			$(".tab_in_sec .panel-default>.panel-heading a.active").removeClass("active");
+			$(this).addClass("active");
+		}
+	});
+
+	$('.aa').on('click', function () {
+		$('#headingOne a').trigger('click');
+	});
+
+	$('.bb').on('click', function () {
+		$('#headingTwo a').trigger('click');
+	});
+
+	$('.cc').on('click', function () {
+		$('#headingThree a').trigger('click');
+	});
+
+	$('#headingOne').on('click', function () {
+		$('.aa').addClass('actives').parent('li').siblings('li').find('a').removeClass('actives');
+	});
+
+	$('#headingTwo').on('click', function () {
+		$('.bb').addClass('actives').parent('li').siblings('li').find('a').removeClass('actives');
+	});
+
+	$('#headingThree').on('click', function () {
+		$('.cc').addClass('actives').parent('li').siblings('li').find('a').removeClass('actives');
+	});
+
+
+	$('.tab_first .panel-heading ul li a[data-toggle="collapse"]').on('click', function () {
+		$('.tab_first .panel-heading ul li a[data-toggle="collapse"]').removeClass('actives');
+		$(this).addClass('actives');
+	});
+
+
+	$('.palceholder').click(function () {
+		$(this).siblings('input').focus();
+	});
+	$('.form-control').focus(function () {
+		$(this).siblings('.palceholder').hide();
+	});
+	$('.form-control').blur(function () {
+		var $this = $(this);
+		if ($this.val().length == 0)
+			$(this).siblings('.palceholder').show();
+	});
+	$('.form-control').blur();
+
+
+	$('.tab_first .panel-heading ul li a[href^="#"]').on('click', function (event) {
+		var target = $(this.getAttribute('href'));
+
+		if (target.length) {
+			event.preventDefault();
+			$('html, body').stop().animate({
+				scrollTop: target.offset().top - 70
+			}, 1000);
+		}
+
+	});
+
+});
+</script>
+
+{% endblock %}
+
+
+
+
+{% endblock %}

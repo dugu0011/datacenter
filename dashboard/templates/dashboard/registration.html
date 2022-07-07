@@ -1,0 +1,203 @@
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+Registration
+{% endblock %}
+
+{% block js  %}
+<script src="{% static 'dashboard/js/register.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+<script src="{% static 'dashboard/css/register.css' %}"></script>
+{% endblock %}
+{% block title_header %}Registration{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 boxStyle" style="padding-right: 0px!important;padding-left: 0px!important;">
+      <div class="panel-body" style="padding-right: 4px!important;padding-left: 4px!important;">
+	  {% if not user.is_authenticated %}
+	<form id="register-form" method="post" name="challenge"  class="form-horizontal" role="form" action="{% url  'register_page' %}" onSubmit="return submitForm()" AUTOCOMPLETE = "off" >
+	  {% csrf_token %}
+	  
+	  <fieldset class="landscape_nomargin" style="min-width: 0;padding:    .35em .625em .75em!important;margin:0 2px;border: 2px solid silver!important;margin-bottom: 10em;">
+	    <legend style="border-bottom: none;width: inherit;!important;padding:inherit;" class="legend">Registration Form</legend>
+	    
+	    <div class="form-group">
+	      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="text-align: right!important;">
+		<span style="color: red">*</span> <span style="font-size: 8pt;">mandatory fields</span>
+	      </div>
+	    </div>	
+	    <div class="form-group" style="margin-bottom: 0px;">
+              <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message10" style=" font-size: 10pt;padding-left: 0px;"></div>                      
+
+            </div>	
+
+		<div class="form-group">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px; text-align: right;">
+		First Name<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad" style="font-weight:600;">
+		
+		<input style="border-radius: 4px!important;" type="text"  class="form-control" name="first_name" id="first_name" >                   
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+        </div>
+		
+		<div class="form-group">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px; text-align: right;">
+		Last Name<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad" style="font-weight:600;">
+		
+		<input style="border-radius: 4px!important;" type="text"  class="form-control" name="last_name" id="last_name" >                   
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+        </div>
+
+		<div class="form-group">
+			<label class="form-check form-check-inline">
+		  <input class="form-check-input" type="radio" name="role" value="admin">
+		  <span class="form-check-label"> Admin </span>
+		</label>
+		<label class="form-check form-check-inline">
+		  <input class="form-check-input" type="radio" name="role" value="staff" checked>
+		  <span class="form-check-label"> Staff</span>
+		</label>
+	</div> <!-- form-group end.// -->
+			
+	    <div class="form-group">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px; text-align: right;">
+		Userid<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad" style="font-weight:600;">
+		
+		<input style="border-radius: 4px!important;" type="text"  class="form-control" name="username" id="username" >                   
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+            </div>
+			
+			
+            <div class="form-group">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px; text-align: right;">
+		Your Email<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad" style="font-weight:600;">
+		
+		<input style="border-radius: 4px!important;" type="email"  class="form-control" name="yourEmail" id="yourEmail">                   
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+            </div> 
+
+	    <div class="form-group " style="margin-bottom: 5px;">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px;text-align: right;">
+		Your Master Password<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad">
+		
+		<input required=required type="password" onkeyup="passwordChecker()" name="master_password" id="master_password" class="form-control"><span class="input-group-btn"><button class="btn btn-defaultCUST" id="master_password_button" style=" height: 34px;padding-left: 7px;" type="button"><span class="glyphicon glyphicon-eye-open" ></span>                   
+		</button></span>    
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              
+            </div>  
+            <p><u>Please Note down master password carefully</u></p>                
+
+	    
+            <div class="form-group">
+              <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div>
+              <div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad"  data-toggle="collapse" data-target="#passPolicy" style="font-weight: bold;font-size: 10pt;padding-left: 0px;color: black;cursor: pointer;text-decoration: underline;">Check Password Policy<span class="caret"></span>
+              </div>  
+            </div>
+            <div class="form-group" style="margin-bottom: 0px;!important">
+              <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div>
+              <div id="passPolicy" class="col-sm-8 col-md-8 col-lg-7 col-xs-10 collapse mobilePad" style="padding-right: 17px;">
+		<ul type="disc" style="padding-left: 0px;">
+                  <li>Your Password must have minimum 6 characters.</li>
+                  <li>Your Password must contain at least one number, one uppercase, lowercase & special character.</li>
+                  <li>Your Password must not contain your Username.</li>
+                  <li>Your Password must not contain Character or Number repetition.</li>
+                  
+		</ul> 
+              </div>
+            </div>   
+            <div class="form-group " style="margin-bottom: 5px;">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px;text-align: right;">
+		Your Password<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad">
+		
+		<input type="password" onkeyup="passwordChecker()" name="password" id="password" class="form-control"><span class="input-group-btn"><button class="btn btn-defaultCUST" id="view_button3" style=" height: 34px;padding-left: 7px;" type="button"><span class="glyphicon glyphicon-eye-open" ></span>                   
+		</button></span>                    
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              
+            </div>  
+            <div class="form-group" style="margin-bottom: 5px;">
+              <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message8" style=" font-size: 10pt;padding-left: 0px;"></div>                      
+
+              <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message" style=" font-size: 10pt;"></div>
+	      <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message2" style=" font-size: 10pt;"></div>
+	      <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message3" style=" font-size: 10pt;"></div>
+	      <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message4" style=" font-size: 10pt;"></div>
+	      <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message5" style=" font-size: 10pt;"></div> 
+	      <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message6" style=" font-size: 10pt;padding-left: 0px;"></div>
+	      <div class="col-sm-4 col-md-4 col-lg-5 col-xs-1"></div><div class="col-sm-8 col-md-8 col-lg-7 col-xs-10 mobilePad" id="message7" style=" font-size: 10pt;padding-left: 0px;"></div>                      
+	      
+            </div>
+            <div class="form-group">
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+              <div class="col-sm-3 col-md-3 col-lg-4 col-xs-10 mobileLabel" style=" padding-top: 7px;text-align: right;">
+		Confirm Your Password<span style="color: red">*</span>:</div>
+              
+	      <div class="col-sm-7 col-md-7 col-lg-6 col-xs-9 input-group mobilePad">
+		
+		<input type="password" name="verifypassword" id="verifypassword" class="form-control"><span class="input-group-btn"><button class="btn btn-defaultCUST" id="view_button4" style=" height: 34px;padding-left: 7px;" type="button"><span class="glyphicon glyphicon-eye-open"></span>                  
+		</button></span>                     
+		
+              </div>
+              <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+            </div>	
+            <div class="form-group">
+              <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id="message1" style="font-weight: bold; text-align: center;font-size: 10pt;">
+	      </div>
+	    </div>	            
+            <div class="form-group">
+	      <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+	      <div class="col-sm-11 col-md-11 col-lg-11 col-xs-10" style="text-align:center;">
+		<button id="valuser" type="button" onclick="submitForm()"
+			class="btn btn-success">
+		  Submit</button>
+	      </div>
+
+	      <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1"></div>
+	    </div>   
+	    <div class="form-group" style="width:90%;margin-left:25px;text-align:center;font-weight:bold;height:30px;background-color:orange;"></div>
+	  </fieldset>
+	  
+	</form>
+	{% else %}
+	<p>YOU ARE ALREADY LOGGED IN AS {{request.user.username}}</p>
+	{% endif %}
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}

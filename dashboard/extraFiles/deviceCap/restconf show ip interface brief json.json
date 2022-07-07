@@ -1,0 +1,42 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "body": {
+            "TABLE_intf": {
+                "ROW_intf": [
+                    {
+                        "vrf-name-out": "default",
+                        "intf-name": "Vlan1",
+                        "proto-state": "up",
+                        "link-state": "up",
+                        "admin-state": "up",
+                        "iod": 2,
+                        "prefix": "192.168.0.5",
+                        "ip-disabled": "FALSE"
+                    },
+                    {
+                        "vrf-name-out": "default",
+                        "intf-name": "Eth1/1",
+                        "proto-state": "down",
+                        "link-state": "down",
+                        "admin-state": "up",
+                        "iod": 6,
+                        "prefix": "192.168.1.5",
+                        "ip-disabled": "FALSE"
+                    },
+                    {
+                        "vrf-name-out": "default",
+                        "intf-name": "Eth1/7",
+                        "proto-state": "down",
+                        "link-state": "down",
+                        "admin-state": "up",
+                        "iod": 12,
+                        "prefix": "192.168.2.7",
+                        "ip-disabled": "FALSE"
+                    }
+                ]
+            }
+        }
+    },
+    "id": 1
+}

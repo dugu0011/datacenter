@@ -1,0 +1,1 @@
+{"links": [{"source": "parent", "target": "", "value": "40"}], "nodes": [{"group": "0", "id": "parent", "image": "akus.png", "protocol": false}, {"group": "1", "id": "", "image": "default.png", "protocol": "snmp"}]}

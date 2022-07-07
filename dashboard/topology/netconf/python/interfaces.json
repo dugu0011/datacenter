@@ -1,0 +1,132 @@
+{
+    "AR21-U12-ICB1": [
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/1 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/1", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/2 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/2", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/9 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/9", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/10 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/10", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/17 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/18 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/19 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/19", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/20 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "40000000", 
+            "admin_status": "UP", 
+            "description": "UPLINK_TO_LEAF ", 
+            "local_intf": "FortyGigE1/1/4", 
+            "oper_status": "UP"
+        }
+    ], 
+    "AR21-U12-ICB2": [
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/1 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/1", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/2 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/2", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/9 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/9", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/10 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/10", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/17 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/18 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/19 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/19", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "10000000", 
+            "admin_status": "UP", 
+            "description": "Ten-GigabitEthernet1/0/20 Interface", 
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "oper_status": "UP"
+        }, 
+        {
+            "actual_bandwith": "40000000", 
+            "admin_status": "UP", 
+            "description": "UPLINK_TO_LEAF ", 
+            "local_intf": "FortyGigE1/1/4", 
+            "oper_status": "UP"
+        }
+    ]
+}

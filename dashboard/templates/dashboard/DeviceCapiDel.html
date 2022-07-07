@@ -1,0 +1,24 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Get Capabilities {% endblock %} {% block js %}
+{% if msg %}
+<script>
+    alert('{{msg}}');
+</script>
+{% endif %} {% endblock %} {% block css %} {% endblock %} {% block content %}
+<center>
+    <div class="col-md-6 col-md-offset-3 boxStyle" style="border:1px solid black;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" type="number" name="id" value="{{device.id}}">
+            <div class="form-group row">
+                <label for="device" class="control-label col-sm-12">Delete Device {{device.name}}?</label>
+                <div class="col-sm-12 pull-right">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</center>
+<div class="row" style="height:400px;">
+
+</div>
+{% endblock %}

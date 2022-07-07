@@ -1,0 +1,484 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+    <title>AKUS | {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="AKUS Monitoring Dashboard" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="{% static 'dashboard/images/akus.png' %}">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="{% static 'dashboard/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+    <!-- Custom Theme files -->
+    <link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+    <!--js-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <script src="{% static 'dashboard/js/jquery-2.1.1.min.js' %}"></script>
+    <!--icons-css-->
+    <link href="{% static 'dashboard/css/font-awesome.css' %}" rel="stylesheet">
+    <!--Google Fonts-->
+    <link href='{% static "dashboard/css/carrois_fonts_google.css" %}' rel='stylesheet' type='text/css'>
+    <link href='{% static "dashboard/css/sans-font.css" %}' rel='stylesheet' type='text/css'>
+    <link href='{% static "dashboard/css/custom_style.css" %}' rel='stylesheet' type='text/css'> {% block css %} {% endblock %}
+<style>
+	.sidebar-collapsed-back{
+		background: rgb(7, 7, 7);
+	}
+    @font-face {
+    font-family: myFirstFont;
+    src:url("/static/dashboard/fonts/clock.ttf");
+}
+.rotateMenu:hover{
+transition: 0.6s;
+    transform: rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+}
+/* Pulse */
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+.hvr-pulse:hover, .hvr-pulse:focus, .hvr-pulse:active {
+  -webkit-animation-name: hvr-pulse;
+  animation-name: hvr-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+</style>
+
+    <!--//skycons-icons-->
+</head>
+
+<body onload="startTime()">
+    <script src="{% static 'dashboard/js/monetization.js' %}" type="text/javascript"></script>
+    <script>
+        (function() {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+            }
+        })();
+    </script>
+    <script>
+        (function() {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+            }
+        })();
+    </script>
+    <script>
+        (function() {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+            }
+        })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src='https://www.googletagmanager.com/gtag/js?id=UA-149859901-1'></script> -->
+    <!-- <script> -->
+    <!--   window.dataLayer = window.dataLayer || []; -->
+    <!--   function gtag(){dataLayer.push(arguments);} -->
+    <!--   gtag('js', new Date()); -->
+
+    <!--   gtag('config', 'UA-149859901-1'); -->
+    <!-- </script> -->
+
+    <!-- <script> -->
+    <!--   window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; -->
+    <!--   ga('create', 'UA-149859901-1', 'demo.w3layouts.com'); -->
+    <!--   ga('require', 'eventTracker'); -->
+    <!--   ga('require', 'outboundLinkTracker'); -->
+    <!--   ga('require', 'urlChangeTracker'); -->
+    <!--   ga('send', 'pageview'); -->
+    <!-- </script> -->
+    <script async src="{% static 'dashboard/js/autotrack.js' %}"></script>
+
+    <meta name="robots" content="noindex">
+
+    <body>
+        <link rel="stylesheet" href="{% static 'dashboard/css/font-awesome.min.css' %}">
+        <!-- New toolbar-->
+
+        </div>
+
+        <div class="page-container">
+            <div class="left-content">
+                <div class="mother-grid-inner">
+                    <!--header start here-->
+                    <div id="blink3" class="header-main" style="height: 60px;">
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                var myVar;
+                                myVar = setInterval(blinkFont, 500);
+
+                                function blinkFont() {
+                                    var curColor = document.getElementById("blink3").style.color;
+                                    var curBgC = document.getElementById("blink3").style.background;
+                                    document.getElementById("blink3").style.color = curColor === "red" ? "white" : "red";
+                                    document.getElementById("blink3").style.background = curBgC === "red" ? "white" : "red";
+
+                                }
+                                setTimeout(function() {
+                                    $("#blink3").css('visibility', 'visible');
+                                    clearInterval(myVar);
+                                }, 10000);
+                            });
+                        </script>
+                        <div class="header-left">
+                            <div class="logo-name">
+                                <a href="{% url 'home_page' %}"> <img src="{% static 'dashboard/images/akus.png' %}" alt="logo" height="65px" width="70px">
+                                    <!--<img id="logo" src="" alt="Logo"/>-->
+                                </a>
+                            </div>
+                            
+	      
+                            <!--//end-search-box-->
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="header-right">
+                            <div class="profile_details_left">
+                                <!--notifications of menu start -->
+                                <ul class="nofitications-dropdown">
+                                    <li class="dropdown head-dpdn" style="margin-left: -150px;color:black;font-size:20px;margin-top:-10px">
+                                        {% block title_header %}{% endblock %}
+                                    </li>
+                                    <li class="dropdown head-dpdn">
+                                        <a href="{% url 'about-us' %}" class="dropdown-toggle" aria-expanded="false" title="About Us"><i class="fa fa-question-circle" style="color: rgb(17, 16, 16);"></i></a>
+
+                                    </li>
+                                    <li class="dropdown head-dpdn">
+                                        <a href="{% url 'data-review' %}" class="dropdown-toggle" aria-expanded="false" title="Data Review"><i class="fa fa-th-list" style="color: rgb(17, 16, 16);"></i></a>
+                                    </li>
+                                    <li class="dropdown head-dpdn">
+                                        <a href="{% url 'data-check' %}" class="dropdown-toggle" aria-expanded="false" title="Data Check"><i class="fa fa-check-square-o" style="color: rgb(17, 16, 16);"></i></a>
+                                    </li>
+                                    <li class="dropdown head-dpdn">
+                                        <a href="{% url 'contact-us' %}" class="dropdown-toggle" aria-expanded="false" title="Contact Us"><i class="fa fa-envelope" style="color: rgb(17, 16, 16);"></i></a>
+
+                                    </li>
+                                    
+                                    <li class="dropdown head-dpdn">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Notification"><i class="fa fa-bell" style="color: rgb(17, 16, 16);"></i><span class="badge blue" id="notification_count_head">{{count}}</span></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="notification_header">
+                                                    <h3 id="notification_count">You have 3 new notification</h3>
+                                                </div>
+                                            </li>
+                                            <style>
+                                                .blink {
+                                                    animation: blinker 1s step-start infinite;
+                                                }
+                                                
+                                                @keyframes blinker {
+                                                    50% {
+                                                        opacity: 0;
+                                                    }
+                                                }
+                                            </style>
+                                            {% for notif in notifications %}
+                                            <li>
+                                                <a href="#">
+                                                    <div class="user_img"><img src="{% static 'dashboard/images/p5.png' %}" alt=""></div>
+                                                    <div class="notification_desc" id="notification_desc">
+                                                        <p {% if not notif.is_read %}style="color: red;" class="blink"{% else %}style="color: grey;"{% endif %} id="notif_name">{{notif.name}}</p>
+                                                        <p id="notif_desc">{{notif.desc}}</p>
+                                                        <p><span>{{notif.date|date:"M d, Y"}}</span> {% if not notif.is_read %}<span><a href="{% url 'notification_update' notif.id %}" text="notification_update({{notif.id}});">ACK</a></span></p>{% endif %}
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+
+                                            <li>
+                                                <div class="notification_bottom">
+                                                    <a href="{% url 'all_notifications' %}">See all notifications</a> </div>
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown head-dpdn">
+                                        <a href="{% url 'table' %}" class="dropdown-toggle" aria-expanded="false" title="Contact Us"><i class="fa fa-table"  style="color: rgb(57, 238, 178); margin-left: 50px; height: 10px;width: 20px;"></i></a>
+
+                                    </li>
+                                    <li class="dropdown head-dpdn">
+                                        <div id="curTime" style="color:#F6BE00;font-size: 40px;margin-top: -30px;margin-left: 40px;font-family: myFirstFont;"></div>
+                                    </li>
+                                    
+
+                                </ul>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <!--notification menu end -->
+                            <div class="profile_details">
+                                <ul>
+                                <li class="dropdown head-dpdn">
+                                        <button style="margin-top: -10px;margin-left: -60px;{% if request.resolver_match.url_name == "home_page" %}display:none;{% endif %}" class="btn btn-success" onclick="goBack()"><i class="fa fa-arrow-left" style="color:white;"></i></button>
+                                    </li>
+                                    <li class="dropdown profile_details_drop">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		{% if user.is_authenticated %}
+		  <div class="profile_img">	
+		    <span class="prfil-img"><img src="{% if request.user.userprofile.pic %}{{request.user.userprofile.pic.url}}{% endif %}" alt="" width="45px" height="40px"> </span> 
+		    <div class="user-name">
+		      <p>{{request.user.username}}</p>
+		      <span style="color: rgb(17, 16, 16);">{% if request.user.is_superuser %}Administrator{% else %}Staff{% endif %}</span>												</div>
+		    <i class="fa fa-angle-down lnr"></i>
+		    <i class="fa fa-angle-up lnr"></i>
+		    <div class="clearfix"></div>	
+		  </div>	
+		</a>
+                                        <ul class="dropdown-menu drp-mnu">
+                                            <li> <a href="{% url 'setting-view' %}"><i class="fa fa-cog"></i> settings</a> </li>
+                                            <!-- <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>  -->
+                                            <li> <a href="#"><i class="fa fa-user"></i> Admin Panel</a> </li>
+                                            <li> <a href="{% url 'logout-view' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                                        </ul>
+                                        {% else %}
+                                        <a href="{% url 'login_page' %}">Login</a> <a href="{% url 'register_page' %}">Register</a> {% endif %}
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="clearfix"> </div>
+                        </div>
+                        
+                        <div class="clearfix"> </div>
+
+                        
+                    
+
+                    </div>
+                    
+                    <!--heder end here-->
+                    
+                    <!-- script-for sticky-nav -->
+                    <script>
+                        $(document).ready(function() {
+                            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                            $("#menu span").css({
+                                "position": "absolute"
+                            });
+                            var navoffeset = $(".header-main").offset().top;
+                            $(window).scroll(function() {
+                                var scrollpos = $(window).scrollTop();
+                                if (scrollpos >= navoffeset) {
+                                    $(".header-main").addClass("fixed");
+                                } else {
+                                    $(".header-main").removeClass("fixed");
+                                }
+                            });
+
+                        });
+                    </script>
+                    <!-- /script-for sticky-nav -->
+
+                    <!--inner block start here-->
+                    <div class="inner-block" style="min-height:95vh;">
+                        <div class="cols-grids panel-widget">
+                            <!--728x90-->
+
+
+                            <div class="chute chute-center text-center" >
+
+
+
+
+
+                                {% block content %} {% endblock %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--inner block end here-->
+                <!--copy rights start here-->
+                <div class="copyrights col-md-12" style="background-color: rgb(253, 253, 253);padding:5px;margin-top:0px">
+                    {% comment %}
+                    <p>Made with ❤️ in 🇮🇳 &copy; 2021 Akus ITs. All Rights Reserved</p> {% endcomment %} {% comment %}
+                    <div style="float: right">Akus ITs &copy; 2021. All Rights Reserved</div>
+                    <div style="margin-left:100px auto;">Made with ❤️ in 🇮🇳</div> {% endcomment %} {% comment %}
+                    <div style="margin: 0 auto;">Made in 🇮🇳 with ❤️ Akus ITs.</div> {% endcomment %} {% comment %}
+                    <p class="copyright">&nbsp; Made in 🇮🇳 with ❤️ Akus ITs.</p>
+                    <p class="social">&copy; 2021</p>
+                    <div style="clear: both"></div> {% endcomment %}
+                    <div class="col-md-7" style="text-align:right;color: black;"><b>Made with ❤️ in 🇮🇳</b></div>
+                    <div class="col-md-5" style="text-align:right;color: black;">Akus ITs &copy; 2018-2021. All Rights Reserved</div>
+                    <!--COPY rights end here-->
+                </div>
+                <!--slider menu-->
+                <div class="sidebar-menu" style="background: black;height: 100%;position: fixed;z-index: 1;top: 0;left: 0;">
+                    <div class="logo">
+                        <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a>
+                        <a href="#"> <span id="logo"></span>
+                            <!--<img id="logo" src="" alt="Logo"/>-->
+                        </a>
+                    </div>
+                    <div class="menu" style="background: black;">
+                        <ul id="menu">
+                            <li id="menu-home"><a href="{% url 'home_page' %}" class="" style="{% if request.resolver_match.url_name == "home_page" %}color:#fdbb30;{% endif %}"><i class="fa fa-tachometer hvr-pulse"></i><span>Home</span></a></li>
+                            <!-- <li><a href="#"><i class="fa fa-cogs"></i><span>Monitoring</span></a>
+                            </li> -->
+							<li><a href="{% url 'assets-forms' %}" style="{% if request.resolver_match.url_name == "assets-forms" %}color:#fdbb30;{% endif %}"><i class="fa fa-cog rotateMenu"></i><span>Assets</span></a>
+                            </li>
+                            <!-- <li id="menu-comunicacao"><a href="{% url 'temp-view' %}"><i class="fa fa-book nav_icon"></i><span>Heatmap</span></a>
+                            </li> -->
+							<!-- <li id="menu-comunicacao"><a href="{% url 'top-view' %}"><i class="fa fa-book nav_icon"></i><span>TopView</span></a>
+                            </li> -->
+                            <!-- <li><a href="#"><i class="fa fa-map-is_read"></i><span>Templates</span></a></li> -->
+                            <!-- <li id="menu-academico"><a href="http://127.0.0.1:8000/data-browser/"><i class="fa fa-file-text"></i><span>Audit Reports</span></a>
+                            </li> -->
+
+                            <!-- <li><a href="{% url 'apm_report' %}"><i class="fa fa-bar-chart"></i><span>APM Report</span></a></li>
+                            <li><a href="{% url 'mail' %}"><i class="fa fa-envelope"></i><span>Mailbox</span></a>
+                            </li>
+                            <li><a href="{% url 'setting-view' %}"><i class="fa fa-cog " ></i><span>System</span></a>
+                            </li>
+							<li><a href="{% url 'new_data_center' %}"><i class="fa fa-server"></i><span>DataCenter assets</span></a>
+                            </li> -->
+							<li><a href="{%url 'network_graph'%}" style="{% if request.resolver_match.url_name == "network_graph" %}color:#fdbb30;{% endif %}"><i class="fa fa-wifi hvr-pulse"></i><span>Networking</span></a></li>
+
+							<li><a href="{% url 'home_network'%}" style="{% if request.resolver_match.url_name == "home_network" %}color:#fdbb30;{% endif %}"><i class="fa fa-cogs rotateMenu"></i><span>Server</span></a></li>
+
+							<li><a href="{%url 'storage'%}" style="{% if request.resolver_match.url_name == "storage" %}color:#fdbb30;{% endif %}"><i class="fa fa-cubes hvr-pulse"></i><span>Storage</span></a></li>
+
+							<li><a href="{%url 'database_monitoring'%}" style="{% if request.resolver_match.url_name == "database_monitoring" %}color:#fdbb30;{% endif %}"><i class="fa fa-database hvr-pulse"></i><span>DBMS</span></a></li>
+
+							<li><a href="{%url 'apm_monitoring'%}" style="{% if request.resolver_match.url_name == "apm_monitoring" %}color:#fdbb30;{% endif %}"><i class="fa fa-bar-chart hvr-pulse"></i><span>APM</span></a></li>
+
+							<li id="menu-comunicacao" ><a href="{% url 'hexbin_graph'%}" style="{% if request.resolver_match.url_name == "hexbin_graph" %}color:#fdbb30;{% endif %}"><i class="fa fa-globe rotateMenu"></i><span>Web Monitoring</span></a>
+
+							<li><a href="{%url 'cctv' %}" style="{% if request.resolver_match.url_name == "cctv" %}color:#fdbb30;{% endif %}"><i class="fa fa-camera hvr-pulse"></i><span>CCTV</span></a></li>
+
+							<!-- <li><a href="{% url 'plotly_graph' %}"><i class="fa fa-sitemap"></i><span>Plotly graphs</span></a> -->
+							<li><a href="{% url 'reports' %}" style="{% if request.resolver_match.url_name == "reports" %}color:#fdbb30;{% endif %}"><i class="fa fa-file-text hvr-pulse" ></i><span >Reports</span></a>		
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <!--slide bar menu end here-->
+            <script>
+
+                function defaultCallback(data , status){
+                    console.log(data);
+                    alert(data);
+                }
+
+                function sendAJAX(requestType,  url  , callback = defaultCallback , data = false){
+                    if(requestType.toLowerCase() == "post"){
+                        $.post(url , data , callback)
+                    }
+                    else if(requestType.toLowerCase() == "get"){
+                        $.get(url , callback)
+                    }
+                }
+
+                var toggle = true;
+
+                $(".sidebar-icon").click(function() {
+                    if (toggle) {
+                        $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                        $("#menu span").css({
+                            "position": "absolute"
+                        });
+                    } else {
+                        $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                        setTimeout(function() {
+                            $("#menu span").css({
+                                "position": "relative"
+                            });
+                        }, 400);
+                    }
+                    toggle = !toggle;
+                });
+            </script>
+            <!--scrolling js-->
+            <script src="{% static 'dashboard/js/jquery.nicescroll.js' %}"></script>
+            <script src="{% static 'dashboard/js/scripts.js' %}"></script>
+            <!--//scrolling js-->
+            <script src="{% static 'dashboard/js/bootstrap.js' %}">
+            </script>
+            <script>
+        function goBack() {
+        window.history.back();
+        }
+      </script>
+      <script>
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('curTime').innerHTML =  h + ":" + m + ":" + s;
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+<!-- <script>
+function myfun(item_id){
+    //var notification_count=document.getElementById("notification_count");
+    var notification_desc=document.getElementById("notification_desc");
+$.ajax({
+    url: "http://127.0.0.1:8000/notificationMarkRead/",
+    data: {'id':item_id},
+    success: function(data){
+        //here you do the processing needed to remove the row from the html;
+        alert("success");
+        $('#notification_count').html('You have '+data.count+' new notification');
+        $('#notification_count_head').html(data.count);
+        //data.notifications.forEach(function(obj) {
+        //$('#notification_desc').html("<p style='color: red;' class='blink' id='notif_name'>"+obj.name"</p><p //id='notif_desc'>"+obj.desc+"</p><p><span>"+obj.date+"</span></p>");
+           // });
+        
+    }
+});
+}
+</script> -->
+            <!-- mother grid end here-->
+            {% block js %} {% endblock %}
+
+</html>

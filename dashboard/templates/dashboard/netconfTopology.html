@@ -1,0 +1,149 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %} Dashboard {% endblock title %}{% block content %}
+<style>
+    .col {
+        border: 0;
+    }
+    
+    .card-counter {
+        box-shadow: 2px 2px 10px #DADADA;
+        margin: -13px;
+        padding: 20px 10px;
+        background-color: #fff;
+        height: 70px;
+        border-radius: 5px;
+        transition: .3s linear all;
+    }
+    
+    .card-counter:hover {
+        box-shadow: 4px 4px 20px #DADADA;
+        transition: .3s linear all;
+    }
+    
+    .card-counter.primary {
+        background-color: #007bff;
+        color: #FFF;
+    }
+    
+    .card-counter.danger {
+        background-color: #ef5350;
+        color: #FFF;
+    }
+    
+    .card-counter.success {
+        background-color: #66bb6a;
+        color: #FFF;
+    }
+    
+    .card-counter.info {
+        background-color: #26c6da;
+        color: #FFF;
+    }
+    
+    .card-counter i {
+        font-size: 5em;
+        opacity: 0.2;
+    }
+    
+    .card-counter .count-numbers {
+        position: absolute;
+        text-align: center;
+        right: 91px;
+        top: -15px;
+        font-size: 32px;
+        display: block;
+    }
+    
+    .card-counter .count-name {
+        position: absolute;
+        right: 72px;
+        top: 25px;
+        font-style: italic;
+        text-transform: capitalize;
+        opacity: 0.5;
+        display: block;
+        font-size: 18px;
+    }
+    
+    .container-chart {
+        display: flex;
+        flex-flow: row nowrap;
+        /* Align on the same line */
+        justify-content: space-between;
+        /* Equal margin between the child elements */
+    }
+    /* For Presentation, not needed */
+    
+    .container-chart>div {
+        background: #5F85DB;
+        padding: 5px;
+        color: #fff;
+        font-weight: bold;
+        font-family: Tahoma;
+    }
+    
+    #container {
+        margin: 10px;
+        padding: 10px;
+        height: 40px;
+    }
+    
+    .col {
+        float: left;
+        width: 33.33333333%;
+        border: 1px solid #07f;
+        padding: 0;
+        margin: 20px;
+    }
+    
+    #left {
+        text-align: left;
+    }
+    
+    #center {
+        text-align: center;
+    }
+    
+    #right {
+        text-align: right;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">Basic card1</div>
+                <div class="col-md-6">Basic card1</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">Basic card1</div>
+                <div class="col-md-6">Basic card1</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div>Basic card2</div>
+        </div>
+        <div class="col-md-4">
+            <div>Basic card3</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div>Basic card1</div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">Basic card1</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">Basic card1</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div>Basic card3</div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

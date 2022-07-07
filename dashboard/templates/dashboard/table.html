@@ -1,0 +1,289 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Page Links</title>
+
+    
+        <link href="/static/dashboard/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+        <script src="/static/dashboard/js/jquery-2.1.1.min.js"></script>
+        
+</head>
+<body>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">PAGE NAME</th>
+            <th scope="col">DESCRIPTION</th>
+            <!-- <th scope="col">Handle</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'test_page' %}">Test</a></td>
+            <td>Its Test Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'raiseTicket' %}">Raise Ticket</a></td>
+            <td>Raise Ticket Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'register_page' %}">Register</a></td>
+            <td>Its Register Page</td>
+            <!-- <td>@fat</td> -->
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'login_page' %}">Login</a></td>
+            <td>Its Login Page</td>
+            <!-- <td>@twitter</td> -->
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'reset_password_page' %}">Reset Password</a></td>
+            <td>Its Reset Password Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'edit-profile' %}">Edit Profile</a></td>
+            <td>Its Edit Profile Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'assets-world' %}">Assets World</a></td>
+            <td>Its World Map Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'assets-india' %}">Assets INDIA</a></td>
+            <td>Its INDIA Map Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'rack_information' %}">DataCenter Information</a></td>
+            <td>Its DataCenter Information Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'assets-forms' %}">Assets Forms</a></td>
+            <td>Its Assets Form Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'import-export' %}">Import</a></td>
+            <td>Its Import Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'exports' %}">Export</a></td>
+            <td>Its Export Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'group_data' %}">Groups</a></td>
+            <td>Its Group Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'test_groups' %}">Test Group</a></td>
+            <td>Its Test Group Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'assign_groups' %}">Assign Groups</a></td>
+            <td>Its Assign Groups page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'ap' %}">App Permissions</a></td>
+            <td>Its App Permissions PAge</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'top-view' %}">Top View</a></td>
+            <td>Its Top View Data Center Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">18</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'temp-view' %}">Temp View</a></td>
+            <td>Its Temp View Data Center Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">19</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'setting-view' %}">Settings</a></td>
+            <td>Its Settings Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">20</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'logout-view' %}">Logout</a></td>
+            <td>Its Logout page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">21</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'show_user' %}">Show User</a></td>
+            <td>Its Show User Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">22</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'new_data_center' %}">Asset DataCenter Hall</a></td>
+            <td>Its Asset Data Center Hall Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">23</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="/data-browser/">Data Browser</a></td>
+            <td>Its Data Browser Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">24</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'all_notifications' %}">Notifications</a></td>
+            <td>Its Notifications Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">25</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'reports' %}">Reports</a></td>
+            <td>Its Reports page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">26</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'genearte_raw_data_report' %}">Generate RawData Reports</a></td>
+            <td>Its Generate Raw Data Reports page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">27</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'rack_report' %}">Rack Reports</a></td>
+            <td>Its Rack Reports page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">28</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'network_graph' %}">Network Graph</a></td>
+            <td>Its Network Graph page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">29</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'plotly_graph' %}">Plotly Graph</a></td>
+            <td>Its Plotly Graph page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">30</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'home_network' %}">Home Network</a></td>
+            <td>Its Home Network page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">31</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'apm_monitoring' %}">Apm Monitoring</a></td>
+            <td>Its Apm Monitoring Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">32</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'database_monitoring' %}">DataBase Monitoring</a></td>
+            <td>Its DataBase Monitoring Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">33</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'storage' %}">Storage</a></td>
+            <td>Its Storage Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">34</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'hexbin_graph' %}">Hexbin Graph</a></td>
+            <td>Its Hexbin Graph Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">35</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'cctv' %}">CCTV</a></td>
+            <td>Its CCTV Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">36</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'apm_report' %}">APM Report</a></td>
+            <td>Its APM Report page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">37</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'mail' %}">Mail</a></td>
+            <td>Its Mail page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">38</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'about-us' %}">About Us</a></td>
+            <td>Its About Us page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">39</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'data-review' %}">Data Review</a></td>
+            <td>Its Data Review Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">40</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'data-check' %}">Data Check</a></td>
+            <td>Its Data Check page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">41</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'contact-us' %}">Contact Us</a></td>
+            <td>Its Contact Us Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+          <tr>
+            <th scope="row">42</th>
+            <td><a class="btn btn-primary" style="width: 40%;" href="{% url 'topology-graph' %}">Toplogy Graph</a></td>
+            <td>Its Topology Graph Page</td>
+            <!-- <td>@mdo</td> -->
+          </tr>
+                  
+
+        </tbody>
+      </table>
+
+      
+</body>
+</html>
+
+

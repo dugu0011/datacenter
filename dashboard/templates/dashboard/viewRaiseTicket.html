@@ -1,0 +1,50 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %} Raise Ticket {% endblock %} {% block title_header %}Raise Ticket{% endblock %} {% block css %}
+<style>
+td{
+    text-align:left;
+}
+</style>
+{% endblock %}
+{% block js %}
+{% endblock js %}
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Created At</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Message</th>
+      <th scope="col">Resources</th>
+      <th scope="col">Progress</th>
+      {% if ticket.admin_response %}<th scope="col">Response</th>{% endif %}
+      {% if ticket.updated %}<th scope="col">Updated At</th>{% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ticket.created}}</th>
+      <th>{{ticket.subject}}</th>
+      <td>{{ticket.msg}}</td>
+      <td>{% if ticket.img %}
+<a href="{{ticket.img.url}}">View</a>{% else %}No Resource
+{% endif %}</td>
+      <td>{% if ticket.accepted %}{% if ticket.is_aprove %}<span style="color:green">Accepted</span>{% else %}Rejected{% endif %}{% else %}Pending{% endif %}</td>
+      {% if ticket.admin_response %}<td>{{ticket.admin_response}}</td>{% endif %}
+      {% if ticket.updated %}<td>{{ticket.updated}}</td>{% endif %}
+    </tr>
+  </tbody>
+</table>
+
+{% if request.user.is_superuser %}
+    <h2>Admin Response </h2>
+    <form action="" method="POST">
+    {% csrf_token %}
+    <select name="aprove">
+    <option value="aproved">Accepted</option>
+    <option value="rejected">Rejected</option>
+    </select><br><br>
+    <textarea name="admin_response"></textarea><br><br>
+    <input type="submit" value="submit">
+    </form>
+{% endif %}
+{% endblock %}

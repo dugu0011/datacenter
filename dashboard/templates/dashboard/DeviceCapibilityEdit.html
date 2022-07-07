@@ -1,0 +1,48 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Show Capabilities {% endblock %} {% block js %} {% if msg %}
+<script>
+    alert('{{msg}}');
+</script>
+{% endif %} {% endblock %} {% block css %} {% endblock %} {% block content %}
+<center>
+    <div class="col-md-10 col-md-offset-1 boxStyle" style="border:1px solid black;">
+    <form metod="POST" action="">
+    {% csrf_token %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Device</td>
+                    <td>HOST</td>
+                    <td>SNMP</td>
+                    <td>NETAPI</td>
+                    <td>RESTAPI</td>
+                    <td>ALIVE</td>
+                    <td>DEVICE ADDED</td> <!--initial-->
+                    <td>LAST CHECKED</td>
+                    <td>UPDATE ALL</td>
+                    <td>EDIT</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for devices in device %}
+                <tr>
+                    <td>{{devices.name}}</td>
+                    <td>{{devices.ip}}</td>
+                    <td><i class="fa fa-check" style="color:green"></i></td>
+                    <td><i class="fa fa-close" style="color:red"></i></td>
+                    <td><i class="fa fa-check" style="color:green"></i></td>
+                    <td>ALIVE</td>
+                    <td>{{devices.created}}</td>
+                    <td>{{devices.updated}}</td>
+                    <td><button>CHECK</button></td>
+                    <td><a href="{% url 'edit-device-capability' devices.id %}"><i class="fa fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </div>
+</center>
+<div class="row" style="height:400px;">
+
+</div>
+{% endblock %}

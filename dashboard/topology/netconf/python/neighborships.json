@@ -1,0 +1,354 @@
+{
+    "AR21-U12-ICB1": [
+        {
+            "local_intf": "FortyGigE1/1/4", 
+            "neighbor": "usplnAGVPCLAB1003", 
+            "neighbor_intf": "FortyGigE1/0/7"
+        }, 
+        {
+            "local_intf": "TwentyGigE1/0/10", 
+            "neighbor": "ng1-esx12", 
+            "neighbor_intf": "0050-56dd-7e20"
+        }, 
+        {
+            "local_intf": "TwentyGigE1/0/9", 
+            "neighbor": "ng1-esx11", 
+            "neighbor_intf": "0050-56d7-efc0"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "neighbor": "AR21-U12-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/17"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "neighbor": "AR21-U12-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/18"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/19", 
+            "neighbor": "AR21-U12-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/19"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "neighbor": "AR21-U12-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/20"
+        }
+    ], 
+    "AR21-U12-ICB2": [
+        {
+            "local_intf": "FortyGigE1/1/4", 
+            "neighbor": "usplnAGVPCLAB1004", 
+            "neighbor_intf": "FortyGigE1/0/7"
+        }, 
+        {
+            "local_intf": "TwentyGigE1/0/10", 
+            "neighbor": "ng1-esx12", 
+            "neighbor_intf": "0050-56dd-7e28"
+        }, 
+        {
+            "local_intf": "TwentyGigE1/0/9", 
+            "neighbor": "ng1-esx11", 
+            "neighbor_intf": "0050-56d7-efc8"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "neighbor": "AR21-U12-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/17"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "neighbor": "AR21-U12-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/18"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/19", 
+            "neighbor": "AR21-U12-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/19"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "neighbor": "AR21-U12-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/20"
+        }
+    ], 
+    "AR21-U23-ICB1": [
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "neighbor": "AR21-U23-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/17"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "neighbor": "AR21-U23-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/18"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/19", 
+            "neighbor": "AR21-U23-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/19"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "neighbor": "AR21-U23-ICB2", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/20"
+        }, 
+        {
+            "local_intf": "FortyGigE1/1/4", 
+            "neighbor": "usplnAGVPCLAB1003", 
+            "neighbor_intf": "FortyGigE1/0/8"
+        }, 
+        {
+            "local_intf": "TwentyGigE1/0/1", 
+            "neighbor": "ng1-esx13", 
+            "neighbor_intf": "0050-5696-2a40"
+        }, 
+        {
+            "local_intf": "TwentyGigE1/0/9", 
+            "neighbor": "ng1-esx14", 
+            "neighbor_intf": "0050-5696-1af0"
+        }
+    ], 
+    "AR21-U23-ICB2": [
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "neighbor": "AR21-U23-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/17"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "neighbor": "AR21-U23-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/18"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/19", 
+            "neighbor": "AR21-U23-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/19"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "neighbor": "AR21-U23-ICB1", 
+            "neighbor_intf": "Ten-GigabitEthernet1/0/20"
+        }, 
+        {
+            "local_intf": "FortyGigE1/1/4", 
+            "neighbor": "usplnAGVPCLAB1004", 
+            "neighbor_intf": "FortyGigE1/0/8"
+        }
+    ], 
+    "usplnACvpclab1001": [
+        {
+            "local_intf": "FortyGigE1/0/50", 
+            "neighbor": "usplnAGVPCLAB1003", 
+            "neighbor_intf": "FortyGigE1/0/5"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/49", 
+            "neighbor": "usplnAGVPCLAB1004", 
+            "neighbor_intf": "FortyGigE1/0/4"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/53", 
+            "neighbor": "usplnACvpclab1002", 
+            "neighbor_intf": "FortyGigE1/0/53"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/52", 
+            "neighbor": "usplnMSVPCLAB2001", 
+            "neighbor_intf": "FortyGigE1/0/51"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/54", 
+            "neighbor": "usplnACvpclab1002", 
+            "neighbor_intf": "FortyGigE1/0/54"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/43", 
+            "neighbor": "pln-ng1-esxm3", 
+            "neighbor_intf": "0050-56da-9df4"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/39", 
+            "neighbor": "pln-ng1-esxm3", 
+            "neighbor_intf": "0050-56d5-e494"
+        }, 
+        {
+            "local_intf": "M-GigabitEthernet0/0/0", 
+            "neighbor": "usplnMSVPCLAB1004", 
+            "neighbor_intf": "GigabitEthernet1/0/25"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "neighbor": "ng1-esx2", 
+            "neighbor_intf": "0050-56d5-e118"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/15", 
+            "neighbor": "ng1-esx4", 
+            "neighbor_intf": "0050-56d5-e658"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/20", 
+            "neighbor": "ng1-devbox", 
+            "neighbor_intf": "000c-29ff-30cd"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/9", 
+            "neighbor": "ng1-esxm8", 
+            "neighbor_intf": "0050-56d5-cfc8"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/29", 
+            "neighbor": "ng1-esxm8", 
+            "neighbor_intf": "0050-56da-9e50"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/44", 
+            "neighbor": "pln-ng1-esxm4", 
+            "neighbor_intf": "0050-56da-a3cc"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/40", 
+            "neighbor": "pln-ng1-esxm4", 
+            "neighbor_intf": "0050-56d5-e704"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/10", 
+            "neighbor": "ng1-esxm7", 
+            "neighbor_intf": "0050-56d5-e1a0"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/30", 
+            "neighbor": "ng1-esxm7", 
+            "neighbor_intf": "0050-56da-a448"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "neighbor": "ng1-esx1", 
+            "neighbor_intf": "0050-56d5-cdb8"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/45", 
+            "neighbor": "pln-ng1-esxm5", 
+            "neighbor_intf": "0050-56da-a2dc"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/16", 
+            "neighbor": "ng1-esx3", 
+            "neighbor_intf": "0050-56d5-e430"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/46", 
+            "neighbor": "pln-ng1-esxm6", 
+            "neighbor_intf": "0050-56da-a4bc"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/42", 
+            "neighbor": "pln-ng1-esxm6", 
+            "neighbor_intf": "0050-56d5-e504"
+        }
+    ], 
+    "usplnACvpclab1002": [
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/45", 
+            "neighbor": "pln-ng1-esxm5", 
+            "neighbor_intf": "0050-56da-a2d8"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/42", 
+            "neighbor": "pln-ng1-esxm6", 
+            "neighbor_intf": "0050-56d5-e500"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/46", 
+            "neighbor": "pln-ng1-esxm6", 
+            "neighbor_intf": "0050-56da-a4b8"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/43", 
+            "neighbor": "pln-ng1-esxm3", 
+            "neighbor_intf": "0050-56da-9df0"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/40", 
+            "neighbor": "pln-ng1-esxm4", 
+            "neighbor_intf": "0050-56d5-e700"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/44", 
+            "neighbor": "pln-ng1-esxm4", 
+            "neighbor_intf": "0050-56da-a3c8"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/9", 
+            "neighbor": "ng1-esxm8", 
+            "neighbor_intf": "0050-56d5-cfcc"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/29", 
+            "neighbor": "ng1-esxm8", 
+            "neighbor_intf": "0050-56da-9e54"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/52", 
+            "neighbor": "usplnMSVPCLAB1001", 
+            "neighbor_intf": "FortyGigE1/0/51"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/50", 
+            "neighbor": "usplnAGVPCLAB1003", 
+            "neighbor_intf": "FortyGigE1/0/4"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/49", 
+            "neighbor": "usplnAGVPCLAB1004", 
+            "neighbor_intf": "FortyGigE1/0/5"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/30", 
+            "neighbor": "ng1-esxm7", 
+            "neighbor_intf": "0050-56da-a44c"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/10", 
+            "neighbor": "ng1-esxm7", 
+            "neighbor_intf": "0050-56d5-e1a4"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/39", 
+            "neighbor": "pln-ng1-esxm3", 
+            "neighbor_intf": "0050-56d5-e490"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/15", 
+            "neighbor": "ng1-esx4", 
+            "neighbor_intf": "0050-56d5-e65c"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/18", 
+            "neighbor": "ng1-esx1", 
+            "neighbor_intf": "0050-56d5-cdbc"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/16", 
+            "neighbor": "ng1-esx3", 
+            "neighbor_intf": "0050-56d5-e434"
+        }, 
+        {
+            "local_intf": "Ten-GigabitEthernet1/0/17", 
+            "neighbor": "ng1-esx2", 
+            "neighbor_intf": "0050-56d5-e11c"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/53", 
+            "neighbor": "usplnACvpclab1001", 
+            "neighbor_intf": "FortyGigE1/0/53"
+        }, 
+        {
+            "local_intf": "FortyGigE1/0/54", 
+            "neighbor": "usplnACvpclab1001", 
+            "neighbor_intf": "FortyGigE1/0/54"
+        }
+    ]
+}

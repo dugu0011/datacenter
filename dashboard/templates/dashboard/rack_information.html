@@ -1,0 +1,1944 @@
+{% extends 'dashboard/header_footer.html' %}{% load static %} {% block title %} Rack Information {% endblock %}
+
+{% block css %}
+
+<link href='{% static "dashboard/css/custom.css" %}' rel='stylesheet' type='text/css'> 
+<style>
+.switch {
+	position: relative;
+	display: block;
+	vertical-align: top;
+	width: 35px;
+	height: 20px;
+	padding: 2px;
+	margin: 0 10px 10px 0;
+	background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+	border-radius: 18px;
+	box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	cursor: pointer;
+	box-sizing:content-box;
+}
+.switch-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	box-sizing:content-box;
+}
+.switch-label {
+	position: relative;
+	display: block;
+	height: inherit;
+	font-size: 8px;
+	text-transform: uppercase;
+	background: #eceeef;
+	border-radius: inherit;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+	box-sizing:content-box;
+}
+.switch-label:before, .switch-label:after {
+	position: absolute;
+	top: 50%;
+	margin-top: -.5em;
+	line-height: 1;
+	-webkit-transition: inherit;
+	-moz-transition: inherit;
+	-o-transition: inherit;
+	transition: inherit;
+	box-sizing:content-box;
+}
+.switch-label:before {
+	content: attr(data-off);
+	right: 11px;
+	color: #aaaaaa;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+.switch-label:after {
+	content: attr(data-on);
+	left: 5px;
+	color: #FFFFFF;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+	background: #16bd10;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.switch-input:checked ~ .switch-label:before {
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+	opacity: 1;
+}
+.switch-handle {
+	position: absolute;
+	top: 7px;
+	left: 7px;
+	width: 10px;
+	height: 10px;
+	background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+	background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+	border-radius: 100%;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.switch-handle:before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -6px 0 0 -6px;
+	width: 12px;
+	height: 12px;
+	background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+	background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+	border-radius: 6px;
+	box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+}
+.switch-input:checked ~ .switch-handle {
+	left: 28px;
+	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Transition
+========================== */
+.switch-label, .switch-handle {
+	transition: All 0.3s ease;
+	-webkit-transition: All 0.3s ease;
+	-moz-transition: All 0.3s ease;
+	-o-transition: All 0.3s ease;
+}
+
+.toggle{
+    width: 30px !important;
+height: 20px !important;
+}
+.btn{
+    font-size:7px;    }
+}
+.toggle-handle{
+    display:none;
+    position: unset !important;
+}
+.toggle-off{
+    left:50% !important;
+}
+.toggle-off.btn {
+    padding-left: 0.5rem !important;
+}
+</style>
+{% endblock css %}
+ {% block content %}
+
+<style>
+    .MRG {
+        background-color: #82E0AA;
+    }
+    
+    .MRA {
+        background-color: #F5B041;
+    }
+    
+    .MRR {
+        background-color: #EC7063;
+    }
+    
+    table {
+        width: 50px;
+        border-collapse: collapse;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    th,
+    td {
+        padding: 10px;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* Float four columns side by side */
+    
+    .column {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+    }
+    /* Remove extra left and right margins, due to padding */
+    
+    .row {
+        margin: 0 -5px;
+    }
+    /* Clear floats after the columns */
+    
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    /* Responsive columns */
+    
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 50%;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+    /* Style the counter cards */
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        width: 85%;
+        text-align: center;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <h2>Rack Information</h2>
+
+
+        <div class="column">
+            <div class="card" style="padding: 0;background-color: green;color: white;">
+                <p style="font-weight: bolder;">Rack Load</p>
+                <p>Print Load : 234482</p>
+                <p>Actual Load : 200083</p>
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <div class="card" style="padding: 0; background-color: blueviolet;color: white;">
+
+                <p style="font-weight: bolder;">Number of Devices : {{devices_count}}</p>
+                <p>Empty slots: 20</p>
+                <p>Occupied : {{devices_count}}</p>
+
+            </div>
+        </div>
+        <div class="column">
+            <div class="card" style="padding: 0;background-color: green;color: white;">
+                <p style="font-weight: bolder;">Rack Load</p>
+                <p>Print Load : 234482</p>
+                <p>Actual Load : 200083</p>
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <div class="card" style="padding: 0; background-color: blueviolet;color: white;">
+
+                <p style="font-weight: bolder;">Number of Devices : {{devices_count}}</p>
+                <p>Empty slots: 20</p>
+                <p>Occupied : {{devices_count}}</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="demo-grid">
+
+                <table style="line-height:0;width:0;" id="table1">
+                    <tr style="width:50%">
+
+                        <th style="width:5%;background-color:darkgreen"></th>
+                        <th style="width:5%;"></th>
+                        <th style="font-weight:bolder; width:30%;line-height: 20px;">Rack01<br>(Front View)</th>
+                        <th style="width:5%;"></th>
+                        <th style="width:5%;background-color:darkgreen"></th>
+                    </tr>
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">42</td>
+                        <td id="pdu1" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+                                <input class="switch-input" type="checkbox" />
+                                <span class="switch-label" data-on="On" data-off="Off"></span> 
+                                <span class="switch-handle"></span> 
+                            </label>
+                                
+  
+                        </td>
+                        <td id="td1" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_a}}')">{{device_a}} </td>
+                        <td id="pdu2" style="width:5%">
+
+                               <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                               <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">PP</td>
+
+                    </tr>
+
+                    <!--2nd-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">41</td>
+                        <td id="pdu3" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td id="td2" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_b}}')">{{device_b}}</td>
+                        <td id="pdu4" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">OO</td>
+
+                    </tr>
+
+                    <!--3RD-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">40</td>
+                        <td id="pdu5" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td id="td3" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_c}}')">{{device_c}} </td>
+                        <td id="pdu6" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">NN</td>
+
+                    </tr>
+                    <!--4TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">39</td>
+                        <td id="pdu7" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td id="td4" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_d}}')">{{device_d}} </td>
+                        <td id="pdu8" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">MM</td>
+
+                    </tr>
+
+                    <!--5TH---->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">38</td>
+                        <td id="pdu9" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td id="td5" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_e}}')"> {{device_e}}</td>
+                        <td id="pdu10" style="width:5%">
+                             <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                             <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                                
+  
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">LL</td>
+
+                    </tr>
+
+                    <!--6TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">37</td>
+                        <td id="pdu11" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td6" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu12" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">KK</td>
+
+                    </tr>
+
+                    <!--7TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">36</td>
+                        <td id="pdu13" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td7" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu14" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">JJ</td>
+
+                    </tr>
+                    <!--8TH-->
+
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">35</td>
+                        <td id="pdu15" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td8" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu16" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">II</td>
+
+                    </tr>
+
+                    <!--9TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">34</td>
+                        <td id="pdu17" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td9" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu18" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">HH</td>
+
+                    </tr>
+
+                    <!--10TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">33</td>
+                        <td id="pdu19" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td10" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu20" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">GG</td>
+
+                    </tr>
+                    <!--11th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">32</td>
+                        <td id="pdu21" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td11" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu22" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">FF</td>
+
+                    </tr>
+                    <!--12th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">31</td>
+                        <td id="pdu23" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td12" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu24" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">EE</td>
+
+                    </tr>
+
+                    <!--13th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">30</td>
+                        <td id="pdu25" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td13" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu26" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">DD</td>
+
+                    </tr>
+
+                    <!--14th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">29</td>
+                        <td id="pdu27" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td14" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu28" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">CC</td>
+
+                    </tr>
+                    <!--15th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">28</td>
+                        <td id="pdu29" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td15" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu30" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">BB</td>
+
+                    </tr>
+
+
+                    <!--16th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">27</td>
+                        <td id="pdu31" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td16" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu32" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">AA</td>
+
+                    </tr>
+
+                    <!--17th-->
+
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">26</td>
+                        <td id="pdu33" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td17" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu34" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">Z</td>
+
+                    </tr>
+
+                    <!--18th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">25</td>
+                        <td id="pdu35" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td18" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu36" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">Y</td>
+
+                    </tr>
+
+                    <!--19th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">24</td>
+                        <td id="pdu37" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td19" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu38" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">X</td>
+
+                    </tr>
+                    <!--20th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">23</td>
+                        <td id="pdu39" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td20" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu40" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">W</td>
+
+                    </tr>
+
+                    <!--21st-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">22</td>
+                        <td id="pdu41" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td21" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu42" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">V</td>
+
+                    </tr>
+
+                    <!--22nd-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">21</td>
+                        <td id="pdu43" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td22" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu44" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">U</td>
+
+                    </tr>
+                    <!--23rd-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">20</td>
+                        <td id="pdu45" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td23" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu46" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">T</td>
+
+                    </tr>
+                    <!--24th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">19</td>
+                        <td id="pdu47" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td24" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu48" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">S</td>
+
+                    </tr>
+
+                    <!--25th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">18</td>
+                        <td id="pdu49" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td25" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu50" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">R</td>
+
+                    </tr>
+
+                    <!--26tttttttth-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">17</td>
+                        <td id="pdu51" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td26" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu52" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">Q</td>
+
+                    </tr>
+
+                    <!--27th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">16</td>
+                        <td id="pdu53" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td27" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu54" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">P</td>
+
+                    </tr>
+                    <!--28th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">15</td>
+                        <td id="pdu55" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td28" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu56" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">O</td>
+
+                    </tr>
+                    <!--29th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">14</td>
+                        <td id="pdu57" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td29" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu58" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">N</td>
+
+                    </tr>
+
+                    <!--30th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">13</td>
+                        <td id="pdu59" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td30" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu60" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">M</td>
+
+                    </tr>
+
+                    <!--31st-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">12</td>
+                        <td id="pdu61" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td31" style="font-weight:bolder;width:5%"></td>
+                        <td id="pdu62" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">L</td>
+
+                    </tr>
+
+                    <!--32th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">11</td>
+                        <td id="pdu63" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td32" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu64" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">K</td>
+
+                    </tr>
+                    <!--33th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">10</td>
+                        <td id="pdu65" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td33" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu66" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">J</td>
+
+                    </tr>
+
+                    <!--34th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">9</td>
+                        <td id="pdu67" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td34" style="font-weight:bolder;width:5%"></td>
+                        <td id="pdu68" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">I</td>
+
+                    </tr>
+
+                    <!--35th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">8</td>
+                        <td id="pdu69" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td35" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu70" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">H</td>
+
+                    </tr>
+
+                    <!--36th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">7</td>
+                        <td id="pdu71" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td36" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu72" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">G</td>
+
+                    </tr>
+
+                    <!--37th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">6</td>
+                        <td id="pdu73" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td37" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu74" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">F</td>
+
+                    </tr>
+                    <!--38th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">5</td>
+                        <td id="pdu75" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td38" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu76" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">E</td>
+
+                    </tr>
+
+                    <!--39th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">4</td>
+                        <td id="pdu77" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td39" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pd78" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">D</td>
+
+                    </tr>
+
+                    <!--40th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">3</td>
+                        <td id="pdu79" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td40" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu80" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">C</td>
+
+                    </tr>
+
+                    <!--41-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">2</td>
+                        <td id="pdu81" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td41" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu82" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">B</td>
+
+                    </tr>
+                    <!---42-->
+
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">1</td>
+                        <td id="pdu83" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td id="td42" style="font-weight:bolder;width:5%"> </td>
+                        <td id="pdu84" style="width:5%">
+                            <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"> -->
+                            <label class="switch">
+	<input class="switch-input" type="checkbox" />
+	<span class="switch-label" data-on="On" data-off="Off"></span> 
+	<span class="switch-handle"></span> 
+</label>
+                        </td>
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">A</td>
+
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+            <h3 style="text-align: center;"> Patch Panels</h3>
+            <table style="margin-left: 80px;">
+                <tr>
+                    <td style="width:2%; background-color:green; color:white;">1</td>
+                    <td>5</td>
+                    <td style="width:2%;background-color:green; color:white;">9</td>
+                    <td>13</td>
+                    <td>17</td>
+                    <td>21</td>
+                    <td>25</td>
+                    <td>29</td>
+                    <td>33</td>
+                    <td>37</td>
+                    <td>41</td>
+                    <td>45</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>6</td>
+                    <td>10</td>
+                    <td>14</td>
+                    <td>18</td>
+                    <td>22</td>
+                    <td>26</td>
+                    <td>30</td>
+                    <td>34</td>
+                    <td>38</td>
+                    <td>42</td>
+                    <td>46</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>7</td>
+                    <td>11</td>
+                    <td>15</td>
+                    <td>19</td>
+                    <td>23</td>
+                    <td>27</td>
+                    <td>31</td>
+                    <td>35</td>
+                    <td>39</td>
+                    <td>43</td>
+                    <td>47</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>8</td>
+                    <td>12</td>
+                    <td>16</td>
+                    <td>20</td>
+                    <td>24</td>
+                    <td>28</td>
+                    <td>32</td>
+                    <td>36</td>
+                    <td>40</td>
+                    <td>44</td>
+                    <td>48</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="demo-grid" style="background:none">
+
+                <table style="line-height:0;width:0;" id="table1">
+                    <tr style="width:50%">
+
+                        <th style="width:5%;background-color:darkgreen"></th>
+                        <th style="font-weight:bolder; width:30%;line-height: 20px;">Rack01<br>(Rear View)</th>
+                        <th style="width:5%;background-color:darkgreen"></th>
+                    </tr>
+                    
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">42</td>
+                        
+                        <td id="td1" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_a}}')">{{device_a}} </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">PP</td>
+
+                    </tr>
+
+                    <!--2nd-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">41</td>
+                        
+                        <td id="td2" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_b}}')">{{device_b}}</td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">OO</td>
+
+                    </tr>
+
+                    <!--3RD-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">40</td>
+                        
+                        <td id="td3" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_c}}')">{{device_c}} </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">NN</td>
+
+                    </tr>
+                    <!--4TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">39</td>
+                        
+                        <td id="td4" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_d}}')">{{device_d}} </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">MM</td>
+
+                    </tr>
+
+                    <!--5TH---->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">38</td>
+                        
+                        <td id="td5" style="font-weight:bolder;width:5%" onclick="getDetails('{{device_e}}')"> {{device_e}}</td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">LL</td>
+
+                    </tr>
+
+                    <!--6TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">37</td>
+                        
+                        <td id="td6" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">KK</td>
+
+                    </tr>
+
+                    <!--7TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">36</td>
+                        
+                        <td id="td7" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">JJ</td>
+
+                    </tr>
+                    <!--8TH-->
+
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">35</td>
+                        
+                        <td id="td8" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">II</td>
+
+                    </tr>
+
+                    <!--9TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">34</td>
+                        
+                        <td id="td9" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">HH</td>
+
+                    </tr>
+
+                    <!--10TH-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">33</td>
+                        
+                        <td id="td10" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">GG</td>
+
+                    </tr>
+                    <!--11th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">32</td>
+                        
+                        <td id="td11" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">FF</td>
+
+                    </tr>
+                    <!--12th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">31</td>
+                        
+                        <td id="td12" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">EE</td>
+
+                    </tr>
+
+                    <!--13th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">30</td>
+                        
+                        <td id="td13" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">DD</td>
+
+                    </tr>
+
+                    <!--14th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">29</td>
+                        
+                        <td id="td14" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">CC</td>
+
+                    </tr>
+                    <!--15th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">28</td>
+                        
+                        <td id="td15" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">BB</td>
+
+                    </tr>
+
+
+                    <!--16th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">27</td>
+                        
+                        <td id="td16" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">AA</td>
+
+                    </tr>
+
+                    <!--17th-->
+
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">26</td>
+                        
+                        <td id="td17" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">Z</td>
+
+                    </tr>
+
+                    <!--18th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">25</td>
+                        
+                        <td id="td18" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">Y</td>
+
+                    </tr>
+
+                    <!--19th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">24</td>
+                        
+                        <td id="td19" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">X</td>
+
+                    </tr>
+                    <!--20th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">23</td>
+                        
+                        <td id="td20" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">W</td>
+
+                    </tr>
+
+                    <!--21st-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">22</td>
+                        
+                        <td id="td21" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">V</td>
+
+                    </tr>
+
+                    <!--22nd-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">21</td>
+                        
+                        <td id="td22" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">U</td>
+
+                    </tr>
+                    <!--23rd-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">20</td>
+                        
+                        <td id="td23" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">T</td>
+
+                    </tr>
+                    <!--24th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">19</td>
+                        
+                        <td id="td24" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">S</td>
+
+                    </tr>
+
+                    <!--25th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">18</td>
+                        
+                        <td id="td25" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">R</td>
+
+                    </tr>
+
+                    <!--26tttttttth-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">17</td>
+                        
+                        <td id="td26" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">Q</td>
+
+                    </tr>
+
+                    <!--27th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">16</td>
+                        
+                        <td id="td27" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">P</td>
+
+                    </tr>
+                    <!--28th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">15</td>
+                        
+                        <td id="td28" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">O</td>
+
+                    </tr>
+                    <!--29th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">14</td>
+                        
+                        <td id="td29" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">N</td>
+
+                    </tr>
+
+                    <!--30th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">13</td>
+                        
+                        <td id="td30" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">M</td>
+
+                    </tr>
+
+                    <!--31st-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">12</td>
+                        
+                        <td id="td31" style="font-weight:bolder;width:5%"></td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">L</td>
+
+                    </tr>
+
+                    <!--32th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">11</td>
+                        
+                        <td id="td32" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">K</td>
+
+                    </tr>
+                    <!--33th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">10</td>
+                        
+                        <td id="td33" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">J</td>
+
+                    </tr>
+
+                    <!--34th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">9</td>
+                        
+                        <td id="td34" style="font-weight:bolder;width:5%"></td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">I</td>
+
+                    </tr>
+
+                    <!--35th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">8</td>
+                        
+                        <td id="td35" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">H</td>
+
+                    </tr>
+
+                    <!--36th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">7</td>
+                        
+                        <td id="td36" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">G</td>
+
+                    </tr>
+
+                    <!--37th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">6</td>
+                        
+                        <td id="td37" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">F</td>
+
+                    </tr>
+                    <!--38th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">5</td>
+                        
+                        <td id="td38" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">E</td>
+
+                    </tr>
+
+                    <!--39th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">4</td>
+                        
+                        <td id="td39" style="font-weight:bolder;width:5%"> </td>
+            
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">D</td>
+
+                    </tr>
+
+                    <!--40th-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">3</td>
+                        
+                        <td id="td40" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">C</td>
+
+                    </tr>
+
+                    <!--41-->
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">2</td>
+                        
+                        <td id="td41" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">B</td>
+
+                    </tr>
+                    <!---42-->
+
+                    <tr style="width:50%">
+
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">1</td>
+                        
+                        <td id="td42" style="font-weight:bolder;width:5%"> </td>
+                        
+                        <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">A</td>
+
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <script>
+            jQuery(document).ready(function($) {
+                $(".clickable-row").click(function(e) {
+                    if (e.target.id != "listItems") {
+                        $(this).find("#listItems").toggle();
+                    }
+                });
+            });
+            function getDetails(id){
+                alert(id);
+            }
+        </script>
+
+
+
+        <script>
+            $(function() {
+                var colors = [{
+                    display: "light yellow",
+                    value: "ffffcc"
+                }, {
+                    display: "light blue",
+                    value: "ccffff"
+                }, {
+                    display: "light green",
+                    value: "ccffcc"
+                }, {
+                    display: "gray",
+                    value: "cccccc"
+                }, {
+                    display: "white",
+                    value: "ffffff"
+                }];
+
+                var options = ['<option value="">Select color</option>'];
+
+                for (var i = 0; i < colors.length; i++) {
+                    options.push('<option value="');
+                    options.push(colors[i].value);
+                    options.push('">');
+                    options.push(colors[i].display);
+                    options.push('</option>');
+                }
+
+                $('#colorOptions').html(options.join('')).change(function() {
+                    var val = $(this).val();
+                    if (val) {
+                        $("#mycell").css('backgroundColor', '#' + val);
+                    }
+                });
+
+
+            });
+        </script>
+
+        <!--<div class="column">
+						<div class="card">
+						  <h3>Rack Load</h3>
+						  <p>Print Load : 234482</p>
+						  <p>Actual Load : 200083</p>
+						</div>
+					  </div>
+					  <div class="column">
+						<div class="card">
+							  <p>Number of Devices : {{device_count}}</p>
+							  <p>Empty slots: 20</p>
+							  <p>Occupied : {{device_count}}</p>
+						</div>
+					  </div>-->
+    </div>
+
+
+
+</div>
+{% endblock %}
+{% block js %}<script src="{% static "dashboard/js/custom.js" %}"></script>{% endblock js %}

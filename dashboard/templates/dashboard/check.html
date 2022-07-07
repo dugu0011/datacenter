@@ -1,0 +1,1149 @@
+<style>
+ <style>
+     	table {
+            width: 100px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+
+        body {font-family: Arial;}
+
+		/* Style the tab */
+		.tab {
+		  overflow: hidden;
+		  border: 1px solid #ccc;
+		  background-color: #f1f1f1;
+		}
+
+		/* Style the buttons inside the tab */
+		.tab button {
+		  background-color: inherit;
+		  float: left;
+		  border: none;
+		  outline: none;
+		  cursor: pointer;
+		  padding: 14px 16px;
+		  transition: 0.3s;
+		  font-size: 17px;
+		}
+
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+		  background-color: #ddd;
+		}
+
+		/* Create an active/current tablink class */
+		.tab button.active {
+		  background-color: #ccc;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+		  display: none;
+		  padding: 6px 12px;
+		  border: 1px solid #ccc;
+		  border-top: none;
+		}
+		* {
+		  box-sizing: border-box;
+		}
+
+		body {
+		  font-family: Arial, Helvetica, sans-serif;
+		}
+
+		/* Float four columns side by side */
+		.column {
+		  float: left;
+		  width: 25%;
+		  padding: 0 10px;
+		}
+
+		/* Remove extra left and right margins, due to padding */
+		.row {margin: 0 -5px;}
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Responsive columns */
+		@media screen and (max-width: 600px) {
+		  .column {
+			width: 50%;
+			display: block;
+			margin-bottom: 20px;
+		  }
+		}
+
+		/* Style the counter cards */
+		.card {
+		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		  padding: 16px;
+		  width: 85%;
+		  text-align: center;
+		  background-color: #f1f1f1;
+		}
+
+
+
+		h1
+		{
+		 text-align:center;
+		 font-size:40px;
+		 margin-top:60px;
+		 color:#BEF781;
+		}
+		h1 p
+		{
+		 text-align:center;
+		 margin:0px;
+		 font-size:18px;
+		 text-decoration:underline;
+		 color:white;
+		}
+		#main_content
+		{
+		 margin-top:70px;
+		 width:500px;
+		 margin-left:200px;
+		}
+		#main_content li
+		{
+		 display:inline;
+		 list-style-type:none;
+		 background-color:#688A08;
+		 padding:10px;
+		 border-radius:5px 5px 0px 0px;
+		 color:#292A0A;
+		 font-weight:bold;
+		 cursor:pointer;
+		}
+		#main_content li.notselected
+		{
+
+
+		 width:100%;
+		 height:100%;
+		}
+		#main_content li.selected
+		{
+		 background-color:#D0F5A9;
+		 color:#292A0A;
+		}
+		#main_content .hidden_desc
+		{
+		 display:none;
+		 visibility:hidden;
+		}
+		#main_content #page_content
+		{
+		 background-color:#D0F5A9;
+		 padding:10px;
+		 margin-top:9px;
+		 border-radius:0px 5px 5px 5px;
+		 color:#2E2E2E;
+		 line-height: 1.6em;
+		 word-spacing:4px;
+		}
+
+
+		<!---latest -->
+		@import url(https://fonts.googleapis.com/css?family=Gabriela);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body, div, h1, h2, h3, p, pre {
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+html, body {
+
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	line-height: 1.55;
+}
+h1 {
+	padding: 40px 0 20px;
+	font: 40px/60px Gabriela, Georgia, serif;
+	text-align: center;
+	text-shadow: 3px 3px rgba(0,0,0,0.1);
+	color: #fff;
+}
+p {
+
+	text-align: center;
+}
+a {
+	text-decoration: underline;
+	color: #1889e6;
+}
+a:hover {
+	text-decoration: none;
+}
+.bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.page {
+	position: relative;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 20px 40px;
+}
+
+</style>
+
+<!--inner block start here-->
+      <div class="inner-block" style="background:url(/Dashboard/templates/images/map.jpg) no-repeat #ccc; background-size:cover;">
+       <div class="cols-grids panel-widget">
+        <div class="container">
+         <div class="row">
+
+
+           </div>
+          </div>
+
+         </div>
+         <div class="row">
+
+					<div class="col-md-3">
+
+						<div class="demo-grid">
+
+							<table style="width:0" id="table1">
+                <tr style="width:50%">
+
+                    <th style="width:5%;background-color:darkgreen"></th>
+					<th style="width:5%;"></th>
+					<th style="font-weight:bolder; width:30%">Rack 01</th>
+					<th style="width:5%;"></th>
+					<th style="width:5%;background-color:darkgreen"></th>
+                </tr>
+                <tr style="width:50%">
+
+                    <td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;" >1</td>
+					<td rowspan="42" style="width:5%"></td>
+					<td id="td1" style="font-weight:bolder;width:5%">{{device_a}}</td>
+					<td rowspan="42" style="width:5%" ></td>
+					<td style="width:5%; font-weight:bolder; background-color:darkslategray; color: white;">A</td>
+
+                </tr>
+                <tr style="width:50%">
+                    <td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">2</td>
+					<td id="td2" style="font-weight:bolder; width:35%">{{device_b}}</td>
+					<td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">B</td>
+                </tr>
+				<tr style="width:50%">
+                    <td style="width:5%;font-weight:bolder; background-color:darkslategray; color: white;">3</td>
+					<td style="font-weight:bolder; width:35%">{{device_c}}</td>
+					<td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">C</td>
+                </tr>
+				<tr style="width:50%">
+                    <td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">4</td>
+					<td style="font-weight:bolder; width:35%">{{device_d}}</td>
+					<td style="width:5%;background-color:darkslategray; color: white;">D</td>
+                </tr>
+				<tr style="width:50%">
+                    <td style="font-weight:bolder;width:5%;background-color:darkslategray; color: white;">5</td>
+					<td style="font-weight:bolder; width:35%">{{device_e}}</td>
+					<td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">E</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">6</td>
+					<td style="font-weight:bolder; width:35%"></td>
+					<td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">F</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">7</td>
+					<td style="font-weight:bolder; width:35%"></td>
+					<td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">G</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">8</td>
+					<td style="font-weight:bolder; width:35%"></td>
+					<td style="font-weight:bolder; width:5%;background-color:darkslategray; color: white;">H</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">9</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">I</td>
+                </tr>
+
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">10</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">J</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">11</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">K</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">12</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">L</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">13</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">M</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">14</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">N</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">15</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">O</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">16</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">P</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">17</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">Q</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">18</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">R</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">19</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">S</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">20</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">T</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">21</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">U</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">22</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">V</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">23</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">W</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">24</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">X</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">25</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">Y</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">26</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">Z</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">27</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">AA</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">28</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">BB</td>
+                </tr>
+
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">29</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">CC</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">30</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">DD</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">31</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">EE</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">32</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">FF</td>
+                </tr>
+									<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">33</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">GG</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">34</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">HH</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">35</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">II</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">36</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">JJ</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">37</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">HH</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">38</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">II</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">40</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">JJ</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">41</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">KK</td>
+                </tr>
+								<tr style="width:50%">
+                    <td style="width:5%;background-color:darkslategray; color: white;">42</td>
+					<td style="width:35%"></td>
+					<td style="width:5%;background-color:darkslategray; color: white;">LL</td>
+                </tr>
+            </table>
+						</div>
+					</div>
+
+						<div class="col-md-6">
+
+							<h3 style="text-align: center;"> Patch Panels</h3>
+						<table>
+							<tr>
+								<td  style="width:2%; background-color:green; color:white;">1</td>
+								<td>3</td>
+								<td  style="width:2%; background-color:red; color:white;">5</td>
+								<td>7</td>
+								<td>9</td>
+								<td>11</td>
+								<td>13</td>
+								<td>15</td>
+								<td>17</td>
+								<td>19</td>
+								<td>21</td>
+								<td>23</td>
+							</tr><tr>
+								<td>2</td>
+								<td>4</td>
+								<td>6</td>
+								<td>8</td>
+								<td>10</td>
+								<td>12</td>
+								<td>14</td>
+								<td>16</td>
+								<td>18</td>
+								<td>20</td>
+								<td>22</td>
+								<td>24</td>
+							</tr>
+						</table>
+
+						</div>
+					<div class="col-md-3">
+
+									<h3 style="text-align: center;"> PDUs</h3>
+
+									<div class="demo-grid">
+
+							<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+							<table>
+							  <tr>
+								<td>1
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<tr>
+								<td>2
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<tr>
+								<td>3
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<tr>
+								<td>4
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<tr>
+								<td>5
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+
+							  </tr>
+								<tr>
+								<td>6
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<!--7th-->
+								<tr>
+								<td>7
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<!--8th-->
+								<tr>
+								<td>8
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--9th-->
+								<tr>
+								<td>9
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--10th-->
+								<tr>
+								<td>10
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--11th-->
+								<tr>
+								<td>11
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--12th-->
+								<tr>
+								<td>12
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--13th-->
+								<tr>
+								<td>13
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--14th-->
+								<tr>
+								<td>14
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--15th-->
+								<tr>
+								<td>15
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<!--16th-->
+								<tr>
+								<td>16
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--17th-->
+								<tr>
+								<td>17
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--18th-->
+								<tr>
+								<td>18
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<!--19th-->
+								<tr>
+								<td>19
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+
+								<!--20th-->
+								<tr>
+								<td>20
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--21th-->
+								<tr>
+								<td>21
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--22th-->
+								<tr>
+								<td>22
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--23th-->
+								<tr>
+								<td>23
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--24th-->
+								<tr>
+								<td>24
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--25th-->
+								<tr>
+								<td>25
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--26th-->
+								<tr>
+								<td>26
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--27th-->
+								<tr>
+								<td>25
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<!--28th-->
+								<tr>
+								<td>28
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+								<!--29th-->
+								<tr>
+								<td>29
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+
+								<!--30th-->
+								<tr>
+								<td>30
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--31th-->
+								<tr>
+								<td>31
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--32th-->
+								<tr>
+								<td>32
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--33th-->
+								<tr>
+								<td>33
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--34th-->
+								<tr>
+								<td>25
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--35th-->
+								<tr>
+								<td>35
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--36th-->
+								<tr>
+								<td>36
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--37th-->
+								<tr>
+								<td>37
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--38th-->
+								<tr>
+								<td>38
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--39th-->
+								<tr>
+								<td>39
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+
+								<!--40th-->
+								<tr>
+								<td>40
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--41th-->
+								<tr>
+								<td>41
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+								<!--42th-->
+								<tr>
+								<td>42
+								  <select class="change_colour">
+									<option value=""></option>
+									<option value="yellow" style="background-color:yellow">1</option>
+									<option value="red" style="background-color:red">2</option>
+									<option value="green" style="background-color:green">3</option>
+								  </select>
+								</td>
+							  </tr>
+
+							</table>
+						</div>
+
+
+
+
+					</div>
+
+
+							<script>
+								jQuery(document).ready(function($) {
+									$(".clickable-row").click(function(e) {
+										if(e.target.id != "listItems"){
+										  $(this).find("#listItems").toggle();
+										}
+									});
+								});
+							</script>
+						<script>
+							$('.change_colour').on('change', function() {
+							  $(this).parent().css('background', $(this).val());
+							});
+						</script>
+
+						<script>
+							document.querySelector('select').onchange=changeEventHandler;
+
+							var indicator = document.getElementById("color-indicator");
+
+							function changeEventHandler(event) {
+								indicator.classList = this.value;
+							}
+						</script>
+
+					<!--<div class="column">
+						<div class="card">
+						  <h3>Rack Load</h3>
+						  <p>Print Load : 234482</p>
+						  <p>Actual Load : 200083</p>
+						</div>
+					  </div>
+					  <div class="column">
+						<div class="card">
+							  <p>Number of Devices : {{device_count}}</p>
+							  <p>Empty slots: 20</p>
+							  <p>Occupied : {{device_count}}</p>
+						</div>
+					  </div>-->
+				</div>
+        </div>
+        <div class="chute chute-center text-center">
+         <!--<div class="row mb40">
+					<div class="col-md-6">
+						<div class="demo-grid">
+							<code>.col-md-6</code>						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="demo-grid">
+							<code>.col-md-6</code>						</div>
+					</div>
+				</div>
+				<div class="row mb40">
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+         <!---728x90--->
+         <!---<div class="row mb40">
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+				</div>--->
+         <!---<div class="row mb40">
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+				</div>--->
+         <!---<div class="row mb40">
+					<div class="col-md-8 mb5">
+						<div class="demo-grid">
+							<code>.col-md-8</code>						</div>
+					</div>
+					<div class="col-md-4 mb5">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+         <!---<div class="row mb40">
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-6 mb5">
+						<div class="demo-grid">
+							<code>.col-md-6</code>						</div>
+					</div>
+				</div>--->
+         <!---728x90--->
+         <!---<div class="row mb40">
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+        </div>
+       </div>
+      </div>
+     </div>
+     <!--inner block end here-->
+     <!--copy rights start here-->

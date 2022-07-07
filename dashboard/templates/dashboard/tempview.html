@@ -1,0 +1,211 @@
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+HeatMap
+
+{% endblock %}
+
+{% block js  %}
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'dashboard/css/temp.css' %}" rel="stylesheet">
+<style>
+    .inner-block {
+       
+       background-image: url("{% static 'dashboard/images/data_center.png' %}");
+       background-repeat: no-repeat;
+       background-size: 100% 100%;
+    
+     
+     }
+    </style>
+{% endblock %}
+{% block title_header %}Heatmap{% endblock %}
+{% block content %}
+
+<h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></pan></h1>
+    <h2><strong> DATA CENTER FLOOR LAYOUT TOP VIEW</strong></h2>
+    
+    <table  cellspacing= "0" cellpadding = "10"  class="container" >
+        <thead>
+            <tr>
+            <th><h1>Cold Aisle</h1></th>
+            <th><h1>Row A</h1></th>
+            <th><h1>Row A</h1></th>
+            <th><h1>Hot Aisle</h1></th>
+            <th><h1>Row B</h1></th>
+            <th><h1>Row B</h1></th>
+            <th><h1>Cold Aisle</h1></th>
+            <th><h1>Row C</h1></th>
+            <th><h1>Row C</h1></th>
+            <th><h1>Hot Aisle</h1></th>
+            <th><h1>Row D</h1></th>
+            <th><h1>Row D</h1></th>
+            <th><h1>Cold Aisle</h1></th>
+            <th><h1>Row E</h1></th>
+            <th><h1>Row E</h1></th>
+            <th><h1>Hot Aisle</h1></th>
+            <th><h1>Row F</h1></th>
+            <th><h1>Row F</h1></th>
+            <th><h1>Cold Aisle</h1</th>
+                
+           </tr>
+        </thead>
+        <tbody>
+            <tr>
+                    <td></td>
+                    <td bgcolor=#FFA500 title="data center"><strong>RA01</strong></td>
+                    <td bgcolor=#30A6D6 title="datacenter22"><strong>RA01</strong></td>
+                    <td></td>
+                    <td bgcolor=#FFA500 title="data center"><strong>RB01</strong></td>
+                    <td bgcolor=#30A6D6 title="datacenter22"><strong>RB01</strong></td>
+                    <td></td>
+                    <td bgcolor=#FFA500 title="data center"><strong>RC01</strong></td>
+                    <td bgcolor=#30A6D6 title="datacenter22"><strong>RC01</strong></td>
+                    <td ></td>
+                    <td bgcolor=#FFA500 title="data center"><strong>RD01</strong></td>
+                    <td bgcolor=#30A6D6 title="data center22"><strong>RD01</strong></td>
+                    <td></td>
+                    <td bgcolor=#FFA500 title="data center"><strong>RE01</strong></td>
+                    <td bgcolor=#30A6D6 title="data center22"><strong>RE01</strong></td>
+                    <td ></td>
+                    <td bgcolor=#FFA500 title="data center"><strong>RF01</strong></td>
+                    <td bgcolor=#30A6D6 title="data center22" ><strong>RF01</strong></td>
+                    <td></td>
+                </tr>
+            <tr>
+                    <td></td>
+                    <td bgcolor =#FFA500 title="data center"><strong>RA02</strong></td>
+                    <td bgcolor =#30A6D6 title="data center22"><strong>RA02</strong></td>
+                    <td></td>
+                    <td bgcolor =#FFA500 title="data center"><strong>RB02</strong></td>
+                    <td bgcolor =#30A6D6 title="data center22"><strong>RB02</strong></td>
+                    <td></td>
+                    <td bgcolor =#FFA500 title="data center"><strong>RC02</strong></td>
+                    <td bgcolor =#30A6D6 title="data center22"><strong>RC02</strong></td>
+                    <td></td>
+                    <td bgcolor =#FFA500 title="data center"><strong>RD02</strong></td>
+                    <td bgcolor =#30A6D6 title="data center22"><strong>RD02</strong></td>
+                    <td></td>
+                    <td bgcolor =#FFA500 title="data center"><strong>RE02</strong></td>
+                    <td bgcolor =#30A6D6 title="data center22"><strong>RE02</strong></td>
+                    <td></td>
+                    <td bgcolor =#FFA500 title="data center"><strong>RF02</strong></td>
+                    <td bgcolor =#30A6D6 title="data center22"><strong>RF02</strong></td>
+                    <td></td>
+                </tr>
+            <tr>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center"><strong>RA03</strong></td>
+                    <td bgcolor = #30A6D6 title="data center22"><strong>RA03</strong></td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center"><strong>RB03</strong></td>
+                    <td bgcolor = #30A6D6 title="data center22"><strong>RB03</strong></td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center"><strong>RC03</strong></td>
+                    <td bgcolor = #30A6D6 title="data center22"><strong>RC03</strong></td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center"><strong>RD03</strong></td>
+                    <td bgcolor = #30A6D6 title="data center22"><strong>RD03</strong></td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center"><strong>RE03</strong></td>
+                    <td bgcolor = #30A6D6 title="data center22"><strong>RE03</strong></td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center"><strong>RF03</strong></td>
+                    <td bgcolor = #30A6D6 title="data center22"><strong>RF03</strong></td>
+                    <td></td>
+                </tr>
+        <tr>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RA04</td>
+                    <td bgcolor = #30A6D6 title="data center22">RA04</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RB04</td>
+                    <td bgcolor = #30A6D6 title="data center22">RB04</td>
+
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RC04</td>
+                    <td bgcolor = #30A6D6 title="data center22">RC04</td>
+
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RD04</td>
+                    <td bgcolor = #30A6D6 title="data center22">RD04</td>
+
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RE04</td>
+                    <td bgcolor = #30A6D6 title="data center22">RE04</td>
+
+                    <td></td4>
+                    <td bgcolor = #FFA500 title="data center">RF04</td>
+                    <td bgcolor = #30A6D6 title="data center22">RF04</td>
+
+                    <td></td>
+                </tr>
+        <tr>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RA05</td>
+                    <td bgcolor = #30A6D6 title="data center22">RA05</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RB05</td>
+                    <td bgcolor = #30A6D6 title="data center22">RB05</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RC05</td>
+                    <td bgcolor = #30A6D6 title="data center22">RC05</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RD05</td>
+                    <td bgcolor = #30A6D6 title="data center22">RD05</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RE05</td>
+                    <td bgcolor = #30A6D6 title="data center22">RE05</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RF05</td>
+                    <td bgcolor = #30A6D6 title="data center22">RF05</td>
+                    <td></td>
+                </tr>
+        <tr>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RA06</td>
+                    <td bgcolor = #30A6D6 title="data center22">RA06</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RB06</td>
+                    <td bgcolor = #30A6D6 title="data center22">RB06</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RC06</td>
+                    <td bgcolor = #30A6D6 title="data center22">RC06</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RD06</td>
+                    <td bgcolor = #30A6D6 title="data center22">RD06</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RE06</td>
+                    <td bgcolor = #30A6D6 title="data center22">RE06</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RF06</td>
+                    <td bgcolor = #30A6D6 title="data center22">RF06</td>
+                    <td></td>
+                </tr>
+           <tr>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RA07</td>
+                    <td bgcolor = #30A6D6 title="data center22">RA07</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RB07</td>
+                    <td bgcolor = #30A6D6 title="data center22">RB07</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RC07</td>
+                    <td bgcolor = #30A6D6 title="data center22">RC07</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RD07</td>
+                    <td bgcolor = #30A6D6 title="data center22">RD07</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RE07</td>
+                    <td bgcolor = #30A6D6 title="data center22">RE07</td>
+                    <td></td>
+                    <td bgcolor = #FFA500 title="data center">RF07</td>
+                    <td bgcolor = #30A6D6 title="data center22">RF07</td>
+                    <td></td>
+                </tr> 
+        </tbody>
+    </table>
+    {% endblock %}    

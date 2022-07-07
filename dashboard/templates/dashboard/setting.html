@@ -1,0 +1,26 @@
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block js  %}
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+{% block title_header %}Settings{% endblock %}
+{% block content %}
+
+<div style="width: 30%;">
+<a class="btn btn-primary" style="width: 100%;" href="{% url 'edit-profile' %}">Edit Profile</a><br><br>
+<a class= "btn btn-primary" style="width: 100%;" href="{% url 'group_data' %}">Groups</a><br><br>
+<a class= "btn btn-primary" style="width: 100%;" href="{% url 'test_groups' %}">Groups Check</a><br><br>
+<a class= "btn btn-primary" style="width: 100%;" href="{% url 'assign_groups' %}">Assign Groups</a><br><br>
+<a class= "btn btn-primary" style="width: 100%;" href="{% url 'ap' %}">Page Permission</a><br><br>
+
+</div>
+
+{% endblock %}

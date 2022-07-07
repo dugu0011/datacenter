@@ -1,0 +1,266 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %} Web Monitoring {% endblock title %} 
+{% block js %}
+{% if msg %}
+<script> 
+alert("Web URL already present");
+</script> 
+{% endif %}
+{% endblock js %}
+{% block title_header %}Web Monitoring{% endblock %}
+{% block content %}
+<style>
+    table,
+    td,
+    th {
+        width: 100%;
+        table-layout: fixed;
+        color: white;
+        padding-block-start: initial;
+        padding-top: 10px;
+        font-family: arial, sans-serif;
+        border: 12px solid white;
+        text-align: center;
+        padding: 8px;
+    }
+    
+    #t01 tr:nth-child(even) {
+        background-color: #559409;
+    }
+    
+    #t01 tr:nth-child(odd) {
+        background-color: #559409;
+    }
+    /* Style the counter cards */
+    
+    .card-counter {
+        box-shadow: 2px 2px 10px #DADADA;
+        margin: -13px;
+        padding: 20px 10px;
+        background-color: #fff;
+        height: 70px;
+        border-radius: 5px;
+        transition: .3s linear all;
+    }
+    
+    .card-counter:hover {
+        box-shadow: 4px 4px 20px #DADADA;
+        transition: .3s linear all;
+    }
+    
+    .card-counter.primary {
+        background-color: #007bff;
+        color: #FFF;
+    }
+    
+    .card-counter.danger {
+        background-color: #ef5350;
+        color: #FFF;
+    }
+    
+    .card-counter.success {
+        background-color: #66bb6a;
+        color: #FFF;
+    }
+    
+    .card-counter.info {
+        background-color: #26c6da;
+        color: #FFF;
+    }
+    
+    .card-counter i {
+        font-size: 5em;
+        opacity: 0.2;
+    }
+    
+    .card-counter .count-numbers {
+        /* position: absolute; */
+        /* right: 35px; */
+        position: absolute;
+        text-align: center;
+        right: 91px;
+        top: -15px;
+        font-size: 32px;
+        display: block;
+    }
+    
+    .card-counter .count-name {
+        /* position: absolute; */
+        /* right: 35px; */
+        position: relative;
+        /*right: 72px;*/
+        top: 25px;
+        /*font-style: italic;*/
+        text-transform: capitalize;
+        opacity: 0.5;
+        display: block;
+        font-size: 18px;
+    }
+    .js-plotly-plot{
+        height:50px; width:50px;left: 120px;position: absolute;margin-top: -34px;
+    }
+    @import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow);
+</style>
+<div class="row" style="margin-top: -69px;margin-left: 60px;">
+            <div class="column">
+                <div class="col-md-2">
+                    <div class="card-counter success">
+                        <span class="count-numbers">{{total}}</span>
+                        <span class="count-name">Active Websites</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="col-md-2">
+                    <div class="card-counter danger">
+                        <span class="count-numbers">{{down}}</span>
+                        <span class="count-name">Down Websites</span>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="col-md-2">
+                    <div class="card-counter primary">
+                        <span class="count-numbers">{{down}}</span>
+                        <span class="count-name">Warning Websites</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="col-md-2">
+                    <div class="card-counter danger">
+                        <span class="count-numbers">{{down}}</span>
+                        <span class="count-name">Secured/ Non Secured</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="col-md-2">
+                    <div class="card-counter primary">
+                        <span class="count-numbers">{{totalWebsite}}</span>
+                        <span class="count-name">Total Websites</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+<!--inner block start here-->
+<div class="inner-block" style="padding:0">
+    <div class=" cols-grids panel-widget">
+        <div class="row">
+            <div class="column">
+                <form class="form-inline" method="POST">
+                {% csrf_token %}
+  <div class="input-group mb-2 mr-sm-2">
+    <select style="height: 35px;" name="protocol">
+    <option>http://</option>
+    <option>https://</option>
+    </select>
+  </div>
+  <div class="input-group mb-2 mr-sm-2" style="z-index:0;">
+    <input type="text" class="form-control" name="website_name" size="45" placeholder="xyz.com">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+            </div>
+        </div>
+        <br><br>
+        <div class="container">
+            <div class="row">
+                {% for i in website_pack %}
+                <div class="column">
+                    <div class="col-md-3">
+                        <div style="border-style: solid;text-align: center;height: 300px;border-radius: 30px;border-color: cornflowerblue;">
+                        <br>
+                            
+                    {% if i.status %}
+                        {% if i.time < 1 %}
+                            <span class="count-status">
+                            <img src="/static/dashboard/images/earth_blue.png" width="100px" height="100px"><br><br><b style="color:green;">ONLINE</b>
+                            </span><br>
+                            <span class="count-numbers">{{i.website}}</span><br>
+                            <span class="count-response">RT: {{i.time}}</span><br><br>
+                            <span class="count-response" style="left: 60px;position: absolute;">
+                            <img src="/static/dashboard/images/status_green.jpeg" width="40px" height="35px">
+                            <a href="{% url 'delete_web_monitor' i.id %}" class="btn btn-danger"><i class="fa fa-trash" style="font-color:red;"></i></a>
+                            <img src="/static/dashboard/images/https_secured.png" width="40px" height="35px">
+                            <div id='myDiv{{i.id}}'></div>
+                            </span>                        
+                        {% else %}
+                            <span class="count-status">
+                            <img src="/static/dashboard/images/earth_amber.png" width="100px" height="100px"><br><br><b style="color:orange;">ONLINE</b>
+                            </span><br>
+                            <span class="count-numbers">{{i.website}}</span><br>
+                            <span class="count-response">RT: {{i.time}}</span><br><br>
+                            <span class="count-response" style="left: 60px;position: absolute;">
+                            <img src="/static/dashboard/images/status_green.jpeg" width="40px" height="35px">
+                            <a href="{% url 'delete_web_monitor' i.id %}" class="btn btn-danger"><i class="fa fa-trash" style="font-color:red;"></i></a>
+                            <img src="/static/dashboard/images/http_unsecured.png" width="40px" height="35px">
+                            <div id='myDiv{{i.id}}'></div>
+                            </span>                          
+                        {% endif %}
+                    {% else %}
+                            <span class="count-status">
+                            <img src="/static/dashboard/images/earth_red.png" width="100px" height="100px"><br><br><b style="color:red;">OFFLINE</b>
+                            </span><br>
+                            <span class="count-numbers">{{i.website}}</span><br>
+                            <span class="count-response">RT: {{i.time}}</span><br><br>
+                            <span class="count-response" style="left: 60px;position: absolute;">
+                            <img src="/static/dashboard/images/status_grey.jpeg" width="40px" height="35px">
+                            <a href="{% url 'delete_web_monitor' i.id %}" class="btn btn-danger"><i class="fa fa-trash" style="font-color:red;"></i></a>
+
+                            <img src="/static/dashboard/images/unsecured.png" width="40px" height="35px">
+                            <div id='myDiv{{i.id}}'></div>
+                            </span>
+                    {% endif %}                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="chute chute-center text-center"></div>
+    </div>
+</div>
+<script src='https://cdn.plot.ly/plotly-2.3.0.min.js'></script>
+<script>
+var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 15, 13, 17],
+  type: 'scatter'
+};
+
+var data = [trace1];
+var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 15,
+                r: 0,
+                b: 20,
+                t: 0,
+                pad: 0
+            },
+            legend: {"orientation": "h"},
+  xaxis: {
+    showgrid: false,
+    showline: true,
+    showticklabels: false
+  },
+  yaxis: {
+    showgrid: false,
+    showline: true,
+    showticklabels: false
+  }
+        };
+        {% for i in website_pack %}
+Plotly.newPlot('myDiv{{i.id}}', data, layout, {
+            displayModeBar: false
+        });
+{% endfor %}
+</script>
+<!--inner block end here-->
+{% endblock %}

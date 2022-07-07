@@ -1,0 +1,403 @@
+{% extends 'dashboard/header_footer.html' %} {% load utils %}{% load static %} {% block title %} Rack Information {% endblock %}
+{% block css %}
+
+<link href='{% static "dashboard/css/custom.css" %}' rel='stylesheet' type='text/css'>
+<style>
+.switch {
+        position: relative;
+        display: block;
+        vertical-align: top;
+        width: 35px;
+        height: 20px;
+        padding: 2px;
+        margin: 0 10px 10px 0;
+        background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+        background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+        border-radius: 18px;
+        box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        box-sizing: content-box;
+    }
+    
+    .switch-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        box-sizing: content-box;
+    }
+    
+    .switch-label {
+        position: relative;
+        display: block;
+        height: inherit;
+        font-size: 8px;
+        text-transform: uppercase;
+        background: #eceeef;
+        border-radius: inherit;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+        box-sizing: content-box;
+    }
+    
+    .switch-label:before,
+    .switch-label:after {
+        position: absolute;
+        top: 50%;
+        margin-top: -.5em;
+        line-height: 1;
+        -webkit-transition: inherit;
+        -moz-transition: inherit;
+        -o-transition: inherit;
+        transition: inherit;
+        box-sizing: content-box;
+    }
+    
+    .switch-label:before {
+        content: attr(data-off);
+        right: 11px;
+        color: #aaaaaa;
+        text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    .switch-label:after {
+        content: attr(data-on);
+        left: 5px;
+        color: #FFFFFF;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+    }
+    
+    .switch-input:checked~.switch-label {
+        background: #16bd10;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+    }
+    
+    .switch-input:checked~.switch-label:before {
+        opacity: 0;
+    }
+    
+    .switch-input:checked~.switch-label:after {
+        opacity: 1;
+    }
+    
+    .switch-handle {
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+        background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+        border-radius: 100%;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .switch-handle:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -6px 0 0 -6px;
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+        background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+        border-radius: 6px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+    }
+    
+    .switch-input:checked~.switch-handle {
+        left: 28px;
+        box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    /* Transition
+========================== */
+    
+    .switch-label,
+    .switch-handle {
+        transition: All 0.3s ease;
+        -webkit-transition: All 0.3s ease;
+        -moz-transition: All 0.3s ease;
+        -o-transition: All 0.3s ease;
+    }
+    
+    .toggle {
+        width: 30px !important;
+        height: 20px !important;
+    }
+    
+    .btn {
+        font-size: 7px;
+    }
+}
+.toggle-handle {
+    display: none;
+    position: unset !important;
+}
+.toggle-off {
+    left: 50% !important;
+}
+.toggle-off.btn {
+    padding-left: 0.5rem !important;
+}
+</style>
+{% endblock css %} {% block content %}
+
+<style>
+    .MRG {
+        background-color: #82E0AA;
+    }
+    
+    .MRA {
+        background-color: #F5B041;
+    }
+    
+    .MRR {
+        background-color: #EC7063;
+    }
+    
+    table {
+        width: 50px;
+        border-collapse: collapse;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    th,
+    td {
+        padding: 10px;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* Float four columns side by side */
+    
+    .column {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+    }
+    /* Remove extra left and right margins, due to padding */
+    
+    .row {
+        margin: 0 -5px;
+    }
+    /* Clear floats after the columns */
+    
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    /* Responsive columns */
+    
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 50%;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+    /* Style the counter cards */
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        width: 85%;
+        text-align: center;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <h2>{{ datacenterracks }} Rack Information</h2>
+
+
+        <div class="column">
+            <div class="card" style="padding: 0;background-color: green;color: white;">
+                <p style="font-weight: bolder;">Rack Load</p>
+                <p>Print Load : 234482</p>
+                <p>Actual Load : 200083</p>
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <div class="card" style="padding: 0; background-color: blueviolet;color: white;">
+
+                <p style="font-weight: bolder;">Number of Devices : {{devices_count}}</p>
+                <p>Empty slots: 20</p>
+                <p>Occupied : {{devices_count}}</p>
+
+            </div>
+        </div>
+        <div class="column">
+            <div class="card" style="padding: 0;background-color: green;color: white;">
+                <p style="font-weight: bolder;">Rack Load</p>
+                <p>Print Load : 234482</p>
+                <p>Actual Load : 200083</p>
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <div class="card" style="padding: 0; background-color: blueviolet;color: white;">
+
+                <p style="font-weight: bolder;">Number of Devices : {{devices_count}}</p>
+                <p>Empty slots: 20</p>
+                <p>Occupied : {{devices_count}}</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3 style="text-align: center;"> Patch Panels (Incoming)</h3>
+            <table style="margin-left: 80px;">
+                <tr>
+                    <td id="incoming_patch_panel_1">1</td>
+                    <td id="incoming_patch_panel_5">5</td>
+                    <td id="incoming_patch_panel_9">9</td>
+                    <td id="incoming_patch_panel_13">13</td>
+                    <td id="incoming_patch_panel_17">17</td>
+                    <td id="incoming_patch_panel_21">21</td>
+                    <td id="incoming_patch_panel_25">25</td>
+                    <td id="incoming_patch_panel_29">29</td>
+                    <td id="incoming_patch_panel_33">33</td>
+                    <td id="incoming_patch_panel_37">37</td>
+                    <td id="incoming_patch_panel_41">41</td>
+                    <td id="incoming_patch_panel_45">45</td>
+                </tr>
+                <tr>
+                    <td id="incoming_patch_panel_2">2</td>
+                    <td id="incoming_patch_panel_6">6</td>
+                    <td id="incoming_patch_panel_10">10</td>
+                    <td id="incoming_patch_panel_14">14</td>
+                    <td id="incoming_patch_panel_18">18</td>
+                    <td id="incoming_patch_panel_22">22</td>
+                    <td id="incoming_patch_panel_26">26</td>
+                    <td id="incoming_patch_panel_30">30</td>
+                    <td id="incoming_patch_panel_34">34</td>
+                    <td id="incoming_patch_panel_38">38</td>
+                    <td id="incoming_patch_panel_42">42</td>
+                    <td id="incoming_patch_panel_46">46</td>
+                </tr>
+                <tr>
+                    <td id="incoming_patch_panel_3">3</td>
+                    <td id="incoming_patch_panel_7">7</td>
+                    <td id="incoming_patch_panel_11">11</td>
+                    <td id="incoming_patch_panel_15">15</td>
+                    <td id="incoming_patch_panel_19">19</td>
+                    <td id="incoming_patch_panel_23">23</td>
+                    <td id="incoming_patch_panel_27">27</td>
+                    <td id="incoming_patch_panel_31">31</td>
+                    <td id="incoming_patch_panel_35">35</td>
+                    <td id="incoming_patch_panel_39">39</td>
+                    <td id="incoming_patch_panel_43">43</td>
+                    <td id="incoming_patch_panel_47">47</td>
+                </tr>
+                <tr>
+                    <td id="incoming_patch_panel_4">4</td>
+                    <td id="incoming_patch_panel_8">8</td>
+                    <td id="incoming_patch_panel_12">12</td>
+                    <td id="incoming_patch_panel_16">16</td>
+                    <td id="incoming_patch_panel_20">20</td>
+                    <td id="incoming_patch_panel_24">24</td>
+                    <td id="incoming_patch_panel_28">28</td>
+                    <td id="incoming_patch_panel_32">32</td>
+                    <td id="incoming_patch_panel_36">36</td>
+                    <td id="incoming_patch_panel_40">40</td>
+                    <td id="incoming_patch_panel_44">44</td>
+                    <td id="incoming_patch_panel_48">48</td>
+                </tr>
+            </table>
+            <br><br>
+
+
+
+            <h3 style="text-align: center;"> Patch Panels (Outgoing)</h3>
+            <table style="margin-left: 80px;">
+                <tr>
+                    <td id="outgoing_patch_panel_1">1</td>
+                    <td id="outgoing_patch_panel_5">5</td>
+                    <td id="outgoing_patch_panel_9">9</td>
+                    <td id="outgoing_patch_panel_13">13</td>
+                    <td id="outgoing_patch_panel_17">17</td>
+                    <td id="outgoing_patch_panel_21">21</td>
+                    <td id="outgoing_patch_panel_25">25</td>
+                    <td id="outgoing_patch_panel_29">29</td>
+                    <td id="outgoing_patch_panel_33">33</td>
+                    <td id="outgoing_patch_panel_37">37</td>
+                    <td id="outgoing_patch_panel_41">41</td>
+                    <td id="outgoing_patch_panel_45">45</td>
+                </tr>
+                <tr>
+                    <td id="outgoing_patch_panel_2">2</td>
+                    <td id="outgoing_patch_panel_6">6</td>
+                    <td id="outgoing_patch_panel_10">10</td>
+                    <td id="outgoing_patch_panel_14">14</td>
+                    <td id="outgoing_patch_panel_18">18</td>
+                    <td id="outgoing_patch_panel_22">22</td>
+                    <td id="outgoing_patch_panel_26">26</td>
+                    <td id="outgoing_patch_panel_30">30</td>
+                    <td id="outgoing_patch_panel_34">34</td>
+                    <td id="outgoing_patch_panel_38">38</td>
+                    <td id="outgoing_patch_panel_42">42</td>
+                    <td id="outgoing_patch_panel_46">46</td>
+                </tr>
+                <tr>
+                    <td id="outgoing_patch_panel_3">3</td>
+                    <td id="outgoing_patch_panel_7">7</td>
+                    <td id="outgoing_patch_panel_11">11</td>
+                    <td id="outgoing_patch_panel_15">15</td>
+                    <td id="outgoing_patch_panel_19">19</td>
+                    <td id="outgoing_patch_panel_23">23</td>
+                    <td id="outgoing_patch_panel_27">27</td>
+                    <td id="outgoing_patch_panel_31">31</td>
+                    <td id="outgoing_patch_panel_35">35</td>
+                    <td id="outgoing_patch_panel_39">39</td>
+                    <td id="outgoing_patch_panel_43">43</td>
+                    <td id="outgoing_patch_panel_47">47</td>
+                </tr>
+                <tr>
+                    <td id="outgoing_patch_panel_4">4</td>
+                    <td id="outgoing_patch_panel_8">8</td>
+                    <td id="outgoing_patch_panel_12">12</td>
+                    <td id="outgoing_patch_panel_16">16</td>
+                    <td id="outgoing_patch_panel_20">20</td>
+                    <td id="outgoing_patch_panel_24">24</td>
+                    <td id="outgoing_patch_panel_28">28</td>
+                    <td id="outgoing_patch_panel_32">32</td>
+                    <td id="outgoing_patch_panel_36">36</td>
+                    <td id="outgoing_patch_panel_40">40</td>
+                    <td id="outgoing_patch_panel_44">44</td>
+                    <td id="outgoing_patch_panel_48">48</td>
+                </tr>
+            </table>     
+          
+          
+
+        </div>
+    </div>
+
+{% comment %} {% for detail in details %}
+{{detail.power_on}}
+{% endfor %} {% endcomment %}
+</div>
+{% endblock %} {% block js %}
+<script src="{% static " dashboard/js/custom.js " %}"></script>
+{% endblock %}

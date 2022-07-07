@@ -1,0 +1,3040 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "body": {
+            "nf:filter": {
+                "m:configure": {
+                    "m:terminal": {
+                        "no": [
+                            {
+                                "password": {
+                                    "strength-check": ""
+                                }
+                            },
+                            {
+                                "port-channel": {
+                                    "load-balance": {
+                                        "resilient": ""
+                                    }
+                                }
+                            }
+                        ],
+                        "feature-set": {
+                            "__XML__PARAM__fs": {
+                                "__XML__value": "mpls"
+                            }
+                        },
+                        "install": {
+                            "feature-set": {
+                                "mpls": ""
+                            }
+                        },
+                        "nxapi": [
+                            {
+                                "http": {
+                                    "port": {
+                                        "__XML__PARAM__s0": {
+                                            "__XML__value": "80"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "idle-timeout": {
+                                    "__XML__PARAM__i0": {
+                                        "__XML__value": "1440"
+                                    }
+                                }
+                            }
+                        ],
+                        "ipv6": [
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-eigrp6",
+                                        "m3:__XML__PARAM__seqno": {
+                                            "m3:__XML__value": "10",
+                                            "m3:__XML__PARAM__permitdeny": {
+                                                "m3:__XML__value": "permit",
+                                                "m3:__XML__PARAM__ipv6_other_proto": {
+                                                    "m3:__XML__value": "eigrp",
+                                                    "m3:__XML__PARAM__ipv6_src_any": {
+                                                        "m3:__XML__value": "any",
+                                                        "m3:__XML__PARAM__ipv6_dst_prefix": {
+                                                            "m3:__XML__value": "ff02::a/128"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-v6routingProto2",
+                                        "m3:__XML__PARAM__seqno": [
+                                            {
+                                                "m3:__XML__value": "10",
+                                                "m3:__XML__PARAM__permitdeny": {
+                                                    "m3:__XML__value": "permit",
+                                                    "m3:__XML__PARAM__proto_udp": {
+                                                        "m3:__XML__value": "udp",
+                                                        "m3:__XML__PARAM__ipv6_udp_src_any": {
+                                                            "m3:__XML__value": "any",
+                                                            "m3:__XML__PARAM__ipv6_udp_dst_prefix": {
+                                                                "m3:__XML__value": "ff02::66/128",
+                                                                "m3:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m3:__XML__value": "eq",
+                                                                    "m3:__XML__PARAM__UDP_ipv6_dst_port0": {
+                                                                        "m3:__XML__value": "2029"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m3:__XML__value": "20",
+                                                "m3:__XML__PARAM__permitdeny": {
+                                                    "m3:__XML__value": "permit",
+                                                    "m3:__XML__PARAM__proto_udp": {
+                                                        "m3:__XML__value": "udp",
+                                                        "m3:__XML__PARAM__ipv6_udp_src_any": {
+                                                            "m3:__XML__value": "any",
+                                                            "m3:__XML__PARAM__ipv6_udp_dst_prefix": {
+                                                                "m3:__XML__value": "ff02::fb/128",
+                                                                "m3:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m3:__XML__value": "eq",
+                                                                    "m3:__XML__PARAM__UDP_ipv6_dst_port0": {
+                                                                        "m3:__XML__value": "5353"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m3:__XML__value": "30",
+                                                "m3:__XML__PARAM__permitdeny": {
+                                                    "m3:__XML__value": "permit",
+                                                    "m3:__XML__PARAM__proto": {
+                                                        "m3:__XML__value": "112",
+                                                        "m3:__XML__PARAM__ipv6_src_any": {
+                                                            "m3:__XML__value": "any",
+                                                            "m3:__XML__PARAM__ipv6_dst_prefix": {
+                                                                "m3:__XML__value": "ff02::12/128"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-v6routingproto1",
+                                        "m3:__XML__PARAM__seqno": [
+                                            {
+                                                "m3:__XML__value": "10",
+                                                "m3:__XML__PARAM__permitdeny": {
+                                                    "m3:__XML__value": "permit",
+                                                    "m3:__XML__PARAM__proto": {
+                                                        "m3:__XML__value": "89",
+                                                        "m3:__XML__PARAM__ipv6_src_any": {
+                                                            "m3:__XML__value": "any",
+                                                            "m3:__XML__PARAM__ipv6_dst_prefix": {
+                                                                "m3:__XML__value": "ff02::5/128"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m3:__XML__value": "20",
+                                                "m3:__XML__PARAM__permitdeny": {
+                                                    "m3:__XML__value": "permit",
+                                                    "m3:__XML__PARAM__proto": {
+                                                        "m3:__XML__value": "89",
+                                                        "m3:__XML__PARAM__ipv6_src_any": {
+                                                            "m3:__XML__value": "any",
+                                                            "m3:__XML__PARAM__ipv6_dst_prefix": {
+                                                                "m3:__XML__value": "ff02::6/128"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m3:__XML__value": "30",
+                                                "m3:__XML__PARAM__permitdeny": {
+                                                    "m3:__XML__value": "permit",
+                                                    "m3:__XML__PARAM__proto_udp": {
+                                                        "m3:__XML__value": "udp",
+                                                        "m3:__XML__PARAM__ipv6_udp_src_any": {
+                                                            "m3:__XML__value": "any",
+                                                            "m3:__XML__PARAM__ipv6_udp_dst_prefix": {
+                                                                "m3:__XML__value": "ff02::9/128",
+                                                                "m3:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m3:__XML__value": "eq",
+                                                                    "m3:__XML__PARAM__UDP_ipv6_dst_port0": {
+                                                                        "m3:__XML__value": "521"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ],
+                        "feature": [
+                            {
+                                "telnet": ""
+                            },
+                            {
+                                "nxapi": ""
+                            },
+                            {
+                                "bash-shell": ""
+                            },
+                            {
+                                "interface-vlan": ""
+                            },
+                            {
+                                "ptp": ""
+                            },
+                            {
+                                "lldp": ""
+                            }
+                        ],
+                        "line": [
+                            {
+                                "console": ""
+                            },
+                            {
+                                "vty": ""
+                            }
+                        ],
+                        "control-plane": {
+                            "m7:service-policy": {
+                                "m7:input": {
+                                    "m7:__XML__PARAM__policy_name": {
+                                        "m7:__XML__value": "copp-system-policy"
+                                    }
+                                }
+                            }
+                        },
+                        "service": {
+                            "unsupported-transceiver": ""
+                        },
+                        "password": {
+                            "prompt": {
+                                "username": ""
+                            }
+                        },
+                        "rmon": [
+                            {
+                                "event": {
+                                    "__XML__PARAM__i0": {
+                                        "__XML__value": "1",
+                                        "log": {
+                                            "trap": {
+                                                "__XML__PARAM__s0": {
+                                                    "__XML__value": "public",
+                                                    "description": {
+                                                        "__XML__PARAM__s1": {
+                                                            "__XML__value": "FATAL(1)",
+                                                            "owner": {
+                                                                "__XML__PARAM__s2": {
+                                                                    "__XML__value": "PMON@FATAL"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "event": {
+                                    "__XML__PARAM__i0": {
+                                        "__XML__value": "2",
+                                        "log": {
+                                            "trap": {
+                                                "__XML__PARAM__s0": {
+                                                    "__XML__value": "public",
+                                                    "description": {
+                                                        "__XML__PARAM__s1": {
+                                                            "__XML__value": "CRITICAL(2)",
+                                                            "owner": {
+                                                                "__XML__PARAM__s2": {
+                                                                    "__XML__value": "PMON@CRITICAL"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "event": {
+                                    "__XML__PARAM__i0": {
+                                        "__XML__value": "3",
+                                        "log": {
+                                            "trap": {
+                                                "__XML__PARAM__s0": {
+                                                    "__XML__value": "public",
+                                                    "description": {
+                                                        "__XML__PARAM__s1": {
+                                                            "__XML__value": "ERROR(3)",
+                                                            "owner": {
+                                                                "__XML__PARAM__s2": {
+                                                                    "__XML__value": "PMON@ERROR"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "event": {
+                                    "__XML__PARAM__i0": {
+                                        "__XML__value": "4",
+                                        "log": {
+                                            "trap": {
+                                                "__XML__PARAM__s0": {
+                                                    "__XML__value": "public",
+                                                    "description": {
+                                                        "__XML__PARAM__s1": {
+                                                            "__XML__value": "WARNING(4)",
+                                                            "owner": {
+                                                                "__XML__PARAM__s2": {
+                                                                    "__XML__value": "PMON@WARNING"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "event": {
+                                    "__XML__PARAM__i0": {
+                                        "__XML__value": "5",
+                                        "log": {
+                                            "trap": {
+                                                "__XML__PARAM__s0": {
+                                                    "__XML__value": "public",
+                                                    "description": {
+                                                        "__XML__PARAM__s1": {
+                                                            "__XML__value": "INFORMATION(5)",
+                                                            "owner": {
+                                                                "__XML__PARAM__s2": {
+                                                                    "__XML__value": "PMON@INFO"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "clock": [
+                            {
+                                "timezone": {
+                                    "__XML__PARAM__s7": {
+                                        "__XML__value": "IST",
+                                        "__XML__PARAM__i3": {
+                                            "__XML__value": "5",
+                                            "__XML__PARAM__i4": {
+                                                "__XML__value": "30"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "protocol": {
+                                    "none": {
+                                        "vdc": {
+                                            "__XML__PARAM__vdc-id": {
+                                                "__XML__value": "1"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "vlan": {
+                            "__XML__PARAM__vlan-id-create-delete": {
+                                "__XML__value": "1"
+                            }
+                        },
+                        "vdc": {
+                            "__XML__PARAM__e-vdc": {
+                                "__XML__value": "switch",
+                                "id": {
+                                    "__XML__PARAM__new_id": {
+                                        "__XML__value": "1",
+                                        "m1:limit-resource": [
+                                            {
+                                                "m1:vlan": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__min-val": {
+                                                            "m1:__XML__value": "16",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__max-val": {
+                                                                    "m1:__XML__value": "4094"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m1:vrf": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__number1": {
+                                                            "m1:__XML__value": "2",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__number2": {
+                                                                    "m1:__XML__value": "4096"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m1:port-channel": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__min-val": {
+                                                            "m1:__XML__value": "0",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__max-val": {
+                                                                    "m1:__XML__value": "104"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m1:u4route-mem": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__min": {
+                                                            "m1:__XML__value": "128",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__max": {
+                                                                    "m1:__XML__value": "128"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m1:u6route-mem": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__min": {
+                                                            "m1:__XML__value": "96",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__max": {
+                                                                    "m1:__XML__value": "96"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m1:m4route-mem": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__min": {
+                                                            "m1:__XML__value": "58",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__max": {
+                                                                    "m1:__XML__value": "58"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m1:m6route-mem": {
+                                                    "m1:minimum": {
+                                                        "m1:__XML__PARAM__min": {
+                                                            "m1:__XML__value": "8",
+                                                            "m1:maximum": {
+                                                                "m1:__XML__PARAM__max": {
+                                                                    "m1:__XML__value": "8"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "m1:allow": {
+                                            "m1:feature-set": {
+                                                "m1:__XML__PARAM__fs": {
+                                                    "m1:__XML__value": "mpls"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "vrf": {
+                            "context": {
+                                "__XML__PARAM__vrf-name-known-name": {
+                                    "__XML__value": "management",
+                                    "m8:ip": {
+                                        "m8:route": {
+                                            "m8:__XML__PARAM__ip-prefix": {
+                                                "m8:__XML__value": "0.0.0.0/0",
+                                                "m8:__XML__PARAM__next-hop": {
+                                                    "m8:__XML__value": "10.5.196.1"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "boot": {
+                            "nxos": {
+                                "__XML__PARAM__uri0": {
+                                    "__XML__value": "bootflash:/nxos.9.3.6.bin"
+                                }
+                            }
+                        },
+                        "ip": [
+                            {
+                                "domain-lookup": ""
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-eigrp",
+                                        "m2:__XML__PARAM__seqno": {
+                                            "m2:__XML__value": "10",
+                                            "m2:__XML__PARAM__permitdeny": {
+                                                "m2:__XML__value": "permit",
+                                                "m2:__XML__PARAM__ip_other_proto": {
+                                                    "m2:__XML__value": "eigrp",
+                                                    "m2:__XML__PARAM__ip_src_any": {
+                                                        "m2:__XML__value": "any",
+                                                        "m2:__XML__PARAM__ip_dst_prefix": {
+                                                            "m2:__XML__value": "224.0.0.10/32"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-icmp",
+                                        "m2:__XML__PARAM__seqno": {
+                                            "m2:__XML__value": "10",
+                                            "m2:__XML__PARAM__permitdeny": {
+                                                "m2:__XML__value": "permit",
+                                                "m2:__XML__PARAM__proto_icmp": {
+                                                    "m2:__XML__value": "icmp",
+                                                    "m2:__XML__PARAM__icmp_src_any": {
+                                                        "m2:__XML__value": "any",
+                                                        "m2:__XML__PARAM__icmp_dst_any": {
+                                                            "m2:__XML__value": "any"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-igmp",
+                                        "m2:__XML__PARAM__seqno": {
+                                            "m2:__XML__value": "10",
+                                            "m2:__XML__PARAM__permitdeny": {
+                                                "m2:__XML__value": "permit",
+                                                "m2:__XML__PARAM__proto_igmp": {
+                                                    "m2:__XML__value": "igmp",
+                                                    "m2:__XML__PARAM__igmp_src_any": {
+                                                        "m2:__XML__value": "any",
+                                                        "m2:__XML__PARAM__igmp_dst_any": {
+                                                            "m2:__XML__value": "any"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-ntp",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "ntp"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0_str": {
+                                                                    "m2:__XML__value": "ntp",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-pimreg",
+                                        "m2:__XML__PARAM__seqno": {
+                                            "m2:__XML__value": "10",
+                                            "m2:__XML__PARAM__permitdeny": {
+                                                "m2:__XML__value": "permit",
+                                                "m2:__XML__PARAM__ip_other_proto": {
+                                                    "m2:__XML__value": "pim",
+                                                    "m2:__XML__PARAM__ip_src_any": {
+                                                        "m2:__XML__value": "any",
+                                                        "m2:__XML__PARAM__ip_dst_any": {
+                                                            "m2:__XML__value": "any"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-ping",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_icmp": {
+                                                        "m2:__XML__value": "icmp",
+                                                        "m2:__XML__PARAM__icmp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__icmp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__icmp_str": {
+                                                                    "m2:__XML__value": "echo"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_icmp": {
+                                                        "m2:__XML__value": "icmp",
+                                                        "m2:__XML__PARAM__icmp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__icmp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__icmp_str": {
+                                                                    "m2:__XML__value": "echo-reply"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-routingproto1",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "gt",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1024",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any",
+                                                                        "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                            "m2:__XML__value": "eq",
+                                                                            "m2:__XML__PARAM__TCP_ip_dst_port0_str": {
+                                                                                "m2:__XML__value": "bgp"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0_str": {
+                                                                    "m2:__XML__value": "bgp",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any",
+                                                                        "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                            "m2:__XML__value": "gt",
+                                                                            "m2:__XML__PARAM__TCP_ip_dst_port0": {
+                                                                                "m2:__XML__value": "1024"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "30",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_prefix": {
+                                                                "m2:__XML__value": "224.0.0.0/24",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "rip"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "40",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "gt",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1024",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any",
+                                                                        "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                            "m2:__XML__value": "eq",
+                                                                            "m2:__XML__PARAM__TCP_ip_dst_port0": {
+                                                                                "m2:__XML__value": "639"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "50",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0": {
+                                                                    "m2:__XML__value": "639",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any",
+                                                                        "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                            "m2:__XML__value": "gt",
+                                                                            "m2:__XML__PARAM__TCP_ip_dst_port0": {
+                                                                                "m2:__XML__value": "1024"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "70",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__ip_other_proto": {
+                                                        "m2:__XML__value": "ospf",
+                                                        "m2:__XML__PARAM__ip_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__ip_dst_any": {
+                                                                "m2:__XML__value": "any"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "80",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__ip_other_proto": {
+                                                        "m2:__XML__value": "ospf",
+                                                        "m2:__XML__PARAM__ip_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__ip_dst_prefix": {
+                                                                "m2:__XML__value": "224.0.0.5/32"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "90",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__ip_other_proto": {
+                                                        "m2:__XML__value": "ospf",
+                                                        "m2:__XML__PARAM__ip_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__ip_dst_prefix": {
+                                                                "m2:__XML__value": "224.0.0.6/32"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-routingproto2",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_prefix": {
+                                                                "m2:__XML__value": "224.0.0.0/24",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "1985"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto": {
+                                                        "m2:__XML__value": "112",
+                                                        "m2:__XML__PARAM__ip_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__ip_dst_prefix": {
+                                                                "m2:__XML__value": "224.0.0.0/24"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-snmp",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "snmp"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "snmptrap"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-ssh",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__tcp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__TCP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "22"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0": {
+                                                                    "m2:__XML__value": "22",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-stftp",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "tftp"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "1758"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "30",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0_str": {
+                                                                    "m2:__XML__value": "tftp",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "40",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1758",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "50",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__tcp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__TCP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "115"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "60",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0": {
+                                                                    "m2:__XML__value": "115",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-tacacsradius",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__tcp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__TCP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "tacacs"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0_str": {
+                                                                    "m2:__XML__value": "tacacs",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "30",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "1812"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "40",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "1813"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "50",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "1645"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "60",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__udp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__UDP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "1646"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "70",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1812",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "80",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1813",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "90",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1645",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "100",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_udp": {
+                                                        "m2:__XML__value": "udp",
+                                                        "m2:__XML__PARAM__udp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__UDP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__UDP_ip_src_port0": {
+                                                                    "m2:__XML__value": "1646",
+                                                                    "m2:__XML__PARAM__udp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-acl-telnet",
+                                        "m2:__XML__PARAM__seqno": [
+                                            {
+                                                "m2:__XML__value": "10",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__tcp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__TCP_ip_dst_port0_str": {
+                                                                        "m2:__XML__value": "telnet"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "20",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__tcp_dst_any": {
+                                                                "m2:__XML__value": "any",
+                                                                "m2:__XML__PARAM__TCP_dst_portop": {
+                                                                    "m2:__XML__value": "eq",
+                                                                    "m2:__XML__PARAM__TCP_ip_dst_port0": {
+                                                                        "m2:__XML__value": "107"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "30",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0_str": {
+                                                                    "m2:__XML__value": "telnet",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m2:__XML__value": "40",
+                                                "m2:__XML__PARAM__permitdeny": {
+                                                    "m2:__XML__value": "permit",
+                                                    "m2:__XML__PARAM__proto_tcp": {
+                                                        "m2:__XML__value": "tcp",
+                                                        "m2:__XML__PARAM__tcp_src_any": {
+                                                            "m2:__XML__value": "any",
+                                                            "m2:__XML__PARAM__TCP_src_portop": {
+                                                                "m2:__XML__value": "eq",
+                                                                "m2:__XML__PARAM__TCP_ip_src_port0": {
+                                                                    "m2:__XML__value": "107",
+                                                                    "m2:__XML__PARAM__tcp_dst_any": {
+                                                                        "m2:__XML__value": "any"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "access-list": {
+                                    "__XML__PARAM__name": {
+                                        "__XML__value": "copp-system-dhcp-relay",
+                                        "m2:__XML__PARAM__seqno": {
+                                            "m2:__XML__value": "10",
+                                            "m2:__XML__PARAM__permitdeny": {
+                                                "m2:__XML__value": "permit",
+                                                "m2:__XML__PARAM__proto_udp": {
+                                                    "m2:__XML__value": "udp",
+                                                    "m2:__XML__PARAM__udp_src_any": {
+                                                        "m2:__XML__value": "any",
+                                                        "m2:__XML__PARAM__UDP_src_portop": {
+                                                            "m2:__XML__value": "eq",
+                                                            "m2:__XML__PARAM__UDP_ip_src_port0_str": {
+                                                                "m2:__XML__value": "bootps",
+                                                                "m2:__XML__PARAM__udp_dst_any": {
+                                                                    "m2:__XML__value": "any",
+                                                                    "m2:__XML__PARAM__UDP_dst_portop": {
+                                                                        "m2:__XML__value": "eq",
+                                                                        "m2:__XML__PARAM__UDP_ip_dst_port0_str": {
+                                                                            "m2:__XML__value": "bootps"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "hardware": {
+                            "profile": {
+                                "portmode": {
+                                    "__XML__PARAM__port-mode": {
+                                        "__XML__value": "64x10G"
+                                    }
+                                }
+                            }
+                        },
+                        "username": {
+                            "__XML__PARAM__s0": {
+                                "__XML__value": "admin",
+                                "password": {
+                                    "__DIGIT__5": {
+                                        "__XML__PARAM__s3": {
+                                            "__XML__value": "$5$7o4V1guL$QF46ooIxkK805/tyG4y.0EtmrBpOW.Hu6fF9JXmFkMA",
+                                            "role": {
+                                                "__XML__PARAM__s6": {
+                                                    "__XML__value": "network-admin"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "class-map": [
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-icmp",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-icmp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-ntp",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-ntp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-arp"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-bfd"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-bpdu"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-dai"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-default"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-dhcpreq"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-dhcpresp",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-dhcp-relay"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-dpss"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-eigrp",
+                                                "m4:match": [
+                                                    {
+                                                        "m4:access-group": {
+                                                            "m4:name": {
+                                                                "m4:__XML__PARAM__acs-grp-name": {
+                                                                    "m4:__XML__value": "copp-system-acl-eigrp"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "m4:access-group": {
+                                                            "m4:name": {
+                                                                "m4:__XML__PARAM__acs-grp-name": {
+                                                                    "m4:__XML__value": "copp-system-acl-eigrp6"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-glean"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-igmp",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-igmp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-ipmcmiss"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-l2switched"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-l3destmiss"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-l3mtufail"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-l3slowpath"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-mpls"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-pimautorp"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-pimreg",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-pimreg"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-ping",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-ping"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-ptp"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-routingProto1",
+                                                "m4:match": [
+                                                    {
+                                                        "m4:access-group": {
+                                                            "m4:name": {
+                                                                "m4:__XML__PARAM__acs-grp-name": {
+                                                                    "m4:__XML__value": "copp-system-acl-routingproto1"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "m4:access-group": {
+                                                            "m4:name": {
+                                                                "m4:__XML__PARAM__acs-grp-name": {
+                                                                    "m4:__XML__value": "copp-system-acl-v6routingproto1"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-routingProto2",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-routingproto2"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-selfIp"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-ttl1"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-v6routingProto2",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-v6routingProto2"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-s-vxlan"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-snmp",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-snmp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-ssh",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-ssh"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-stftp",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-stftp"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-tacacsradius",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-tacacsradius"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "type": {
+                                    "control-plane": {
+                                        "__XML__PARAM__opt_any_or_all": {
+                                            "__XML__value": "match-any",
+                                            "__XML__PARAM__cmap-name": {
+                                                "__XML__value": "copp-telnet",
+                                                "m4:match": {
+                                                    "m4:access-group": {
+                                                        "m4:name": {
+                                                            "m4:__XML__PARAM__acs-grp-name": {
+                                                                "m4:__XML__value": "copp-system-acl-telnet"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "policy-map": {
+                            "type": {
+                                "control-plane": {
+                                    "__XML__PARAM__pmap-name": {
+                                        "__XML__value": "copp-system-policy",
+                                        "m5:class": [
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-default",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "400"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-l2switched",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "200"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-ping",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-l3destmiss",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-glean",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "500"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-selfIp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "500"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-l3mtufail",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-ttl1",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-ipmcmiss",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "400"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-l3slowpath",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-dhcpreq",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "300"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-dhcpresp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "300"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-dai",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "300"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-igmp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "400"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-routingProto2",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "1300"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-v6routingProto2",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "1300"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-eigrp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "200"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-pimreg",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "200"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-pimautorp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "200"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-routingProto1",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "1000"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-arp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "200"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-ptp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "1000"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-vxlan",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "1000"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-bfd",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "350"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-bpdu",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "12000"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-dpss",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "1000"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-s-mpls",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-icmp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "200"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-telnet",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "500"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-ssh",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "500"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-snmp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "500"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-ntp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "100"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-tacacsradius",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "400"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "m5:__XML__PARAM__cmap-name": {
+                                                    "m5:__XML__value": "copp-stftp",
+                                                    "m6:police": {
+                                                        "m6:pps": {
+                                                            "m6:__XML__PARAM__pps-val": {
+                                                                "m6:__XML__value": "400"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "snmp-server": {
+                            "user": {
+                                "__XML__PARAM__s0": {
+                                    "__XML__value": "admin",
+                                    "__XML__PARAM__s1": {
+                                        "__XML__value": "network-admin",
+                                        "auth": {
+                                            "md5": {
+                                                "__XML__PARAM__s2": {
+                                                    "__XML__value": "0xdcfb0051dc54304fadcb0c9facffa2fb",
+                                                    "priv": {
+                                                        "__XML__PARAM__s3": {
+                                                            "__XML__value": "0xdcfb0051dc54304fadcb0c9facffa2fb",
+                                                            "localizedkey": ""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "interface": [
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Vlan1",
+                                    "m10:ip": {
+                                        "m10:address": {
+                                            "m10:__XML__PARAM__ip-prefix": {
+                                                "m10:__XML__value": "192.168.0.5/24"
+                                            }
+                                        }
+                                    },
+                                    "m9:no": {
+                                        "m9:shutdown": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/1",
+                                    "m12:speed": {
+                                        "m12:__XML__PARAM__speed_val": {
+                                            "m12:__XML__value": "1000"
+                                        }
+                                    },
+                                    "m10:ip": {
+                                        "m10:address": {
+                                            "m10:__XML__PARAM__ip-prefix": {
+                                                "m10:__XML__value": "192.168.1.5/24"
+                                            }
+                                        }
+                                    },
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/2",
+                                    "m12:speed": {
+                                        "m12:__XML__PARAM__speed_val": {
+                                            "m12:__XML__value": "1000"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/3",
+                                    "m13:switchport": {
+                                        "m13:mode": {
+                                            "m13:__XML__PARAM__port_mode": {
+                                                "m13:__XML__value": "trunk"
+                                            }
+                                        }
+                                    },
+                                    "m14:switchport": {
+                                        "m14:trunk": {
+                                            "m14:allowed": {
+                                                "m14:vlan": {
+                                                    "m14:__XML__PARAM__allow-vlans": {
+                                                        "m14:__XML__value": "1"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/4"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/5"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/6"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/7",
+                                    "m12:speed": {
+                                        "m12:__XML__PARAM__speed_val": {
+                                            "m12:__XML__value": "1000"
+                                        }
+                                    },
+                                    "m10:ip": {
+                                        "m10:address": {
+                                            "m10:__XML__PARAM__ip-prefix": {
+                                                "m10:__XML__value": "192.168.2.7/24"
+                                            }
+                                        }
+                                    },
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/8"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/9"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/10"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/11"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/12"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/13"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/14"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/15"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/16"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/17"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/18"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/19"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/20"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/21"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/22"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/23"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/24"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/25"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/26"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/27"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/28"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/29"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/30"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/31"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/32"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/33"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/34"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/35"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/36"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/37"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/38"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/39"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/40"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/41"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/42"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/43"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/44"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/45"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/46"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/47"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/48"
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/49/1",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/49/2",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/49/3",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/49/4",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/50/1",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/50/2",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/50/3",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/50/4",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/51/1",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/51/2",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/51/3",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/51/4",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/52/1",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/52/2",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/52/3",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "Ethernet1/52/4",
+                                    "m11:no": {
+                                        "m11:switchport": ""
+                                    }
+                                }
+                            },
+                            {
+                                "__XML__PARAM__interface": {
+                                    "__XML__value": "mgmt0",
+                                    "m15:vrf": {
+                                        "m15:member": {
+                                            "m15:__XML__PARAM__vrf-name": {
+                                                "m15:__XML__value": "management"
+                                            }
+                                        }
+                                    },
+                                    "m16:ip": {
+                                        "m16:address": {
+                                            "m16:__XML__PARAM__ip-prefix": {
+                                                "m16:__XML__value": "192.168.1.5/24"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "nf:source": {
+                "nf:running": ""
+            }
+        }
+    },
+    "id": 1
+}

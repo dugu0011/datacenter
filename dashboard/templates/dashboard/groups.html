@@ -1,0 +1,72 @@
+
+    {% extends 'dashboard/header_footer.html' %}
+    {% load static %}
+    
+    {% block title %}
+    Groups
+    {% endblock %}
+    
+    {% block js  %}
+    <script src="/static/dashboard/js/groups.js"></script>
+    <script>
+dlb1 = new DualListbox('.select1', {
+    addEvent: function(value) { // Should use the event listeners
+        console.log(value);
+    },
+    removeEvent: function(value) { // Should use the event listeners
+        console.log(value);
+    },
+    availableTitle: 'Available Permissions',
+    selectedTitle: 'Selected Permissions',
+    addButtonText: '>',
+    removeButtonText: '<',
+    addAllButtonText: '>>',
+    removeAllButtonText: '<<',
+});
+//dlb1.search.classList.add('searchbar');
+        </script>
+    {% endblock %}
+    
+    {% block css %}
+    <link rel="stylesheet" href="/static/dashboard/css/groups.css">
+    {% endblock %}
+    {% block title_header %}Groups{% endblock %}
+    {% block content %}
+    {% if msg %}
+  <script>
+  alert("{{msg}}");
+  </script>
+  {% endif %}
+  <h1>Group Creation</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<br>
+    <input type="text" name="creategroup">
+    <button  class="btn btn-primary" style="width: 12%;" type="submit">Create Group</button>
+
+  </form>
+
+  <br>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <label for="">Choose Group:</label>
+    <select name="groupname" id="1">
+      {% for grp in all_group %}
+      <option value="{{grp}}">
+        {{grp}}
+      </option>
+
+      {% endfor %}
+    </select>
+
+    <br><br>
+
+    <select class="select1" multiple name="permission">
+            {% for permission in all_perm %}
+              <option name="{{permission}}" value="{{permission}}">{{permission}}</option>
+            {% endfor %}
+    </select><br><br>
+        <button  class="btn btn-primary" style="width: 20%;" type="submit" name="subm">Assign Permissions</button>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Show Capabilities {% endblock %} {% block js %} {% if msg %}
+<script>
+    alert('{{msg}}');
+</script>
+{% endif %} {% endblock %} {% block css %}
+<style>
+th{
+    text-align:center;
+}
+td{
+    text-align:center;
+}
+</style>
+{% endblock %} 
+{% block title_header %}Capabilities{% endblock %}
+{% block content %}
+<center>
+    <div class="col-md-12 boxStyle" style="border:1px solid black;overflow-x:auto;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Host</th>
+                    <th>SNMP</th>
+                    <th>NETAPI</th>
+                    <th>RESTAPI</th>
+                    <th>Alive</th>
+                    <th>Device Added</th>
+                    <th>Last Checked</th>
+                    <th>Schedule</th>
+                    <th>Actions</th>
+                    <th>Update All</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for devices in device %}
+                <tr>
+                    <td>{{devices.name}}</td>
+                    <td>{{devices.ip}}:8080</td>
+                    <td>{% if devices.is_snmp %}<a href="/device/capability/test/{{devices.id}}/snmp/"><i class="fa fa-check" style="color:blue"></i></a>{% else %}<i class="fa fa-close" style="color:red"></i>{% endif %}</td>
+                    <td>{% if devices.is_netconf %}<a href="/device/capability/test/{{devices.id}}/net/"><i class="fa fa-check" style="color:blue"></i></a>{% else %}<i class="fa fa-close" style="color:red"></i>{% endif %}</td>
+                    <td>{% if devices.is_restconf %}<a href="/device/capability/test/{{devices.id}}/rest/"><i class="fa fa-check" style="color:blue"></i></a>{% else %}<i class="fa fa-close" style="color:red"></i>{% endif %}</td>
+                    <td><i class="fa fa-circle" style="color:green"></i></td>
+                    <td>{{devices.created|date:'d/m/Y f A'}}</td>
+                    <td>{{devices.updated|date:'d/m/Y f A'}}</td>
+                    <td>{% if devices.schedule %}{{devices.schedule}}{% else %}{% endif %}</td>
+                    <td><a href="{% url 'edit-device-capability' devices.id %}"><i class="fa fa-edit"></i></a> <a href="{% url 'del-device-capability' devices.id %}"><i class="fa fa-trash"></i></a> <a href="{% url 'schedule-device-capability' devices.id %}"><i class="fa fa-calendar"></i></a></td>
+                    <td><button><i class="fa fa-play"></i></button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</center>
+<div class="row" style="height:400px;">
+
+</div>
+{% endblock %}

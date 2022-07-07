@@ -1,0 +1,41 @@
+
+    {% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+Import
+{% endblock %}
+
+{% block js  %}
+{% if msg %}
+<script>
+alert("{{msg}}");
+</script>
+{% endif %}
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+{% block title_header %}Import{% endblock %}
+{% block content %}
+    <h3>Import Data</h3>
+    <p>importing to database</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <select name="modelName" class="form-control my-3">
+            <option selected>Choose model...</option>
+            {% for models in AllModels %}
+            <option value="{{models}}">{{models|capfirst}}</option>
+            {% endfor %}
+        </select><br>
+        <select name="file-format" class="form-control my-3">
+            <option selected>Choose format...</option>
+            <option>CSV</option>
+            <option>JSON</option>
+        </select><br>
+        <input type="file" name="importData"><br>
+        <button class="btn btn-primary" type="submit">Import</button>
+    </form>
+
+{% endblock %}

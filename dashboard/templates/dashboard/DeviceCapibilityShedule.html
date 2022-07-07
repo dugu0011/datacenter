@@ -1,0 +1,52 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Show Capabilities {% endblock %} {% block js %} {% if msg %}
+<script>
+    alert('{{msg}}');
+</script>
+{% endif %}
+<script>
+{% for devices in device %}
+document.getElementById("{{devices.id}}-date").value = "{{devices.schedule|date:'d/m/Y'}}";
+{% endfor %}
+</script>
+
+{% endblock %} {% block css %} {% endblock %} {% block content %}
+<center>
+    <div class="col-md-12 boxStyle" style="border:1px solid black;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Device</td>
+                    <td>HOST</td>
+                    <td>SNMP</td>
+                    <td>NETAPI</td>
+                    <td>RESTAPI</td>
+                    <td>ALIVE</td>
+                    <td>DEVICE ADDED</td> <!--initial-->
+                    <td>LAST CHECKED</td>
+                    <td>UPDATE ALL</td> <!--button with label check-->
+                    <td>SCHEDULE</td> 
+                </tr>
+            </thead>
+            <tbody>
+                {% for devices in device %}
+                <tr>
+                    <td>{{devices.name}}</td>
+                    <td>{{devices.ip}}</td>
+                    <td><i class="fa fa-check" style="color:green"></i></td>
+                    <td><i class="fa fa-close" style="color:red"></i></td>
+                    <td><i class="fa fa-check" style="color:green"></i></td>
+                    <td>ALIVE</td>
+                    <td>{{devices.created}}</td>
+                    <td>{{devices.updated}}</td>
+                    <td><button>CHECK</button></td>
+                    <td><form method="POST">{% csrf_token %}<input type="date" name="date" id="{{devices.id}}-date"><input type="hidden" name="id" value="{{devices.id}}"><button>Save</button></form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</center>
+<div class="row" style="height:400px;">
+
+</div>
+{% endblock %}

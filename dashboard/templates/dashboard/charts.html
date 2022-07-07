@@ -1,0 +1,931 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %} Dashboard {% endblock title %} {% block css %}
+<style>
+    .card-counter {
+        box-shadow: 2px 2px 10px #DADADA;
+        margin: -13px;
+        padding: 20px 10px;
+        background-color: #fff;
+        height: 70px;
+        border-radius: 5px;
+        transition: .3s linear all;
+    }
+    
+    .card-counter:hover {
+        box-shadow: 4px 4px 20px #DADADA;
+        transition: .3s linear all;
+    }
+    
+    .card-counter.primary {
+        background-color: #007bff;
+        color: #FFF;
+    }
+    
+    .card-counter.danger {
+        background-color: #ef5350;
+        color: #FFF;
+    }
+    
+    .card-counter.success {
+        background-color: #66bb6a;
+        color: #FFF;
+    }
+    
+    .card-counter.info {
+        background-color: #26c6da;
+        color: #FFF;
+    }
+    
+    .card-counter i {
+        font-size: 5em;
+        opacity: 0.2;
+    }
+    
+    .card-counter .count-numbers {
+        position: absolute;
+        text-align: center;
+        right: 91px;
+        top: -15px;
+        font-size: 32px;
+        display: block;
+    }
+    
+    .card-counter .count-name {
+        position: relative;
+        /*right: 72px;*/
+        top: 25px;
+        /*font-style: italic;*/
+        text-transform: capitalize;
+        opacity: 0.5;
+        display: block;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    fieldset.scheduler-border {
+        /* border: 1px groove #ddd !important; */
+        padding: 0 1.4em 1.4em 1.4em !important;
+        /* margin: 0 0 1.5em 0 !important; */
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.15),0 2px 2px rgba(0,0,0,.15),0 4px 4px rgba(0,0,0,.15),0 8px 8px rgba(0,0,0,.15);
+        box-shadow: 0 1px 1px rgba(0,0,0,.15),0 2px 2px rgba(0,0,0,.15),0 4px 4px rgba(0,0,0,.15),0 8px 8px rgba(0,0,0,.15);
+    }
+    
+    legend.scheduler-border {
+        font-size: 1em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width: auto;
+        padding: 0 10px;
+        border-bottom: none;
+    }
+</style>
+{% endblock %} 
+{% block title_header %}Dashboard{% endblock %}
+{% block content %}
+<div class="container" style="margin:0px;">
+
+    <div class="row" style="margin-top: -69px;margin-left: 40px;">
+        <div class="col-md-2">
+            <div class="card-counter primary">
+                <span class="count-numbers" id="usedRam">{{device}}</span>
+                <span class="count-name">Total Devices</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card-counter danger">
+
+                <span class="count-numbers">{{notification}}</span>
+                <span class="count-name">Notifications</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card-counter success">
+                <span class="count-numbers">{{datacenter}}</span>
+                <span class="count-name">Data Centers</span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card-counter info">
+
+                <span class="count-numbers">{{total_users}}</span>
+                <span class="count-name">Users</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card-counter" style="background-color:#ff0083;color:#fff;">
+
+                <span class="count-numbers">0</span>
+                <span class="count-name">Applications</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card-counter" style="background-color:#167985;color:#fff;">
+
+                <span class="count-numbers">{{web_websites}}</span>
+                <span class="count-name">Websites</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="container">
+           <div class="row">
+            <div class="col-md-4">
+                <!-- <div id="myDiv1" style="height:200px;"></div> -->
+                <div class="row">
+                    <fieldset class="scheduler-border" style="height: 70px;">
+                        <legend class="scheduler-border">Uptime</legend>
+                        <div class="col-md-12" style="font-size: 23px;font-weight: bold;margin-top: -18px;">
+                            <span id="mon"></span> <span id="d"></span> <span id="h"></span> : <span id="m"></span> : <span id="s"></span>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="row">
+                    <!-- <fieldset class="scheduler-border col-md-6" style="height: 130px;">
+                        <legend class="scheduler-border">Processes</legend>
+                        <div id="myDiv4" class="col-md-12" style="height: 200px;margin-top: -70px;width:180px;margin-left:-18px"></div>
+                    </fieldset>
+                    <fieldset class="scheduler-border col-md-6" style="height: 130px;">
+                        <legend class="scheduler-border">Memory</legend>
+                        <div id="myDiv11" class="col-md-12" style="height: 200px;margin-top: -70px;width:180px;margin-left:-18px"></div>
+                    </fieldset> -->
+                    <fieldset class="scheduler-border col-md-4" style="height: 100px;">
+                        <legend class="scheduler-border">IOWait</legend>
+                        <div id="myDiv1" style="height:80px;width:90px;margin-top: -35px;margin-left:0px"></div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border col-md-4" style="height: 100px;">
+                        <legend class="scheduler-border">CPU</legend>
+                        <div id="myDiv7" style="height:80px;width:90px;margin-top: -35px;margin-left:0px"></div>
+                    </fieldset>
+
+                    <fieldset class="scheduler-border col-md-4" style="height: 100px;">
+                        <legend class="scheduler-border">Temp</legend>
+                        <div id="myDiv17" style="background: url('http://pngimg.com/uploads/thermometer/thermometer_PNG2.png');background-repeat: repeat;background-size: auto;height: 100px;background-size: contain;margin-top: -28px;background-repeat: no-repeat;"></div>
+                    </fieldset>
+                </div>
+            </div>
+    <div class="col-md-8">
+                <fieldset class="scheduler-border" style="height: 170px;">
+                    <legend class="scheduler-border">Network Monitoring</legend>
+                    <div id="myDiv5" style="height:130px;width:700px"></div>
+                </fieldset>
+            </div></div><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <fieldset class="scheduler-border col-md-6" style="height: 170px;">
+                        <legend class="scheduler-border">Memory</legend>
+                        <div id="myDiv6" style="height:150px;"></div>
+                    </fieldset>
+                    <fieldset class="scheduler-border col-md-6" style="height: 170px;">
+                        <legend class="scheduler-border">Swap</legend>
+                        <div id="myDiv12" style="height:150px;"></div>
+                    </fieldset>
+                </div>
+                <div class="row">
+                    <fieldset class="scheduler-border col-md-6" style="height: 100px;">
+                        <legend class="scheduler-border">Processes</legend>
+                        <div id="myDiv4" class="col-md-12" style="height: 180px;margin-top: -78px;width:150px;margin-left:-0px"></div>
+                    </fieldset>
+                    <fieldset class="scheduler-border col-md-6" style="height: 100px;">
+                        <legend class="scheduler-border">Storage</legend>
+                        <div id="myDiv11" class="col-md-12" style="height: 180px;margin-top: -78px;width:150px;margin-left:-0px"></div>
+                    </fieldset>
+
+                </div>
+                <div class="row">
+                    <fieldset class="scheduler-border" style="height: 150px;">
+                        <legend class="scheduler-border">Engine Cores</legend>
+                        <div id="myDiv3" style="height:120px;width:320px"></div>
+                    </fieldset>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <fieldset class="scheduler-border col-md-4" style="height: 170px;">
+                    <legend class="scheduler-border">Process</legend>
+                    <div id="myDiv10" style="height:150px;margin-top:-10px;margin-left:30px;"></div>
+                </fieldset>
+                 <fieldset class="scheduler-border col-md-8" style="height: 170px;">
+                    <legend class="scheduler-border">Usage Analytics</legend>
+                    <div id="myDiv2" style="height:150px;width:100%"></div>
+                </fieldset>
+                <fieldset class="scheduler-border col-md-12" style="height: 250px;">
+                    <legend class="scheduler-border">Notification Heatmap</legend>
+                    <div id='myDiv14'>
+                    </div>
+                </fieldset>
+    </div>
+</div>
+    </div>
+
+<script src='https://cdn.plot.ly/plotly-2.3.0.min.js'></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+<script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-liquidfill.min.js"></script>
+<script>
+    //ADD TRAILING 0 TO SINGLE DIGIT IN UPTIME
+    function AddZero(n){
+        return (n < 10 ? '0' : '') + n;
+    }
+    // FUNCTION FOR SYSTEM UPTIME
+    function uptime(second){
+        second = second;
+        d = new Date();
+        d.setMonth(0);
+        d.setDate(0);
+        d.setHours(0);
+        d.setMinutes(0);
+        d.setSeconds(second, 0);
+        setInterval(function() {
+            if (d.getMonth() != 0){
+            document.getElementById("mon").innerHTML = d.getMonth()+"M";
+            }
+            if (d.getDate() != 0){
+            document.getElementById("d").innerHTML = d.getDate()+"D";
+            }
+            document.getElementById("h").innerHTML = AddZero(d.getHours());
+            document.getElementById("m").innerHTML = AddZero(d.getMinutes());
+            document.getElementById("s").innerHTML = AddZero(d.getSeconds());
+            d.setTime(d.getTime() + 1000);
+        }, 1000);
+    }
+    //FUNCTION FOR PLOTING POLO WATER GRAPGH
+    function runningProcess(total) {
+        var chart_cc4a4f568fe9438fb27ad6a66bcff34c = echarts.init(
+            document.getElementById('myDiv4'), 'white', {
+                renderer: 'canvas'
+            });
+        var option_cc4a4f568fe9438fb27ad6a66bcff34c = {
+            "animation": true,
+            "animationThreshold": 2000,
+            "animationDuration": 1000,
+            "animationEasing": "cubicOut",
+            "animationDelay": 0,
+            "animationDurationUpdate": 300,
+            "animationEasingUpdate": "cubicOut",
+            "animationDelayUpdate": 0,
+            "margin": 20,
+            "color": [
+                "#c23531",
+                "#2f4554",
+                "#61a0a8",
+                "#d48265",
+                "#749f83",
+                "#ca8622",
+                "#bda29a",
+                "#6e7074",
+                "#546570",
+                "#c4ccd3",
+                "#f05b72",
+                "#ef5b9c",
+                "#f47920",
+                "#905a3d",
+                "#fab27b",
+                "#2a5caa",
+                "#444693",
+                "#726930",
+                "#b2d235",
+                "#6d8346",
+                "#ac6767",
+                "#1d953f",
+                "#6950a1",
+                "#918597"
+            ],
+            "series": [{
+                "type": "liquidFill",
+                "name": "Process",
+                "data": [{
+                    //value: total/100,
+                    name: total,
+                }
+                ],
+                "waveAnimation": true,
+                "animationDuration": 2000,
+                "animationDurationUpdate": 1000,
+                "color": [
+                    "#294D99",
+                    "#156ACF",
+                    "#1598ED",
+                    "#45BDFF"
+                ],
+                "shape": "circle",
+                "backgroundStyle": {
+                    //borderWidth: 5,
+                    //borderColor: 'red',
+                    color: '#ffbf00',
+                    opacity:0.9
+                },
+                "outline": {
+                    "show": true,
+                    "borderDistance": 8
+                },
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "margin": 0,
+                    "fontSize": 10
+                }
+            }],
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 0
+            }
+        };
+        chart_cc4a4f568fe9438fb27ad6a66bcff34c.setOption(option_cc4a4f568fe9438fb27ad6a66bcff34c);
+    }
+    function poloGrapgh2(used, total, col) {
+        var chart_cc4a4f568fe9438fb27ad6a66bcff34c = echarts.init(
+            document.getElementById('myDiv11'), 'white', {
+                renderer: 'canvas'
+            });
+        var option_cc4a4f568fe9438fb27ad6a66bcff34c = {
+            "animation": true,
+            "animationThreshold": 2000,
+            "animationDuration": 1000,
+            "animationEasing": "cubicOut",
+            "animationDelay": 0,
+            "animationDurationUpdate": 300,
+            "animationEasingUpdate": "cubicOut",
+            "animationDelayUpdate": 0,
+            "margin": 20,
+            "color": [
+                "#c23531",
+                "#2f4554",
+                "#61a0a8",
+                "#d48265",
+                "#749f83",
+                "#ca8622",
+                "#bda29a",
+                "#6e7074",
+                "#546570",
+                "#c4ccd3",
+                "#f05b72",
+                "#ef5b9c",
+                "#f47920",
+                "#905a3d",
+                "#fab27b",
+                "#2a5caa",
+                "#444693",
+                "#726930",
+                "#b2d235",
+                "#6d8346",
+                "#ac6767",
+                "#1d953f",
+                "#6950a1",
+                "#918597"
+            ],
+            "series": [{
+                "type": "liquidFill",
+                "name": "Completion",
+                "data": [
+                    ((used/total)*100)/100
+                ],
+                "waveAnimation": true,
+                "animationDuration": 2000,
+                "animationDurationUpdate": 1000,
+                "color": [
+                    "#294D99",
+                    "#156ACF",
+                    "#1598ED",
+                    "#45BDFF"
+                ],
+                "shape": "circle",
+                "backgroundStyle": {
+                    borderWidth: 3,
+                    borderColor: col,
+                    //color: col,
+                    opacity:0.9
+                },
+                "outline": {
+                    "show": false,
+                    "borderDistance": 8
+                },
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "margin": 0,
+                    "fontSize": 10
+                }
+            }],
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 0
+            }
+        };
+        chart_cc4a4f568fe9438fb27ad6a66bcff34c.setOption(option_cc4a4f568fe9438fb27ad6a66bcff34c);
+    }
+    //FUNCTION FOR PLOTING 2nd GRAPGH
+    function Graph(user,datacenter, website, device, camera) {
+        var trace1 = {
+            x: ['User', 'DC', 'Website', 'Device','Camera'],
+            y: [user, datacenter, website, device, camera],
+            name: 'Details',
+            type: 'bar'
+        };
+
+        var data = [trace1];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 20,
+                r: 0,
+                b: 40,
+                t: 0,
+                pad: 0
+            },
+            barmode: 'group',
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv2', data, layout, {
+            displayModeBar: false
+        });
+    }
+    //FUNCTION FOR PLOTING PROCESS GRAPGH
+    function processMonitoring() {
+        var trace1 = {
+            x: [1, 2, 3, 4, 5],
+            y: [1, 6, 3, 6, 1],
+            mode: 'markers',
+            type: 'scatter',
+            name: 'PS1',
+            text: ['PS1-A', 'PS1-B', 'PS1-C', 'PS1-D', 'PS1-E'],
+            marker: {
+                size: 12
+            }
+        };
+
+        var trace2 = {
+            x: [1.5, 2.5, 3.5, 4.5, 5.5],
+            y: [4, 1, 7, 1, 4],
+            mode: 'markers',
+            type: 'scatter',
+            name: 'PS2',
+            text: ['PS2-A', 'PS2-B', 'PS2-C', 'PS2-D', 'PS2-E'],
+            marker: {
+                size: 12
+            }
+        };
+
+        var data = [trace1, trace2];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 20,
+                r: 0,
+                b: 40,
+                t: 0,
+                pad: 0
+            },
+            xaxis: {
+                range: [0.75, 5.25]
+            },
+            yaxis: {
+                range: [0, 8]
+            },
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv3', data, layout, {
+            displayModeBar: false
+        });
+    }
+    //FUNCTION FOR PLOTING VIRTUAL MEMORY GRAPGH
+    function vitualMemory(vm,color) {
+        var data = [{
+            domain: {
+                x: [0, 1],
+                y: [0, 1]
+            },
+            value: vm,
+            number: { suffix: "%" },
+            delta: {
+                reference: vm
+            },
+            gauge: {
+                axis: {
+                    visible: false,
+                    range: [null, 100]
+                },
+                bar: { color: color }
+            },
+            type: "indicator",
+            mode: "gauge+number"
+        }];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 10,
+                pad: 0
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv1', data, layout, {
+            displayModeBar: false
+        });
+    }
+    //FUNCTION FOR PLOTING CPU USAGE GRAPGH
+    function cpuUsage(cu, color) {
+        var data = [{
+            domain: {
+                x: [0, 1],
+                y: [0, 1]
+            },
+            value: cu,
+            number: { suffix: "%" },
+            delta: {
+                reference: cu
+            },
+            gauge: {
+                axis: {
+                    visible: false,
+
+                    range: [null, 100]
+                },
+                bar: { color: color }
+            },
+            type: "indicator",
+            mode: "gauge+number"
+        }];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 10,
+                pad: 0
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv7', data, layout, {
+            displayModeBar: false
+        });
+    }
+    //FUNCTION FOR PLOTING USED RAM GRAPGH
+    function usedRAM(ur, total) {
+        var data = [{
+            domain: {
+                x: [0, 1],
+                y: [0, 1]
+            },
+            value: ur,
+            number: { suffix: " GB" },
+            delta: {
+                reference: ur
+            },
+            gauge: {
+                axis: {
+                    visible: false,
+
+                    range: [null, total]
+                },
+                bar: { color: "red" }
+            },
+            type: "indicator",
+            mode: "gauge+number"
+        }];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 10,
+                pad: 0
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv8', data, layout, {
+            displayModeBar: false
+        });
+    }
+    //FUNCTION FOR PLOTING AVAILABLE RAM GRAPGH
+    function availableRAM(ar, total) {
+        var data = [{
+            domain: {
+                x: [0, 1],
+                y: [0, 1]
+            },
+            value: ar,
+            number: { suffix: " GB" },
+            delta: {
+                reference: ar
+            },
+            gauge: {
+                axis: {
+                    visible: false,
+
+                    range: [null, total]
+                },
+                bar: { color: "green" }
+            },
+            type: "indicator",
+            mode: "gauge+number"
+        }];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 10,
+                pad: 0
+            }
+        };
+        var config = {
+            responsive: true
+        }
+        Plotly.newPlot('myDiv9', data, layout, {
+            displayModeBar: false
+        });
+    }
+    function rand(){
+        return Math.floor(Math.random() * (10 - 1 + 1) + 1);
+    }
+    function inc(){
+        return inc+1;
+    }
+    //FUNCTION FOR PLOTING NETWORK MONITORING GRAPGH
+    function networkMonitoring(download,upload,time) {
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 15,
+                r: 0,
+                b: 20,
+                t: 0,
+                pad: 0
+            },
+            legend: {"orientation": "h"},
+        };var trace1 = {
+  y: download,
+  x: time,
+  type: 'box',
+  name: 'Download'
+};
+
+var trace2 = {
+  y: upload,
+  x: time,
+  type: 'box',
+  name: 'Upload'
+};
+
+var data = [trace1, trace2];
+
+Plotly.newPlot('myDiv5', data, layout,{
+            displayModeBar: false
+        });
+    }
+    //FUNCTION FOR PLOTING SUNBUSRT GRAPGH
+    function sunburst(used, available, total){
+var data = [{
+  type: "sunburst",
+  ids: [
+    "Server", "Storage", "Web", "Server - server1", "server2",
+    "Server - server3", "Storage - Football", "Rugby",
+    "Storage - ","Web - Application",
+  ],
+  labels: [
+    "Server", "Storage", "Web", "Server 1", "Server 2", "Server 3",
+    used+" GB", available+" GB", total+" GB", "Application",
+  ],
+  parents: [
+    "", "", "", "Server", "Server", "Server", "Storage",
+    "Storage", "Storage","Web", "Web - Application"
+  ],
+  outsidetextfont: {size: 20, color: "#377eb8"},
+  // leaf: {opacity: 0.4},
+  marker: {line: {width: 2}},
+}];
+
+var layout = {
+    paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+  margin: {l: 0, r: 0, b: 0, t:0},
+  sunburstcolorway:["#636efa","#ef553b","#00cc96"],
+    height: 120,
+  width: 140
+};
+
+
+Plotly.newPlot('myDiv10', data, layout, {
+            displayModeBar: false
+        });
+
+    }
+    //FUNCTION FOR PLOTING STORAGE INFORMATION GRAPGH
+    function storageInfo(used, avail) {
+        var data = [{
+            values: [used, avail],
+            labels: ['Used', 'Availabale'],
+            text: 'Swap Memory',
+            textposition: 'inside',
+            textinfo:'value',
+            domain: {
+                column: 1
+            },
+            name: 'Swap Memory',
+            hoverinfo: 'label+percent+name',
+            hole: .7,
+            type: 'pie'
+        }];
+
+        var layout = {
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 0,
+                pad: 0
+            },
+            legend: {
+                x: 0,
+                y: 1,
+                traceorder: 'normal',
+                font: {
+                size: 10,
+                },
+                "orientation": "h"
+            },
+            
+            showlegend: false,
+            //legend: {"orientation": "h"},
+            //legend: {"orientation": "h"},
+            grid: {
+                rows: 1,
+                columns: 1
+            },
+    height: 100,
+  width: 140,
+  grid: {rows: 1, columns: 1}
+        };
+
+        var config = {
+            responsive: true
+        }
+
+        Plotly.newPlot('myDiv6', data, layout, {
+            displayModeBar: false
+        });
+        Plotly.newPlot('myDiv12', data, layout, {
+            displayModeBar: false
+        });
+    }
+</script>
+<script>
+    function Statistics() {
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'UsedRam' %}",
+            success: function(response) {
+                runningProcess(response["runningProcess"]);
+                poloGrapgh2(response["usedStorage"],response["totalStorage"], response["MemoryPoloCol"]);
+                vitualMemory(response["virtualMemory"], response["vmGaugeColor"]);
+                cpuUsage(response["cpuPercentage"], response["cpuGaugeColor"]);
+                //usedRAM(response["usedRam"], response["totalRam"]);
+                //availableRAM(response["availRam"], response["totalRam"]);
+                networkMonitoring(response["download"], response["upload"], response["networkTime"]);
+                storageInfo(response["usedSMemory"],response["availSMemory"]);
+            },
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });
+    };
+    function speed() {
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'networkspeed' %}",
+            success: function(response) {
+                console.log(response["status"]);
+            },
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });
+    };
+</script>
+<script>
+var data = [
+  {
+    z: [[1, 20, 30], [20, 1, 60], [30, 60, 1]],
+    type: 'heatmap'
+  }
+];
+var layout = {
+     autosize: false,
+  width: 700,
+  height: 200,
+            paper_bgcolor: "rgba(0,0,0,0)",
+            plot_bgcolor: "rgba(0,0,0,0)",
+            margin: {
+                l: 30,
+                r: 0,
+                b: 25,
+                t: 0,
+                pad: 0
+            }
+        };
+Plotly.newPlot('myDiv14', data, layout, {
+    displayModeBar: false
+});
+</script>
+<script>
+    uptime({{second}});
+    runningProcess({{runningProcess}});
+    poloGrapgh2({{usedStorage}},{{totalStorage}},"{{MemoryPoloCol}}");
+    Graph({{total_users}}, {{datacenter}}, {{web_websites}}, {{device}}, {{camera}});
+    processMonitoring();
+    vitualMemory({{virtualMemory}},"{{vmGaugeColor}}");
+    cpuUsage({{cpuPercentage}},"{{cpuGaugeColor}}");
+    //usedRAM({{usedRam}}, {{totalRam}});
+    //availableRAM({{AvailRam}}, {{totalRam}});
+    networkMonitoring({{download|safe}}, {{upload|safe}},{{networkTime|safe}});
+    sunburst({{usedStorage}},{{freeStorage}},{{totalStorage}});
+    storageInfo({{usedSMemory}},{{availSMemory}});
+
+    setInterval(function() {
+        Statistics();
+    }, 4000);
+    setInterval(function() {
+        speed();
+    }, 10000);
+    
+</script>
+{% endblock %}
+
+<!--
+    var cnt = 0;
+var interval = setInterval(function() {
+  Plotly.extendTraces('myDiv5', {
+    y: [{{download|safe}}, {{upload|safe}}]
+  }, [0, 1]);
+
+  cnt = cnt+1;
+  if(cnt >= 5) {
+      Plotly.relayout('myDiv5', {
+          xaxis: {
+              range:[cnt-5, cnt]
+          }
+      })
+  }
+}, 2000);
+-->

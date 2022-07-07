@@ -1,0 +1,53 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Get Capabilities {% endblock %} {% block js %}
+{% if msg %}
+<script>
+    alert('{{msg}}');
+</script>
+{% endif %} {% endblock %} {% block css %} {% endblock %} {% block content %}
+<center>
+    <div class="col-md-6 col-md-offset-3 boxStyle" style="border:1px solid black;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+                <!-- <label for="fname" class="control-label col-sm-2">cOMMENT</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fname" placeholder="First name">
+        </div> -->
+            </div>
+            <div class="form-group row">
+                <label for="device" class="control-label col-sm-4">Name of Device</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="devicename" value="{{device.name}}" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="host" class="control-label col-sm-4">Host</label>
+                <div class="col-sm-8">
+                    <input name="ippart1" type="text" id="ippart1" class="form-control" value="{{device.ip}}" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="control-label col-sm-4">Username</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="username" id="username" value="{{device.user}}" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="control-label col-sm-4">Password</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" name="password" id="password" value="{{device.pwd}}" required />
+                </div>
+            </div>
+            <input type="hidden" type="number" name="id" value="{{device.id}}">
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10 pull-right">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</center>
+<div class="row" style="height:400px;">
+
+</div>
+{% endblock %}

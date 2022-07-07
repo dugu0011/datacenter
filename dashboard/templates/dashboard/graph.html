@@ -1,0 +1,264 @@
+{% extends 'dashboard/header_footer.html' %} 
+{% load static %}
+{% block title %}
+Plotly Graph
+{% endblock title %}
+{% block title_header %}Plotly Graph{% endblock %}
+{% block content %}
+
+{% block css %}
+
+<link rel='stylesheet' href='{% static "carousel_graphs/owl.carousel.css" %}'>
+<link rel='stylesheet' href='{% static "carousel_graphs/owl.theme.css" %}'>
+<script src='{% static "carousel_graphs/owl.carousel.min.js" %}'></script><script  src='{% static "carousel_graphs/script.js" %}'></script>
+{% endblock %}
+<div class="inner-block">
+    <div class="cols-grids panel-widget">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators" style="background: ;">
+			  <li data-target="#myCarousel" data-slide-to="0" class="active" ></li>
+			  <li data-target="#myCarousel" data-slide-to="1"></li>
+			  <li data-target="#myCarousel" data-slide-to="2"></li>
+			  <li data-target="#myCarousel" data-slide-to="3"></li>
+			  <li data-target="#myCarousel" data-slide-to="4"></li>
+			  <li data-target="#myCarousel" data-slide-to="5"></li>
+			</ol>
+		
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+			  <div class="item active">
+				<div class="column" style="width: 500px; height: 450px;">
+					{% autoescape off %}
+				{{ new_graph|safe }}
+				{% endautoescape %}
+				</div>
+
+			  </div>
+			  <div class="item">
+				<div class="column" style="width: 500px; height: 450px;">
+					{{ scatter_graph|safe }}
+				</div>
+				
+			</div>
+			<div class="item">
+				<div class="column" style="width: 500px; height: 450px;">
+					{% autoescape off %}
+					{{ sankey_graph|safe }}
+				  	{% endautoescape %}
+				</div>
+				
+			</div>
+			<div class="item">
+				<div class="column" style="width: 500px; height: 450px;">
+					{{india_map_plt|safe}}
+				</div>
+				
+			</div>
+			<div class="item">
+				<div class="column" style="width: 500px; height: 450px;">
+					{{ sunburst|safe }}
+				</div>
+				
+			</div>
+			<div class="item">
+				<div class="column" style="width: 500px; height: 450px;">
+					{% autoescape off %}
+					{{ network_line_graph|safe}}
+					{% endautoescape %}
+				</div>
+				
+			</div>
+			</div>
+		
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			  <span class="glyphicon glyphicon-chevron-left"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+			  <span class="glyphicon glyphicon-chevron-right"></span>
+			  <span class="sr-only">Next</span>
+			</a>
+		  </div>
+		<div class="col-md-6">
+			<div id="owl-example1" class="owl-carousel">
+				<div> <!--Device Summary--> <div class="itemC2">
+			<div class="column" style="width: 270px; height: 200px;">
+
+
+			  {% autoescape off %}
+			  {{ new_graphs|safe }}
+			  {% endautoescape %}
+			</div></div>
+
+			<div> <!--Device Summary--> <div class="itemC2">
+
+
+			{% autoescape off %}
+			{{ new_graph|safe }}
+			{% endautoescape %}
+		</div></div>	
+		</div>
+
+			{% autoescape off %}
+		  {{ visualizatio|safe }}
+			{% endautoescape %}
+
+
+		  {{ scatter_graph|safe }}
+
+
+			{% autoescape off %}
+		  	{{ sankey_graph|safe }}
+			{% endautoescape %}
+
+
+			{{india_map_plt|safe}}
+
+
+
+		  {{ sunburst|safe }}
+		<div class="col-md-6">
+				<div style="border:none" width="600">
+					{% autoescape off %}
+					{{ network_line_graph|safe}}
+					{% endautoescape %}
+				</div>
+			</div>
+
+
+		<!-- <div class="chute chute-center text-center">
+
+				<div class="row mb40">
+					<div class="col-md-6">
+						<div class="demo-grid">
+							<code>.col-md-6</code>						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="demo-grid">
+							<code>.col-md-6</code>						</div>
+					</div>
+				</div> -->
+
+
+
+				<!---<div class="row mb40">
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+				<!---728x90--->
+				<!---<div class="row mb40">
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+				</div>--->
+				<!---<div class="row mb40">
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+				</div>--->
+
+				<!---<div class="row mb40">
+					<div class="col-md-8 mb5">
+						<div class="demo-grid">
+							<code>.col-md-8</code>						</div>
+					</div>
+					<div class="col-md-4 mb5">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+				<!---<div class="row mb40">
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-3 mb5">
+						<div class="demo-grid">
+							<code>.col-md-3</code>						</div>
+					</div>
+					<div class="col-md-6 mb5">
+						<div class="demo-grid">
+							<code>.col-md-6</code>						</div>
+					</div>
+				</div>--->
+				<!---<div class="row mb40">
+					<div class="col-md-8 mb5">
+						<div class="demo-grid">
+							<code>.col-md-8</code>						</div>
+					</div>
+					<div class="col-md-4 mb5">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+				<!---728x90--->
+				<!---<div class="row mb40">
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="demo-grid">
+							<code>.col-md-2</code>						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="demo-grid">
+							<code>.col-md-4</code>						</div>
+					</div>
+				</div>--->
+		  </div>
+	 </div>
+</div>
+</div>
+
+{% endblock %}

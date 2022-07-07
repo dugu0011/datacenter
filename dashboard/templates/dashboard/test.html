@@ -1,0 +1,51 @@
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+Test
+{% endblock %}
+
+{% block js  %}
+<script>
+{% if port and time %}
+alert("{{port}}\nTime taken: {{time}}");
+{% endif %}
+</script>
+
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{% url 'test_page' %}">
+<div class="row">
+		    <div class="col-md-2 text-center">
+		      <label>IP Address</label>
+		    </div>
+		    <div class="col-md-2">
+		      {% csrf_token %}
+		      <input required=required class="form-control c_input-accordian" type="number" min=1 max=255 id="ip_address41" name="ip_address41"  />.
+		    </div>
+			
+			<div class="col-md-2">
+		     <input required=required class="form-control c_input-accordian" type="number" min=0 max=256 id="ip_address42" name="ip_address42"  />.
+		    </div>
+			
+			<div class="col-md-2">
+		     <input required=required class="form-control c_input-accordian" type="number" min=0 max=256 id="ip_address43" name="ip_address43"  />.
+		    </div>
+			
+			<div class="col-md-2">
+		     <input required=required class="form-control c_input-accordian" type="number" min=0 max=256 id="ip_address44" name="ip_address44"  />
+		    </div>
+			
+			<div class="col-md-2">
+				<button id="validateIP_button" type="submit">IP SCAN</button>
+		    </div>
+		  </div>
+
+</form>
+
+{% endblock %}

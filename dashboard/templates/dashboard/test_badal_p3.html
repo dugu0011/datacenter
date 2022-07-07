@@ -1,0 +1,29 @@
+
+    {% extends 'dashboard/header_footer.html' %}
+    {% load static %}
+    
+    {% block title %}
+    Import
+    {% endblock %}
+    
+    {% block js  %}
+    
+    {% endblock %}
+    
+    {% block css %}
+    
+    {% endblock %}
+    
+    {% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Save">
+</form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+
+ {% endblock %}   

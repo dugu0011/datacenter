@@ -1,0 +1,233 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %} CCTV {% endblock title %}
+{% block title_header %}CCTV{% endblock %}
+{% block content %}
+<style>
+    section {
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+    }
+    
+    table,
+    td,
+    th {
+        width: 100%;
+        table-layout: fixed;
+        color: white;
+        padding-block-start: initial;
+        padding-top: 10px;
+        font-family: arial, sans-serif;
+        border: 12px solid white;
+        text-align: center;
+        padding: 8px;
+    }
+    
+    #t01 tr:nth-child(even) {
+        background-color: #559409;
+    }
+    
+    #t01 tr:nth-child(odd) {
+        background-color: #559409;
+    }
+    /* Style the counter cards */
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 85%;
+        text-align: center;
+        background-color: #f1f1f1;
+    }
+    
+    .card-counter {
+        box-shadow: 2px 2px 10px #DADADA;
+        margin: 5px;
+        background-color: #fff;
+        height: 100px;
+        border-radius: 5px;
+        transition: .3s linear all;
+    }
+    
+    .card-counter:hover {
+        box-shadow: 4px 4px 20px #DADADA;
+        transition: .3s linear all;
+    }
+    
+    .card-counter.primary {
+        background-color: #007bff;
+        color: #FFF;
+    }
+    
+    .card-counter.danger {
+        background-color: #ef5350;
+        color: #FFF;
+    }
+    
+    .card-counter.success {
+        background-color: #66bb6a;
+        color: #FFF;
+    }
+    
+    .card-counter.info {
+        background-color: #26c6da;
+        color: #FFF;
+    }
+    
+    .card-counter i {
+        font-size: 5em;
+        opacity: 0.2;
+    }
+    
+    .card-counter .count-numbers {
+        /* position: absolute; */
+        /* right: 35px; */
+        top: 20px;
+        font-size: 32px;
+        display: block;
+    }
+    
+    .card-counter .count-name {
+        /* position: absolute; */
+        /* right: 35px; */
+        top: 65px;
+        text-transform: capitalize;
+        display: block;
+        font-size: 18px;
+    }
+    
+    .bs-example {
+        margin: 20px;
+    }
+    
+    #dd {
+        background-color: cadetblue;
+        padding-top: 10px;
+        border: 12px solid white;
+        color: white;
+        font-weight: bold;
+    }
+    
+    @import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow);
+</style>
+<!--inner block start here-->
+<div class="row" style="margin-top: -80px;">
+    <div class="column">
+        <div class="col-md-2">
+            <div class="card-counter primary" style="width: 180px;height:100px;">
+                <span class="count-numbers">{{camera_links.count|add:cctv_links.count}}</span>
+                <span class="count-name">Total Cameras</span>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-md-2">
+            <div class="card-counter success" style="width: 180px;height:100px;margin-left: 20px;">
+                <span class="count-numbers">{{cameraTotal}}</span>
+                <span class="count-name">Working</span>
+                <span class="count-name" style="font-size:10px;">(IP Camera Monitoring)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="col-md-2">
+            <div class="card-counter danger" style="width: 180px;height:100px;margin-left: 20px;">
+                <span class="count-numbers">{{cameraDown}}</span>
+                <span class="count-name">Not Working</span>
+                <span class="count-name" style="font-size:10px;">(IP Camera Monitoring)</span>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="col-md-2">
+            <div class="card-counter success" style="width: 180px;height:100px;margin-left: 20px;">
+                <span class="count-numbers">{{cctvTotal}}</span>
+                <span class="count-name">Working</span>
+                <span class="count-name" style="font-size:10px;">(CCTV Dashboard Monitoring)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="col-md-2">
+            <div class="card-counter danger" style="width: 180px;height:100px;margin-left: 20px;">
+                <span class="count-numbers">{{cctvDown}}</span>
+                <span class="count-name">Not Working</span>
+                <span class="count-name" style="font-size:10px;">(CCTV Dashboard Monitoring(</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="inner-block">
+    <div class="cols-grids panel-widget" style="margin-top: -50px;">
+        <div class="row">
+
+            <!--  -->
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default" style="border-color: #337ab7">
+                    <div class="panel-heading" style="background-color: #337ab7;color: white;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">IP Camera Monitoring</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <form class="form-group" action="{% url 'cctv' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_type" value="formOne">
+                                <input type="text" placeholder="Enter your CCTV URL" name="name">
+                                <input type="submit" name="submit" value="Add">
+                            </form>
+                            <div class="row text-center">
+                                {% for k in camera_links %}
+                                <div class="card col-md-3 text-center" style="width: 18rem;padding:20px;margin-right: 30px;margin-top: 20px;">
+                                    <iframe src="{{k.url}}" class="card-img-top" title="" width="100%" height="150px"></iframe>
+                                    <div class="card-body">
+                                        <a href="{% url 'delete_camera' k.id %}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" style="border-color: #337ab7">
+                    <div class="panel-heading" style="background-color: #337ab7;color: white;">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">CCTV Dashboard Monitoring</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form action="{% url 'cctv' %}" method="POST" align="center">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_type" value="formTwo">
+                                <fieldset>
+                                    <input type="text" placeholder="Enter your CCTV Dashboard URL" name="name">
+                                    <input type="submit" name="submit" value="Add">
+                                </fieldset>
+                            </form>
+                            <br>
+                            <div class="row text-center">
+                                <div class="row text-center">
+                                    {% for k in cctv_links %}
+                                    <div class="card col-md-3 text-center" style="width: 18rem;padding:20px;margin-right: 30px;margin-top: 20px;margin-left: 20px;">
+                                        <iframe src="{{k.name}}" class="card-img-top" title="" width="100%" height="150px"></iframe>
+                                        <div class="card-body">
+                                            <a href="{% url 'delete_cctv' k.id %}" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+
+            <div class="chute chute-center text-center">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

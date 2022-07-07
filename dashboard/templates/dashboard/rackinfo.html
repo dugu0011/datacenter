@@ -1,0 +1,1032 @@
+{% extends 'dashboard/header_footer.html' %} {% load utils %}{% load static %} {% block title %} Rack Information {% endblock %}
+{% block css %}
+
+<link href='{% static "dashboard/css/custom.css" %}' rel='stylesheet' type='text/css'>
+<style>
+.checkbox{
+width: 21px;
+display: flex;
+background: #fff;
+align-items: center;
+border-radius: 5px;
+box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+justify-content: space-between;
+left: 12px;
+margin-top: 0px;
+margin-bottom: 0px;
+}
+.checkbox input{
+  outline: none;
+  height: 20px;
+  width: 39px;
+  border-radius: 50px;
+  -webkit-appearance: none;
+  position: relative;
+  background: #e6e6e6;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.checkbox input:checked{
+  background: #664AFF;
+}
+.checkbox input:before{
+  position: absolute;
+  content: "";
+  left: 0;
+  height: 100%;
+  width: 20px;
+  background: linear-gradient(#fff,#f2f2f2,#e6e6e6,#d9d9d9);
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  border-radius: 50px;
+  transform: scale(0.85);
+  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+input:checked:before{
+  left: 19px;
+}
+    .inner-block {
+        background-image: url("{% static 'dashboard/images/data_center.png' %}");
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+   background-attachment: fixed;
+}
+.switch {
+        position: relative;
+        display: block;
+        vertical-align: top;
+        width: 35px;
+        height: 20px;
+        padding: 2px;
+        margin: 0 10px 10px 0;
+        background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+        background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+        border-radius: 18px;
+        box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        box-sizing: content-box;
+    }
+    
+    .switch-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        box-sizing: content-box;
+    }
+    
+    .switch-label {
+        position: relative;
+        display: block;
+        height: inherit;
+        font-size: 8px;
+        text-transform: uppercase;
+        background: #eceeef;
+        border-radius: inherit;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+        box-sizing: content-box;
+    }
+    
+    .switch-label:before,
+    .switch-label:after {
+        position: absolute;
+        top: 50%;
+        margin-top: -.5em;
+        line-height: 1;
+        -webkit-transition: inherit;
+        -moz-transition: inherit;
+        -o-transition: inherit;
+        transition: inherit;
+        box-sizing: content-box;
+    }
+    
+    .switch-label:before {
+        content: attr(data-off);
+        right: 11px;
+        color: #aaaaaa;
+        text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    .switch-label:after {
+        content: attr(data-on);
+        left: 5px;
+        color: #FFFFFF;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+    }
+    
+    .switch-input:checked~.switch-label {
+        background: #16bd10;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+    }
+    
+    .switch-input:checked~.switch-label:before {
+        opacity: 0;
+    }
+    
+    .switch-input:checked~.switch-label:after {
+        opacity: 1;
+    }
+    
+    .switch-handle {
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+        background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+        border-radius: 100%;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .switch-handle:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -6px 0 0 -6px;
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+        background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+        border-radius: 6px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+    }
+    
+    .switch-input:checked~.switch-handle {
+        left: 28px;
+        box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    /* Transition
+========================== */
+    
+    .switch-label,
+    .switch-handle {
+        transition: All 0.3s ease;
+        -webkit-transition: All 0.3s ease;
+        -moz-transition: All 0.3s ease;
+        -o-transition: All 0.3s ease;
+    }
+    
+    .toggle {
+        width: 30px !important;
+        height: 20px !important;
+    }
+    
+    .btn {
+        font-size: 7px;
+    }
+}
+.toggle-handle {
+    display: none;
+    position: unset !important;
+}
+.toggle-off {
+    left: 50% !important;
+}
+.toggle-off.btn {
+    padding-left: 0.5rem !important;
+}
+</style>
+{% endblock css %} 
+{% block title_header %}Rack Information{% endblock %}
+{% block content %}
+
+<style>
+    .MRG {
+        background-color: #82E0AA;
+    }
+    
+    .MRA {
+        background-color: #F5B041;
+    }
+    
+    .MRR {
+        background-color: #EC7063;
+    }
+    
+    table {
+        width: 50px;
+        border-collapse: collapse;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+    
+    th,
+    td {
+        padding: 10px;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    /* Float four columns side by side */
+    
+    .column {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+    }
+    /* Remove extra left and right margins, due to padding */
+    
+    .row {
+        margin: 0 -5px;
+    }
+    /* Clear floats after the columns */
+    
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    /* Responsive columns */
+    
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 50%;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+    /* Style the counter cards */
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        width: 85%;
+        text-align: center;
+        background-color: #f1f1f1;
+    }
+    th{
+        text-align:center;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <h2 style="margin-top: -78px;">{{ datacenterracks }} Rack Information</h2>
+
+
+        <div class="column">
+            <div class="card" style="background-color: #4c2e96;color: white;padding:0;border-radius:10px;">
+                <p style="font-weight: bolder;">Rack Load</p>
+                <p>Print Load : 234482</p>
+                <p>Actual Load : 200083</p>
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <div class="card" style="background-color: #9c75b9;color: white;padding:0;border-radius:10px;">
+
+                <p style="font-weight: bolder;">Number of Devices : {{device.count}}</p>
+                <p>Empty slots: {{datacenterracks.Rack_Type_Information|subtract:device.count}}</p>
+                <p>&nbsp;</p>
+
+            </div>
+        </div>
+        <div class="column">
+            <div class="card" style="background-color: #0cbaba;color: white;padding:0;border-radius:10px;">
+                <p style="font-weight: bolder;">Rack Load</p>
+                <p>Print Load : 234482</p>
+                <p>Actual Load : 200083</p>
+            </div>
+
+
+        </div>
+
+        <div class="column">
+            <div class="card" style="background-color: #2b8620;color: white;padding:0;border-radius:10px;">
+                        <p style="font-weight: bolder;">
+
+                <p style="font-weight: bolder;">Number of Devices : {{device.count}}</p>
+                <p>Empty slots: {{datacenterracks.Rack_Type_Information|subtract:device.count}}</p>
+                <p>&nbsp;</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="demo-grid">
+                <table style="line-height:1;width:100%;" id="tables">
+                    <tr style="width:50%">
+                        <th style="width:5%;background-color:darkgreen"></th>
+                        <th style="width:5%;"></th>
+                        <th style="font-weight:bolder; width:30%;line-height: 20px;"><span>Rack</span><br><span style="font-size:10px;">(Front View)</span></th>
+                        <th style="width:5%;"></th>
+                        <th style="width:5%;background-color:darkgreen"></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+<div class="col-md-6">
+        <form action="{% url 'rack_page' datacenterracks.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="formThree">
+        Select Patch Panel:
+        <select name="patch" id="patch">
+
+        {% for patch in device %}
+        {% if patch.type_of_device == "Patch Panel" %}
+        <option value="{{patch.id}}">{{patch}}</option>
+        {% endif %}
+        {% endfor %}
+
+        {% comment %} {% for patch in patchpanel %}
+        <option value="{{patch.id}}">{{patch.name}}</option>
+        {% endfor %} {% endcomment %}
+        </select>
+        <input type="submit" value="Show">
+        </form>
+
+            <h3 style="text-align: center;"> Patch Panels (Inwards)</h3>
+            <table style="margin-left: 80px;">
+                <tr>
+                    <td id="inwards_patch_panel_1">1</td>
+                    <td id="inwards_patch_panel_5">5</td>
+                    <td id="inwards_patch_panel_9">9</td>
+                    <td id="inwards_patch_panel_13">13</td>
+                    <td id="inwards_patch_panel_17">17</td>
+                    <td id="inwards_patch_panel_21">21</td>
+                    <td id="inwards_patch_panel_25">25</td>
+                    <td id="inwards_patch_panel_29">29</td>
+                    <td id="inwards_patch_panel_33">33</td>
+                    <td id="inwards_patch_panel_37">37</td>
+                    <td id="inwards_patch_panel_41">41</td>
+                    <td id="inwards_patch_panel_45">45</td>
+                </tr>
+                <tr>
+                    <td id="inwards_patch_panel_2">2</td>
+                    <td id="inwards_patch_panel_6">6</td>
+                    <td id="inwards_patch_panel_10">10</td>
+                    <td id="inwards_patch_panel_14">14</td>
+                    <td id="inwards_patch_panel_18">18</td>
+                    <td id="inwards_patch_panel_22">22</td>
+                    <td id="inwards_patch_panel_26">26</td>
+                    <td id="inwards_patch_panel_30">30</td>
+                    <td id="inwards_patch_panel_34">34</td>
+                    <td id="inwards_patch_panel_38">38</td>
+                    <td id="inwards_patch_panel_42">42</td>
+                    <td id="inwards_patch_panel_46">46</td>
+                </tr>
+                <tr>
+                    <td id="inwards_patch_panel_3">3</td>
+                    <td id="inwards_patch_panel_7">7</td>
+                    <td id="inwards_patch_panel_11">11</td>
+                    <td id="inwards_patch_panel_15">15</td>
+                    <td id="inwards_patch_panel_19">19</td>
+                    <td id="inwards_patch_panel_23">23</td>
+                    <td id="inwards_patch_panel_27">27</td>
+                    <td id="inwards_patch_panel_31">31</td>
+                    <td id="inwards_patch_panel_35">35</td>
+                    <td id="inwards_patch_panel_39">39</td>
+                    <td id="inwards_patch_panel_43">43</td>
+                    <td id="inwards_patch_panel_47">47</td>
+                </tr>
+                <tr>
+                    <td id="inwards_patch_panel_4">4</td>
+                    <td id="inwards_patch_panel_8">8</td>
+                    <td id="inwards_patch_panel_12">12</td>
+                    <td id="inwards_patch_panel_16">16</td>
+                    <td id="inwards_patch_panel_20">20</td>
+                    <td id="inwards_patch_panel_24">24</td>
+                    <td id="inwards_patch_panel_28">28</td>
+                    <td id="inwards_patch_panel_32">32</td>
+                    <td id="inwards_patch_panel_36">36</td>
+                    <td id="inwards_patch_panel_40">40</td>
+                    <td id="inwards_patch_panel_44">44</td>
+                    <td id="inwards_patch_panel_48">48</td>
+                </tr>
+            </table>
+            <br><br>
+
+
+
+            <h3 style="text-align: center;"> Patch Panels (Outwards)</h3>
+            <table style="margin-left: 80px;">
+                <tr>
+                    <td id="outwards_patch_panel_1">1</td>
+                    <td id="outwards_patch_panel_5">5</td>
+                    <td id="outwards_patch_panel_9">9</td>
+                    <td id="outwards_patch_panel_13">13</td>
+                    <td id="outwards_patch_panel_17">17</td>
+                    <td id="outwards_patch_panel_21">21</td>
+                    <td id="outwards_patch_panel_25">25</td>
+                    <td id="outwards_patch_panel_29">29</td>
+                    <td id="outwards_patch_panel_33">33</td>
+                    <td id="outwards_patch_panel_37">37</td>
+                    <td id="outwards_patch_panel_41">41</td>
+                    <td id="outwards_patch_panel_45">45</td>
+                </tr>
+                <tr>
+                    <td id="outwards_patch_panel_2">2</td>
+                    <td id="outwards_patch_panel_6">6</td>
+                    <td id="outwards_patch_panel_10">10</td>
+                    <td id="outwards_patch_panel_14">14</td>
+                    <td id="outwards_patch_panel_18">18</td>
+                    <td id="outwards_patch_panel_22">22</td>
+                    <td id="outwards_patch_panel_26">26</td>
+                    <td id="outwards_patch_panel_30">30</td>
+                    <td id="outwards_patch_panel_34">34</td>
+                    <td id="outwards_patch_panel_38">38</td>
+                    <td id="outwards_patch_panel_42">42</td>
+                    <td id="outwards_patch_panel_46">46</td>
+                </tr>
+                <tr>
+                    <td id="outwards_patch_panel_3">3</td>
+                    <td id="outwards_patch_panel_7">7</td>
+                    <td id="outwards_patch_panel_11">11</td>
+                    <td id="outwards_patch_panel_15">15</td>
+                    <td id="outwards_patch_panel_19">19</td>
+                    <td id="outwards_patch_panel_23">23</td>
+                    <td id="outwards_patch_panel_27">27</td>
+                    <td id="outwards_patch_panel_31">31</td>
+                    <td id="outwards_patch_panel_35">35</td>
+                    <td id="outwards_patch_panel_39">39</td>
+                    <td id="outwards_patch_panel_43">43</td>
+                    <td id="outwards_patch_panel_47">47</td>
+                </tr>
+                <tr>
+                    <td id="outwards_patch_panel_4">4</td>
+                    <td id="outwards_patch_panel_8">8</td>
+                    <td id="outwards_patch_panel_12">12</td>
+                    <td id="outwards_patch_panel_16">16</td>
+                    <td id="outwards_patch_panel_20">20</td>
+                    <td id="outwards_patch_panel_24">24</td>
+                    <td id="outwards_patch_panel_28">28</td>
+                    <td id="outwards_patch_panel_32">32</td>
+                    <td id="outwards_patch_panel_36">36</td>
+                    <td id="outwards_patch_panel_40">40</td>
+                    <td id="outwards_patch_panel_44">44</td>
+                    <td id="outwards_patch_panel_48">48</td>
+                </tr>
+            </table>
+             {% comment %} <br>
+<h2>Add Patch Panel</h2>
+        <form action="{% url 'rack_page' datacenterracks.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="formOne">
+            <label for="patchname">Name :</label>
+            <input type="text" name="patchname" required />            
+          
+          <br>
+          <br>
+          
+            <label for="outin">Out_In :</label><br>
+            <input type="checkbox" name="inwards" value="True"> Inwards 
+            <input type="checkbox" name="outwards" value="True"> Outwards
+              <br>  
+            <br>
+
+                    
+            <input type="submit" value="save">
+            
+          </form>  {% endcomment %}
+
+
+          <br><br>
+          <h2>Port Form</h2>
+          <form action="{% url 'rack_page' datacenterracks.id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="form_type" value="formTwo">
+
+          <label for="inOut">Patch Panel Type :</label>
+            <select name="inOut" id="patchtype">
+            <option value="inwards">Inwards</option>
+            <option value="outwards">Outwards</option>
+            </select>
+              <br>  
+
+            <label for="device">Patch Panel :</label>
+            <select name="patch">
+        {% comment %} {% for patch in patchpanel %}
+        <option value="{{patch.id}}">{{patch.name}}</option>
+        {% endfor %} {% endcomment %}
+        {% for patch in device %}
+        {% if patch.type_of_device == "Patch Panel" %}
+        <option value="{{patch.id}}">{{patch}}</option>
+        {% endif %}
+        {% endfor %}
+        </select>
+
+            <br>
+
+            <label for="device">Device :</label>
+            <select name="device" id="device">
+              {% for data in device %}
+              <option value="{{data.id}}">{{data}} ({{data.Unit_Location}})</option>
+              {% endfor %}
+            </select>
+            
+          
+          <br>
+          
+            <label for="device">Port :</label>
+            <select name="port" id="div">
+              {% for value in 1|range:49 %}
+            <option value="{{value}}">{{value}}</option>
+            {% endfor %}
+            </select>
+              <br>  
+            <br>
+            
+                    <label id="changed">Patch Information</label>
+                    <br>
+                
+                            <input class="form-check-input c_input-accordian rack_type3" type="checkbox" name="network_category_fibre" value="router" checked />
+                            <label class="form-check-label" for="standard">Tag</label>
+                        
+                    
+
+                        <input class="form-check-input c_input-accordian rack_type3" type="checkbox" name="network_category_ethernet" value="switch" />
+                        <label class="form-check-label" for="customised">List of patch</label>
+
+                  
+
+                        <input class="form-check-input c_input-accordian rack_type3" type="checkbox" name="network_category_both" value="switch" />
+                        <label class="form-check-label" for="customised">Cross Patch</label><br>
+
+                    
+                            <input class="form-check-input c_input-accordian rack_type3" type="checkbox" name="network_category_fibre" value="router" checked />
+                            <label class="form-check-label" for="standard">Uplinks</label>
+                        
+
+                        <input class="form-check-input c_input-accordian rack_type3" type="checkbox" name="network_category_ethernet" value="switch" />
+                        <label class="form-check-label" for="customised">Switch</label>
+
+                    
+
+                        <input class="form-check-input c_input-accordian rack_type3" type="checkbox" name="network_category_both" value="switch" />
+                        <label class="form-check-label" for="customised">Router</label><br><br>
+
+                    
+            <input type="submit" value="save">
+            
+          </form>
+          
+          
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="demo-grid">
+
+                <table style="line-height:1;width:100%;" id="tables1">
+                    <tr style="width:50%">
+                        <th style="width:5%;background-color:darkgreen"></th>
+                        <th style="width:5%;"></th>
+                        <th style="font-weight:bolder; width:30%;line-height: 20px;"><span>Rack</span><br><span style="font-size:10px;">(Rear View)</span></th>
+                        <th style="width:5%;"></th>
+                        <th style="width:5%;background-color:darkgreen"></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script>
+            jQuery(document).ready(function($) {
+                $(".clickable-row").click(function(e) {
+                    if (e.target.id != "listItems") {
+                        $(this).find("#listItems").toggle();
+                    }
+                });
+            });
+
+            function getDetails(id) {
+                alert(id);
+            }
+        </script>
+
+
+
+        <script>
+            $(function() {
+                var colors = [{
+                    display: "light yellow",
+                    value: "ffffcc"
+                }, {
+                    display: "light blue",
+                    value: "ccffff"
+                }, {
+                    display: "light green",
+                    value: "ccffcc"
+                }, {
+                    display: "gray",
+                    value: "cccccc"
+                }, {
+                    display: "white",
+                    value: "ffffff"
+                }];
+
+                var options = ['<option value="">Select color</option>'];
+
+                for (var i = 0; i < colors.length; i++) {
+                    options.push('<option value="');
+                    options.push(colors[i].value);
+                    options.push('">');
+                    options.push(colors[i].display);
+                    options.push('</option>');
+                }
+
+                $('#colorOptions').html(options.join('')).change(function() {
+                    var val = $(this).val();
+                    if (val) {
+                        $("#mycell").css('backgroundColor', '#' + val);
+                    }
+                });
+
+
+            });
+        </script>
+
+        <!--<div class="column">
+						<div class="card">
+						  <h3>Rack Load</h3>
+						  <p>Print Load : 234482</p>
+						  <p>Actual Load : 200083</p>
+						</div>
+					  </div>
+					  <div class="column">
+						<div class="card">
+							  <p>Number of Devices : {{device_count}}</p>
+							  <p>Empty slots: 20</p>
+							  <p>Occupied : {{device_count}}</p>
+						</div>
+					  </div>-->
+    </div>
+    {% for patch in device %}
+    {% for port in patchport %}
+        {% if port.patchpanel.id == value %}
+            {% if port.in_out == 'inwards' %}
+        <script>
+        var inwards_patch_panel_{{port.port}} = document.getElementById("inwards_patch_panel_{{port.port}}");
+    if(inwards_patch_panel_{{port.port}} !== null && inwards_patch_panel_{{port.port}} !== 'undefined' ) {
+            inwards_patch_panel_{{port.port}}.style.color = "white";
+            inwards_patch_panel_{{port.port}}.style.background = "green";
+    }
+    </script>
+    {% else %}
+    <script>
+
+    var outwards_patch_panel_{{port.port}} = document.getElementById("outwards_patch_panel_{{port.port}}");
+    if(outwards_patch_panel_{{port.port}} !== null && outwards_patch_panel_{{port.port}} !== 'undefined' ) {
+        outwards_patch_panel_{{port.port}}.style.color = "white";
+        outwards_patch_panel_{{port.port}}.style.background = "green";
+    }
+    </script>
+{% endif %}
+{% endif %}
+
+{% endfor %}
+{% endfor %}
+{% comment %} {% for patch in patchpanel %}
+    {% for port in patchport %}
+        {{patch.name}} == {{port.patchpanel}}
+    {% endfor %}
+{% endfor %}  {% endcomment %}
+{% comment %} {% for detail in details %}
+{{detail.power_on}}
+{% endfor %} {% endcomment %}
+</div>
+{% endblock %} {% block js %}
+<script src="{% static " dashboard/js/custom.js " %}"></script>
+<script>
+function change_device_status_left(id){
+    var left = document.getElementById("chk-"+id+"-left");
+    //var right = document.getElementById("chk-"+id+"-right");
+var token = '{{csrf_token}}';
+$.ajax({
+                headers: { "X-CSRFToken": token },
+                type: 'POST',
+                url: "{% url 'change_device_status_left' %}",
+                data: {
+                    'id':id,
+                    },
+                success: function(response) {
+                   alert(response["msg"]);
+                   if (response["msg"] === 'Left Device On'){
+                       left.checked = true;
+                       //right.checked = true;
+                   }
+                   else{
+                       left.checked = false;
+                       //right.checked = false;
+                   }
+
+            },
+                error: function(xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    alert(err.Message);
+                }
+            });
+}
+function change_device_status_right(id){
+    //var left = document.getElementById("chk-"+id+"-left");
+    var right = document.getElementById("chk-"+id+"-right");
+var token = '{{csrf_token}}';
+$.ajax({
+                headers: { "X-CSRFToken": token },
+                type: 'POST',
+                url: "{% url 'change_device_status_right' %}",
+                data: {
+                    'id':id,
+                    },
+                success: function(response) {
+                   alert(response["msg"]);
+                   if (response["msg"] === 'Right Device On'){
+                       //left.checked = true;
+                       right.checked = true;
+                   }
+                   else{
+                       //left.checked = false;
+                       right.checked = false;
+                   }
+
+            },
+                error: function(xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    alert(err.Message);
+                }
+            });
+}
+</script>
+<script>
+
+$(document).ready(function(){
+    var sel = $("#device");
+    $("#patchtype").change(function() {
+        var device = $("#patchtype").val();
+        if (device == 'inwards'){
+            sel[0].options.length = 0;
+            {% for data in device %}
+            sel.append($("<option></option>").attr("value", "{{data.id}}").text("{{data}} ({{data.Unit_Location}})"));
+            {% endfor %}
+        }
+        if (device == 'outwards'){
+            sel[0].options.length = 0;
+            {% for data in all_device %}
+            sel.append($("<option></option>").attr("value", "{{data.id}}").text("{{data}} ({{data.Unit_Location}})"));
+            {% endfor %}
+        }
+    });
+}); 
+</script> 
+
+
+{% if msg %}
+<script>
+alert('{{msg}}');
+</script>
+{% endif %}
+
+<script>
+  // array of dicts 
+    var dict = [
+            {% for data in frontDevice %}
+        {
+            'id': {{data.id}},
+            'name':'{{data.Device_Asset_Tag}}',
+            'datacenter_id': 6,
+            'date_center_row_id': 15,
+            'device_height': {{data.device_height}},
+            'Device_Description': '12',
+            'Unit_Location': {{data.Unit_Location}},
+            'status_right': {{data.power_right|lower}},
+            'status_left': {{data.power_left|lower}},
+
+        },
+            {% endfor %}
+
+    ]
+    var rearDeviceDevice = [{% for data in rearDevice %}
+                    {
+                        'id': {{data.id}},
+                        'name':'{{data.Device_Asset_Tag}}',
+                        'datacenter_id': 6,
+                        'date_center_row_id': 15,
+                        'device_height': {{data.device_height}},
+                        'Device_Description': '12',
+                        'Unit_Location': {{data.Unit_Location}},
+                        'status_right': {{data.power_right|lower}},
+                        'status_left': {{data.power_left|lower}},
+                    },{% endfor %}
+    ]
+    var dictIndex = 0;
+    var totalDevices = {{frontDevice.count}};
+    var deviceName = "";
+    var rowSpan = 0;
+    var skipTD = 0;
+    var rowCounting = 0;
+    
+    for(var i = {{datacenterracks.Rack_Type_Information}} ; i >= 1 ; i--){
+        
+        // if previous row had a device in it and has a
+        // heiight of more than 1 
+        if (skipTD > 0) {
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i +"</td>\
+                    <td style='width:5%; font-weight:bolder;color: white;'><div class='checkbox'><input type='checkbox'/></div></td>\
+                    <td style='width:5%; font-weight:bolder;color: white;'><div class='checkbox'><input type='checkbox'/></div></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='td-" + i+ "'>"+ i +"</td>\
+                </tr>";
+            skipTD--;
+        }
+
+        // if this row doesnt has any device
+        else{
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td><div class='checkbox'><input type='checkbox'/></div></td>\
+                    <td style='font-weight:bolder;width:5%'>" + deviceName +"</td> \
+                    <td><div class='checkbox'><input type='checkbox'/></div></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='td-" + i+ "'>"+ i + "</td>\
+                </tr>";
+        }
+        
+        // if this row has a device in it
+        if(dictIndex < totalDevices && i == dict[dictIndex].Unit_Location){
+            if (dict[dictIndex].status_right == false && dict[dictIndex].status_left == false){
+            deviceName =  dict[dictIndex].name;
+            deviceId = dict[dictIndex].id;
+            rowSpan = dict[dictIndex].device_height;
+            //console.log("Row Span is " + rowSpan);
+            skipTD = rowSpan - 1;
+            dictIndex++;
+
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-left' type='checkbox' onchange='change_device_status_left("+deviceId+")' /></div></td>\
+                    <td style='font-weight:bolder;width:5%' rowspan="+ rowSpan +"><a href='/asset/datacenter/information/hall/device/"+deviceId+"/'>" + deviceName + "</a></td> \
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-right' type='checkbox' onchange='change_device_status_right("+deviceId+")'/></div></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='td-" + i+ "'>"+ i + "</td>\
+                </tr>";
+            }
+            else if (dict[dictIndex].status_right == true && dict[dictIndex].status_left == false){
+            deviceName =  dict[dictIndex].name;
+            deviceId = dict[dictIndex].id;
+            rowSpan = dict[dictIndex].device_height;
+            //console.log("Row Span is " + rowSpan);
+            skipTD = rowSpan - 1;
+            dictIndex++;
+
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-left' type='checkbox' onchange='change_device_status_left("+deviceId+")' /></div></td>\
+                    <td style='font-weight:bolder;width:5%' rowspan="+ rowSpan +"><a href='/asset/datacenter/information/hall/device/"+deviceId+"/'>" + deviceName + "</a></td> \
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-right' type='checkbox' onchange='change_device_status_right("+deviceId+")' checked /></div></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='td-" + i+ "'>"+ i + "</td>\
+                </tr>";
+            }
+            else if (dict[dictIndex].status_right == false && dict[dictIndex].status_left == true){
+            deviceName =  dict[dictIndex].name;
+            deviceId = dict[dictIndex].id;
+            rowSpan = dict[dictIndex].device_height;
+            //console.log("Row Span is " + rowSpan);
+            skipTD = rowSpan - 1;
+            dictIndex++;
+
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-left' type='checkbox' onchange='change_device_status_left("+deviceId+")' checked /></div></td>\
+                    <td style='font-weight:bolder;width:5%' rowspan="+ rowSpan +"><a href='/asset/datacenter/information/hall/device/"+deviceId+"/'>" + deviceName + "</a></td> \
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-right' type='checkbox' onchange='change_device_status_right("+deviceId+")' /></div></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='td-" + i+ "'>"+ i + "</td>\
+                </tr>";
+            }
+            else{
+            deviceName =  dict[dictIndex].name;
+            deviceId = dict[dictIndex].id;
+            rowSpan = dict[dictIndex].device_height;
+            //console.log("Row Span is " + rowSpan);
+            skipTD = rowSpan - 1;
+            dictIndex++;
+
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-left' type='checkbox' checked onchange='change_device_status_left("+deviceId+")' /></div></td>\
+                    <td style='font-weight:bolder;width:5%' rowspan="+ rowSpan +"><a href='/asset/datacenter/information/hall/device/"+deviceId+"/'>" + deviceName + "</a></td> \
+                    <td><div class='checkbox'><input id='chk-"+deviceId+"-right' type='checkbox' checked onchange='change_device_status_right("+deviceId+")' /></div></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='td-" + i+ "'>"+ i + "</td>\
+                </tr>";
+            }
+        }
+
+        $("#tables").append(row);
+
+        deviceName = "";
+        rowSpan = "";
+        rowCounting++;
+    }
+
+    var dictIndex = 0;
+    var totalDevices = {{rearDevice.count}};
+    var deviceName = "";
+    var rowSpan = 0;
+    var skipTD = 0;
+    var rowCounting = 0;
+    //REAR DEVICE
+    for(var i = {{datacenterracks.Rack_Type_Information}} ; i >= 1 ; i--){
+        
+        // if previous row had a device in it and has a
+        // heiight of more than 1 
+        if (skipTD > 0) {
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i +"</td>\
+                    <td style='width:5%; font-weight:bolder; color: white;'></td>\
+                    <td style='width:5%; font-weight:bolder; color: white;'></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='alpha-rear-" + i+ "'>"+ i +"</td>\
+                </tr>";
+            skipTD--;
+        }
+
+        // if this row doesnt has any device
+        else{
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td></td>\
+                    <td style='font-weight:bolder;width:5%'>" + deviceName +"</td> \
+                    <td></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='alpha-rear-" + i+ "'>"+ i + "</td>\
+                </tr>";
+        }
+        
+        // if this row has a device in it
+        if(dictIndex < totalDevices && i == rearDeviceDevice[dictIndex].Unit_Location){
+            if (rearDeviceDevice[dictIndex].status == false){
+            deviceName =  rearDeviceDevice[dictIndex].name;
+            deviceId = rearDeviceDevice[dictIndex].id;
+            rowSpan = rearDeviceDevice[dictIndex].device_height;
+            //console.log("Row Span is " + rowSpan);
+            skipTD = rowSpan - 1;
+            dictIndex++;
+
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td></td>\
+                    <td style='font-weight:bolder;width:5%' rowspan="+ rowSpan +"><a href='/asset/datacenter/information/hall/device/"+deviceId+"/'>" + deviceName + "</a></td> \
+                    <td></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='alpha-rear-" + i+ "'>"+ i + "</td>\
+                </tr>";
+            }
+            else{
+            deviceName =  rearDeviceDevice[dictIndex].name;
+            deviceId = rearDeviceDevice[dictIndex].id;
+            rowSpan = rearDeviceDevice[dictIndex].device_height;
+            //console.log("Row Span is " + rowSpan);
+            skipTD = rowSpan - 1;
+            dictIndex++;
+
+            row = "\
+                <tr style='width:50%'>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;'>"+ i + "</td>\
+                    <td></td>\
+                    <td style='font-weight:bolder;width:5%' rowspan="+ rowSpan +"><a href='/asset/datacenter/information/hall/device/"+deviceId+"/'>" + deviceName + "</a></td> \
+                    <td></td>\
+                    <td style='width:5%; font-weight:bolder; background-color:darkslategray; color: white;' id='alpha-rear-" + i+ "'>"+ i + "</td>\
+                </tr>";
+            }
+        }
+
+        $("#tables1").append(row);
+
+        deviceName = "";
+        rowSpan = "";
+        rowCounting++;
+    }
+
+{% for d in alphabets %}
+var alpha_front_{{d}} = document.getElementById('td-{{d}}');
+if(alpha_front_{{d}} !== null && alpha_front_{{d}} !== 'undefined' ) {
+  alpha_front_{{d}}.innerHTML = "{{ alphabets|dict_key:d }}";
+}
+{% endfor %}
+
+{% for d in alphabets %}
+var alpha_rear_{{d}} = document.getElementById('alpha-rear-{{d}}');
+if(alpha_rear_{{d}} !== null && alpha_rear_{{d}} !== 'undefined' ) {
+  alpha_rear_{{d}}.innerHTML = "{{ alphabets|dict_key:d }}";
+}
+{% endfor %}
+</script>
+{% endblock js %}

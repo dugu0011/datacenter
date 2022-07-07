@@ -1,0 +1,185 @@
+country_name,country_code,data_center_name,address,capacity
+Andorra,ad,Andorra,,1
+United Arab Emirates,ae,United Arab Emirates,,1
+Afghanistan,af,Afghanistan,,1
+Albania,al,Albania,,1
+Armenia,am,Armenia,,1
+Angola,ao,Angola,,1
+Antarctica,aq,Antarctica,,1
+Argentina,ar,Argentina,,1
+Austria,at,Austria,,1
+Australia,au,Australia,,1
+Azerbaijan,az,Azerbaijan,,1
+Bosnia and Herzegovina,ba,Bosnia and Herzegovina,,1
+Bangladesh,bd,Bangladesh,,1
+Belgium,be,Belgium,,1
+Burkina Faso,bf,Burkina Faso,,1
+Bulgaria,bg,Bulgaria,,1
+Bahrain,bh,Bahrain,,1
+Burundi,bi,Burundi,,1
+Benin,bj,Benin,,1
+Brunei Darussalam,bn,Brunei Darussalam,,1
+"Bolivia, Plurinational State of",bo,"Bolivia, Plurinational State of",,1
+Brazil,br,Brazil,,1
+Bhutan,bt,Bhutan,,1
+Botswana,bw,Botswana,,1
+Belarus,by,Belarus,,1
+Belize,bz,Belize,,1
+Canada,ca,Canada,,1
+"Congo, the Democratic Republic of the",cd,"Congo, the Democratic Republic of the",,1
+Central African Republic,cf,Central African Republic,,1
+Congo,cg,Congo,,1
+Switzerland,ch,Switzerland,,1
+Cote d’Ivoire,ci,Cote d’Ivoire,,20
+Chile,cl,Chile,,20
+Cameroon,cm,Cameroon,,20
+China,cn,China,,20
+Colombia,co,Colombia,,20
+Costa Rica,cr,Costa Rica,,20
+Cuba,cu,Cuba,,20
+Cape Verde,cv,Cape Verde,,20
+Cyprus,cy,Cyprus,,20
+Czech Republic,cz,Czech Republic,,20
+Germany,de,Germany,,20
+Djibouti,dj,Djibouti,,20
+Denmark,dk,Denmark,,20
+Dominican Republic,do,Dominican Republic,,20
+Algeria,dz,Algeria,,55
+Ecuador,ec,Ecuador,,55
+Estonia,ee,Estonia,,55
+Egypt,eg,Egypt,,55
+Western Sahara,eh,Western Sahara,,55
+Eritrea,er,Eritrea,,55
+Spain,es,Spain,,55
+Ethiopia,et,Ethiopia,,55
+Finland,fi,Finland,,55
+France,fr,France,,55
+Gabon,ga,Gabon,,55
+United Kingdom,gb,United Kingdom,,55
+Georgia,ge,Georgia,,55
+French Guiana,gf,French Guiana,,55
+Ghana,gh,Ghana,,55
+Greenland,gl,Greenland,,55
+Gambia,gm,Gambia,,55
+Guinea,gn,Guinea,,55
+Equatorial Guinea,gq,Equatorial Guinea,,55
+Greece,gr,Greece,,55
+Guatemala,gt,Guatemala,,55
+Guam,gu,Guam,,55
+Guinea-Bissau,gw,Guinea-Bissau,,55
+Guyana,gy,Guyana,,55
+Hong Kong,hk,Hong Kong,,55
+Honduras,hn,Honduras,,55
+Croatia,hr,Croatia,,55
+Haiti,ht,Haiti,,55
+Hungary,hu,Hungary,,55
+Indonesia,id,Indonesia,,55
+Ireland,ie,Ireland,,55
+Israel,il,Israel,,55
+India,in,India,,55
+Iraq,iq,Iraq,,55
+"Iran, Islamic Republic of",ir,"Iran, Islamic Republic of",,55
+Iceland,is,Iceland,,55
+Italy,it,Italy,,55
+Jamaica,jm,Jamaica,,55
+Jordan,jo,Jordan,,55
+Japan,jp,Japan,,55
+Kenya,ke,Kenya,,55
+Kyrgyzstan,kg,Kyrgyzstan,,55
+Cambodia,kh,Cambodia,,55
+"Korea, Democratic People’s Republic of",kp,"Korea, Democratic People’s Republic of",,55
+"Korea, Republic of",kr,"Korea, Republic of",,55
+Kuwait,kw,Kuwait,,55
+Kazakhstan,kz,Kazakhstan,,55
+Lao People’s Democratic Republic,la,Lao People’s Democratic Republic,,55
+Lebanon,lb,Lebanon,,55
+Liechtenstein,li,Liechtenstein,,55
+Sri Lanka,lk,Sri Lanka,,55
+Liberia,lr,Liberia,,55
+Lesotho,ls,Lesotho,,55
+Lithuania,lt,Lithuania,,55
+Luxembourg,lu,Luxembourg,,55
+Latvia,lv,Latvia,,55
+Libyan Arab Jamahiriya,ly,Libyan Arab Jamahiriya,,55
+Morocco,ma,Morocco,,55
+Monaco,mc,Monaco,,55
+"Moldova, Republic of",md,"Moldova, Republic of",,55
+Montenegro,me,Montenegro,,55
+Madagascar,mg,Madagascar,,55
+"Macedonia, the former Yugoslav Republic of",mk,"Macedonia, the former Yugoslav Republic of",,55
+Mali,ml,Mali,,55
+Myanmar,mm,Myanmar,,55
+Mongolia,mn,Mongolia,,55
+Macao,mo,Macao,,55
+Mauritania,mr,Mauritania,,55
+Malta,mt,Malta,,55
+Mauritius,mu,Mauritius,,55
+Maldives,mv,Maldives,,55
+Malawi,mw,Malawi,,92
+Mexico,mx,Mexico,,92
+Malaysia,my,Malaysia,,92
+Mozambique,mz,Mozambique,,92
+Namibia,na,Namibia,,92
+Niger,ne,Niger,,92
+Nigeria,ng,Nigeria,,92
+Nicaragua,ni,Nicaragua,,92
+Netherlands,nl,Netherlands,,92
+Norway,no,Norway,,92
+Nepal,np,Nepal,,92
+New Zealand,nz,New Zealand,,92
+Oman,om,Oman,,92
+Panama,pa,Panama,,92
+Peru,pe,Peru,,92
+Papua New Guinea,pg,Papua New Guinea,,92
+Philippines,ph,Philippines,,92
+Pakistan,pk,Pakistan,,92
+Poland,pl,Poland,,92
+Puerto Rico,pr,Puerto Rico,,92
+"Palestine, State of",ps,"Palestine, State of",,92
+Portugal,pt,Portugal,,92
+Paraguay,py,Paraguay,,92
+Reunion,re,Reunion,,92
+Romania,ro,Romania,,92
+Serbia,rs,Serbia,,92
+Russian Federation,ru,Russian Federation,,92
+Rwanda,rw,Rwanda,,92
+Saudi Arabia,sa,Saudi Arabia,,92
+Seychelles,sc,Seychelles,,92
+Sudan,sd,Sudan,,92
+Sweden,se,Sweden,,92
+Singapore,sg,Singapore,,92
+"Saint Helena, Ascension and Tristan da Cunha",sh,"Saint Helena, Ascension and Tristan da Cunha",,92
+Slovenia,si,Slovenia,,92
+Slovakia,sk,Slovakia,,92
+Sierra Leone,sl,Sierra Leone,,92
+San Marino,sm,San Marino,,92
+Senegal,sn,Senegal,,92
+Somalia,so,Somalia,,92
+Suriname,sr,Suriname,,92
+Sao Tome and Principe,st,Sao Tome and Principe,,92
+El Salvador,sv,El Salvador,,92
+Syrian Arab Republic,sy,Syrian Arab Republic,,92
+Swaziland,sz,Swaziland,,92
+Chad,td,Chad,,92
+Togo,tg,Togo,,92
+Thailand,th,Thailand,,92
+Tajikistan,tj,Tajikistan,,92
+Timor-Leste,tl,Timor-Leste,,92
+Turkmenistan,tm,Turkmenistan,,92
+Tunisia,tn,Tunisia,,92
+Turkey,tr,Turkey,,92
+Taiwan (Republic of China),tw,Taiwan (Republic of China),,92
+"Tanzania, United Republic of",tz,"Tanzania, United Republic of",,92
+Ukraine,ua,Ukraine,,92
+Uganda,ug,Uganda,,92
+United States,us,United States,,92
+Uruguay,uy,Uruguay,,92
+Uzbekistan,uz,Uzbekistan,,92
+Holy See (Vatican City State),va,Holy See (Vatican City State),,92
+"Venezuela, Bolivarian Republic of",ve,"Venezuela, Bolivarian Republic of",,92
+Viet Nam,vn,Viet Nam,,92
+Yemen,ye,Yemen,,92
+Mayotte,yt,Mayotte,,92
+South Africa,za,South Africa,,92
+Zambia,zm,Zambia,,92
+Zimbabwe,zw,Zimbabwe,,92

@@ -1,0 +1,17 @@
+---
+- hosts: all
+  #  become: yes
+  #  become_user: ubuntu
+  tasks:
+          #        - name: waiting for sudo
+          #          become: yes
+          #          become_user: ubuntu
+          #          shell:  while sudo fuser /var/lib/dpkg/lock >/dev/null 2>&1; do sleep 5; done;
+        - name: ensure nginx isi at the latest versiion
+          apt:
+                name: nginx
+                state: latest
+        - name: start nginx
+          service:
+                name: nginx
+                state: started

@@ -1,0 +1,376 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %}{% load utils %} {% block title %} Assets forms {% endblock %} {% block js %}
+<script>
+function cabinet_change(){
+    var token = '{{csrf_token}}';
+            var dc = $("#datacenter").val();
+            var sel = $("#rack_rows");
+sel[0].options.length = 0;
+$.ajax({
+                headers: { "X-CSRFToken": token },
+                type: 'POST',
+                url: "{% url 'showrows' %}",
+                data: {
+                    'id':dc,
+                    },
+                success: function(response) {
+                    $.each( response, function( key, value ) {
+                        $.each( value, function( key, value ) {
+                            //rack_row and rack_rows are different
+                            sel.append($("<option></option>").attr("value", value[0]).text(value[2])); 
+                        });
+        });
+            },
+                error: function(xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    alert(err.Message);
+                }
+            });
+}
+$(document).ready(function() {
+        cabinet_change();
+        $("#datacenter").change(function() {
+            cabinet_change();
+        });
+
+        $(".rack_type3").change(function() {
+            var rt3 = $('input[name="rack_type3"]:checked').val();
+            if (rt3 == "standard") {
+                //$("#customised_rt_information[value='42']").attr('selected' , 'selected');
+                $("#customised_rt_information").val("42");
+                $("#customised_rt_information").attr("disabled", "True");
+            } else if (rt3 == "customised") {
+                $("#customised_rt_information").removeAttr("disabled");
+            } else if (rt3 == "network") {
+                $("#customised_rt_information").removeAttr("disabled");
+            }
+        });
+    });
+</script>
+
+{% if msg %}
+<script>
+alert('{{msg}}');
+</script>
+{% endif %}
+{% endblock %} {% block css %}
+
+
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/bootstrap-combined.min.css' %}">  -->
+
+<style>
+.panel{
+    text-align:center;
+}
+</style>
+
+{% endblock %} {% block content %}
+<form action="{% url 'edit_rack' racks.id %}" method="POST">
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Add Data Center Rack(cabinet)</a>
+            </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <!---->
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="border">
+                            <form class="form" action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_type" value="formThree">
+                                <div class="form-group">
+
+                            <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label for="rack_row">Data Center</label>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select required="required" class="form-control " id="datacenter" name="datacenter">
+                                            <option value="{{racks.datacenter.id}}">{{racks.datacenter}}</option>
+                                            </select>
+                                        </div>
+                                        
+                            </div><br>
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label for="rack_row">Rack Row</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select required="required" class="form-control " id="rack_rows" name="rack_row">
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Rack Label / Tag</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" id="rack_tag" name="rack_tag" required="required" value={{racks.Rack_Label_Tag}} />
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Row Color</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="color" required="required" class="form-control" value="{{racks.RowColor}}" id="row_color_form3" name="row_color_form3" style="height: 40px;">
+                                        </div>
+                                        <div class="col-md-2">
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Rack Type*</label>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+
+                                            <div class="form-group">
+                                                <input class="form-check-input c_input-accordian rack_type3" type="radio" id="network" name="rack_type3" value="network" />
+                                                <label class="form-check-label" for="network">&nbsp;&nbsp;Network</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+
+                                            <div class="form-group">
+                                                <input class="form-check-input c_input-accordian rack_type3" type="radio" id="standard" name="rack_type3" value="standard" checked />
+                                                <label class="form-check-label" for="standard">Standard</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 form-group  text-center">
+
+                                            <input class="form-check-input c_input-accordian rack_type3" type="radio" id="customised" name="rack_type3" value="customised" />
+                                            <label class="form-check-label" for="customised">Customised</label>
+
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                        </div>
+                                    </div>
+
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label for="rack_row">Rack Type Information</label>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select required="required" disabled=True class="form-control" id="customised_rt_information" name="customised_rt_information">
+			
+			
+			<option value="50">50u</option>
+			<option value="49">49u</option>
+			<option value="48">48u</option>
+			<option value="47">47u</option>
+			<option value="46">46u</option>
+			<option value="45">45u</option>
+			<option value="44">44u</option>
+			<option value="43">43u</option>
+			<option value="42" selected>42u</option>
+			<option value="41">41u</option>
+			<option value="40">40u</option>
+			<option value="39">39u</option>
+			<option value="38">38u</option>
+			<option value="37">37u</option>
+			<option value="36">36u</option>
+			<option value="35">35u</option>
+			<option value="34">34u</option>
+			<option value="33">33u</option>
+			<option value="32">32u</option>
+			<option value="31">31u</option>
+			<option value="30">30u</option>
+			<option value="29">29u</option>
+			<option value="28">28u</option>
+			<option value="27">27u</option>
+			<option value="26">26u</option>
+			<option value="25">25u</option>
+			<option value="24">24u</option>
+			<option value="23">23u</option>
+			<option value="22">22u</option>
+			<option value="21">21u</option>
+			<option value="20">20u</option>
+			<option value="19">19u</option>
+			<option value="18">18u</option>
+			<option value="17">17u</option>
+			<option value="16">16u</option>
+			<option value="15">15u</option>
+			<option value="14">14u</option>
+			<option value="13">13u</option>
+			<option value="12">12u</option>
+			<option value="11">11u</option>
+			<option value="10">10u</option>
+			<option value="9">9u</option>
+			<option value="8">8u</option>
+			<option value="7">7u</option>
+			<option value="6">6u</option>
+			<option value="5">5u</option>
+			<option value="4">4u</option>
+			<option value="3">3u</option>
+			<option value="2">2u</option>
+			<option value="1">1u</option>
+			
+		      </select>
+                                            <!--<p style="color:red;">Error!!</p>-->
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Owner?</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select required="required" class="form-control " id="your_role" name="your_role">
+			
+			
+			<option value="department" selected>Department</option>
+			<option value="project" >Project</option>
+			<option value="client">Client</option>
+			
+		      </select>
+
+                                        </div>
+                                        <div class="col-md-2">
+
+
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" id="special_notes" name="owner_name" />
+                                        </div>
+                                        <div class="col-md-2">
+
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Patch Panels</label>
+                                        </div>
+                                        <div class="col-md-8">
+
+                                            <div class="col-md-3">
+                                                <input type="checkbox" class="form-check-input " id="ethernet" name="ethernet" value="ethernet">
+                                                <label for="ethernet">Ethernet</label>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <input type="checkbox" class="form-check-input" id="fiber" name="fiber" value="fiber">
+                                                <label for="fiber">Fiber</label>
+                                            </div>
+
+
+                                            <div class="col-md-2">
+                                                <input type="checkbox" class="form-check-input " id="other" name="other" value="other">
+                                                <label for="other">Other</label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <label>Special Notes</label>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <input class="form-control" type="text" id="special_notes" name="special_notes" />
+                                        </div>
+                                        <div class="col-md-2">
+
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <hr>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="submit" name="submit" value="Submit" />
+                                        </div>
+                                        <div class="col-md-4">
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!---->
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<div class="row">
+    <div class="col-md-12" style="height:200px;">
+    </div>
+</div>
+
+{% endblock %}

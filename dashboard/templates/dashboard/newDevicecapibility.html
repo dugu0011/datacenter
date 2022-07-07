@@ -1,0 +1,42 @@
+
+    {% extends 'dashboard/header_footer.html' %}
+    {% load static %}
+    
+    {% block title %}
+    DEVICE
+    {% endblock %}
+    
+    {% block js  %}
+
+    {% endblock %}
+    
+    {% block css %}
+    <style>
+
+     .button-3d {   position:relative;   width: auto;   display:inline-block;   color:#ecf0f1;   text-decoration:none;   border-radius:5px;   border:solid 1px #b7b7bd;   background:#5c778e;   text-align:center;   padding:46px 18px 14px;   margin: 12px;      -webkit-transition: all 0.1s; 	-moz-transition: all 0.1s; 	transition: all 0.1s; 	   -webkit-box-shadow: 0px 6px 0px #d35400;   -moz-box-shadow: 0px 6px 0px #d35400;   box-shadow: 0px 6px 0px #d35400; }  .button-3d:active{     -webkit-box-shadow: 0px 2px 0px #d35400;     -moz-box-shadow: 0px 2px 0px #d35400;     box-shadow: 0px 2px 0px #d35400;     position:relative;     top:4px; }
+
+    </style>
+    
+    {% endblock %}
+    
+    {% block content %}
+
+
+
+<div class="col-md-6">
+                    <a href="{% url 'add-device-capability' %}" class="button-3d" style="height:150px; border-radius:20px; font-size: 20px;" >DISCOVER DEVICES</a> 
+</div>                
+<div class="col-md-6">                   
+                    <a href="{% url 'show-device-capability' %}" class="button-3d" style="height:150px; border-radius:20px;font-size: 20px; " >RETRIEVE DEVICE</a>
+</div>                
+
+
+
+
+  
+
+
+    
+  
+
+{% endblock %}

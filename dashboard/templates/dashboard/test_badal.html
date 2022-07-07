@@ -1,0 +1,46 @@
+
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+    
+{% block title %}
+    
+{% endblock %}
+    
+{% block js  %}
+    
+{% endblock %}
+    {% block css %}
+    
+{% endblock %}
+    
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <select name="user">
+        {% for grp in all_group %}
+        <option value="{{grp}}">
+          {{grp}}
+        </option>
+        
+        {% endfor %}
+</select>
+    <input type="submit" value="submit">
+</form>
+{% if a_all %}
+<table>
+        {% for permission in a_all  %}
+        <tr>
+          <td>
+            {{permission}}
+            
+          </td>
+          <td>
+            
+          </td>
+        </tr>
+        {% endfor %}
+        
+      </table>
+{% endif %}
+
+{% endblock %}

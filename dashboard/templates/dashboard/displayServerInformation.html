@@ -1,0 +1,276 @@
+{% extends 'dashboard/header_footer.html' %} {% block title %}
+Dashboard
+{% endblock title %}{% block content %}
+
+<style>
+    nav {
+        position: relative;
+        width: 360px;
+        background: black;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        /* Sub Menu */
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px 15px;
+        color: white;
+        text-decoration: none;
+        -webkit-transition: 0.2s linear;
+        -moz-transition: 0.2s linear;
+        -ms-transition: 0.2s linear;
+        -o-transition: 0.2s linear;
+        transition: 0.2s linear;
+    }
+
+    nav ul li a:hover {
+        background: #1d4f71;
+        color: #fff;
+    }
+
+    nav ul li a .fa {
+        width: 16px;
+        text-align: center;
+        margin-right: 5px;
+        float: right;
+    }
+
+    nav ul ul {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    nav ul li ul li a {
+
+        border-left: 4px solid transparent;
+        padding: 10px 20px;
+    }
+
+    nav ul li ul li a:hover {
+
+        border-left: 4px solid #3498db;
+    }
+
+    .myButton {
+        padding: 1px;
+        background: none;
+        border: none;
+        color: red;
+    }
+</style>
+
+<section class="appendAllData col-md-12" style="text-align: left;">
+
+
+</section>
+<!-- <nav class='animated appendAllData bounceInDown bg-dark col-md-12'>
+    <ul>
+        <!-- <button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#collapseExample'
+            aria-expanded='false' aria-controls='collapseExample'>
+            Button with data-target
+        </button>
+
+        <div class='collapse' id='collapseExample'>
+            <div class='card card-body'>
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+                keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+            </div>
+        </div> -->
+
+<!-- 
+        {% for item in nav %}
+            <li 
+                {% if item.sub_items|length > 0 %}
+                    class="sub-menu"
+                {% endif %}
+            >
+                <a href="#">{{item.title}}
+
+                    {% if item.sub_items|length > 0 %}
+                        <div class='fa fa-caret-down right'></div>
+                    {% endif %}
+
+                </a>
+            
+                {% if item.sub_items|length > 0 %}
+                    <ul>
+                        {% for sub_item in item.sub_items %}      
+                            <li class='subMenuItem'><a data-title='{{sub_item.title}}' data-url='{{sub_item.url}}'> {{sub_item.title}} </a></li>
+                            
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            
+            </li>
+
+        {% endfor %} -->
+
+</ul>
+</nav> -->
+
+<section class="content ajax-content col-md-9" style="background-color: pink; color: white;">
+
+
+</section>
+
+<script>
+
+
+    var data = {{ device | safe }};
+
+    console.log("PRINTING CONFIGURATION")
+    console.log(data);
+
+
+    function totalKeys(obj) {
+        var count = 0;
+        for (key in obj) {
+            if (obj.hasOwnProperty(key))
+                count++;
+        }
+        return count;
+    }
+
+    var depths = ["10px", "20px", "30px", "40px", "50px", "60px", "70px", "80px", "90px", "100px"];
+    function recur(obj, key, depth) {
+        if (depths > depths.length - 1) depths = depths.length - 1;
+
+        var output = "";
+        var content = "";
+        var scan = [];
+
+
+        for (k in obj) {
+
+            appendKey = key + k + Date.now() + depth;
+
+            if (Array.isArray(obj[k])) {
+
+                var arr = obj[k];
+                console.log("Array Key " + k);
+                console.log(arr);
+
+                console.log("item 0");
+                console.log(arr[0]);
+                console.log("is this reall an array? " + Array.isArray(obj[k]));
+                console.log("It's length " + arr.length);
+                console.log("Printing Array Components");
+                var len = arr.length;
+
+
+                for (var i = 0; i < len; i++) {
+                    var btn = "\
+                            <button  class='myButton' type='button' data-toggle='collapse' data-target='#" + appendKey + "" + i + "'\
+                                aria-expanded='false' aria-controls='"+ appendKey + "" + i + "' > " + k + " -- " + i + " \
+                            <div class='fa fa-caret-down right'></div></button><br>\
+                        ";
+
+                    content += btn;
+                    console.log("SEnding ");
+                    console.log(arr[0]);
+                    content += recur(arr[0], appendKey + "" + i, depth + 1);
+
+                }
+            }
+            else if (totalKeys(obj[k]) > 0 && typeof obj[k] == "object") {
+                var btn = "\
+                    <button class='myButton' type='button' data-toggle='collapse' data-target='#" + appendKey + "'\
+                        aria-expanded='false' aria-controls='"+ appendKey + "' > <b> " + k + " </b> \
+                    <div class='fa fa-caret-down right'></div></button><br>\
+                ";
+
+                content += btn;
+                content += recur(obj[k], appendKey, depth + 1);
+
+                scan.push(k);
+            }
+            else {
+                content += "<b>" + k + "</b> : " + obj[k] + "<br>";
+            }
+        }
+
+
+        var btn = "\
+                    <button  class='myButton' type='button' data-toggle='collapse' data-target='#" + key + "'\
+                        aria-expanded='false' aria-controls='"+ key + "' > " + key + " \
+                    <div class='fa fa-caret-down right'></div></button><br>\
+                ";
+        var description = "\
+                <div style='margin-left : "+ depths[depth] + "'  class='collapse' id='" + key + "'>\
+                    <div class='card card-body' >\
+                        "+ content + "\
+                    </div>\
+                </div >\
+            ";
+
+        return output + description;
+    }
+
+
+    var key = "CONFIGURATION";
+    var output = "\
+                    <button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#"+ key + "'\
+                        aria-expanded='false' aria-controls='"+ key + "' > " + key + " \
+                    </button><br><br>\
+                ";
+
+
+
+
+
+    output += recur(data, key, 0, 99);
+
+    $(".appendAllData").html(output);
+
+</script>
+
+<script>
+
+    $('.sub-menu ul').hide();
+    $(".sub-menu a").click(function () {
+        $(this).parent(".sub-menu").children("ul").slideToggle("100");
+        $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+    });
+
+
+    $(".subMenuItem").on("click", function () {
+        var child = $(this).children(':first-child');
+
+        var link = child.data("url");
+        if (link.charAt(link.length - 1) != "/")
+            link += "/";
+        link += child.data("title");
+
+        console.log("URL " + link);
+        ajaxFunction(link);
+
+    });
+
+
+
+    function ajaxFunction(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (result, status) {
+                if (status != "success") {
+                    alert("Something went wrong (check console for more detals)");
+                    console.log(result);
+                    return;
+                }
+
+                $(".ajax-content").html(result);
+
+            },
+        });
+    }
+
+</script>
+{% endblock content %}

@@ -1,0 +1,216 @@
+{% extends 'dashboard/header_footer.html' %} {% load static %} {% block title %} Get Capabilities {% endblock %} {%
+  block js %}
+  
+ {% block css %} {% endblock %} {% block content %}
+  
+<div class="container graphholder">
+
+
+
+  
+</div>
+
+<!--------------------------------------------------------------->
+<!--PLOTLY GRAPH JS -->
+<script src='https://cdn.plot.ly/plotly-2.3.1.min.js'></script>
+<!-- D3 -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+<!--------------------------------------------------------------->
+
+
+<script>
+	CPU_USAGE = []
+	CPU_SPEED = []
+	CPU_STATS = []
+	CPU_GRAPH_COLORS = [];
+
+	DISK_READ_WRITE_COUNT = [];
+  DISK_READ_WRITE_BYTES = [];
+	DISK_GRAPH_COLORS = [];
+
+  APPLICATION_STATS = [];
+  APPLICATION_GRAPH_COLORS = [];
+
+  SWAP_STATS = [];
+  VIRTUAL_STATS = [];
+  MEMORY_GRAPH_COLORS = [];
+
+
+  APPLICATION_CPU = [];
+  APPLICATION_MEMORY = [];
+  APPLICATION_GRAPH_COLOR = [];
+
+  DUMMY_X = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+	MAX_ARRAY_SIZE = 20;
+
+
+	function insert(arr , element , max_size = MAX_ARRAY_SIZE , insertOnOverflow = true){
+		if(arr.length >= max_size){
+			if(!insertOnOverflow) return;
+			arr.shift();
+		}
+		arr.push(element);	
+	}
+
+	function randomColor(){
+		return "#" + Math.floor(Math.random()*16777215).toString(16);
+	}
+
+  function sendRequest(){
+		$.get("getEverything?time=fast", function(data , status){
+			console.log(data);
+      var len = data["CPU"]["usage"]["data"]["CPUCount"];
+			graph1("graph1", "CPU Utilization (%)" , data["CPU"]["usage"]["data"]["CPUUtilization"] , CPU_USAGE , CPU_GRAPH_COLORS , len , "CPU");
+      
+      //len = data["CPU"]["speed"]["data"]["CPUCount"];
+      //graph1("graph2", "CPU Speed (Mhz)" , data["CPU"]["speed"]["data"]["speed"] , CPU_SPEED , CPU_GRAPH_COLORS , data["CPU"]["speed"]["data"]["CPUCount"] , "CPU")
+      
+      len = data["CPU"]["stats"]["data"]["labels"].length
+      graph1("graph3", "CPU Stats" , data["CPU"]["stats"]["data"]["stats"] , CPU_STATS , CPU_GRAPH_COLORS , len , data["CPU"]["stats"]["data"]["labels"])
+      
+      len = 3;
+      graph2("graph4", "Swap Memory (%)" , data["memory"]["swap"]["data"]["info"] , SWAP_STATS , MEMORY_GRAPH_COLORS , len , ["total" , "used" , "free"])
+      
+      len = data["memory"]["virtual"]["data"]["labels"].length;
+      graph2("graph5", "Virtual Memory (%)" , data["memory"]["virtual"]["data"]["virtual"] , VIRTUAL_STATS , MEMORY_GRAPH_COLORS , len , data["memory"]["virtual"]["data"]["labels"])
+      
+      len = data["application"]["info"]["labels"].length
+      graph1("graph6", "Application CPU Utilization (%)" , data["application"]["info"]["data"]["cpu"] , APPLICATION_CPU , APPLICATION_GRAPH_COLOR , len ,  data["application"]["info"]["labels"])
+      
+      len = data["application"]["info"]["labels"].length
+      graph1("graph7", "Application Memory Utilization (%)" , data["application"]["info"]["data"]["memory"] , APPLICATION_MEMORY , APPLICATION_GRAPH_COLOR , len ,  data["application"]["info"]["labels"])
+
+			var count = 8;
+			var i = 0;
+			for(var key in data["disk"]["stats"]["data"]){
+				if(!DISK_READ_WRITE_COUNT[i]){
+					DISK_READ_WRITE_COUNT.push([]);
+          DISK_READ_WRITE_BYTES.push([]);
+				}
+				graph1("graph5" + count , "Disk Read and Write : " + key , data["disk"]["stats"]["data"][key]["read_write_bytes"] , DISK_READ_WRITE_BYTES[i] , DISK_GRAPH_COLORS , 2 , data["disk"]["stats"]["labels"].slice(2 ,4))
+        //graph1("myDiv" + count , "myH" + count  , "Disk Read & Write Count" + i + " : " + key , data["disk"]["stats"]["data"][key]["read_write_count"] , DISK_READ_WRITE_COUNT[i] , DISK_GRAPH_COLORS , 2 , data["disk"]["stats"]["labels"].slice(0 , 2) , true)
+				count++;
+        i++;
+			}	
+
+		});
+  }
+
+	window.setInterval(sendRequest, 1000);
+
+
+	window.setInterval(function(){
+		$.get("getEverything?time=slow", function(data , status){
+			console.log(data);
+			
+		});
+	}, 10000)
+
+
+</script>
+
+<script>
+//FIRST GRAPH
+
+function graph1(id , title , list , dataList , colorList , count , labels , addCounter = true){
+
+		var data = []
+
+    for(var i = 0; i < count ; i++){
+			if(!dataList[i]){
+				dataList.push([]);
+			}
+
+			insert(dataList[i] , list[i])
+			insert(colorList , randomColor() , count , false)
+			
+			label = "";
+			if(typeof labels == "string")
+				label = labels + " " +  ( addCounter ? i : "");
+			else label = labels[i];
+
+      
+
+			data.push({
+				type: "scatter",
+				mode: "lines",
+				name: label,
+        x: DUMMY_X,
+				y: dataList[i],
+				line: { color: colorList[i] }
+			});
+		}
+
+		var layout = {
+			title: "Basic Time Series",
+			legend: { orientation: "h" },
+			margin: {
+				l: 25,
+				r: 0,
+				b: 20,
+				t: 0,
+				pad: 0
+			}
+		};
+    
+
+    $(".graphholder").append("<h4 align='left'  id='h"+id+"' ></h4><div id='"+id+"' style='width:100%; height:200px;'></div>");
+    $("#h" + id).text(title);
+		Plotly.newPlot(id , data, layout, {displayModeBar: false});
+	
+}
+
+function graph2(id , title , list , dataList , colorList , count , labels , addCounter = true){
+
+var data = []
+
+for(var i = 0; i < count ; i++){
+  if(!dataList[i]){
+    dataList.push([]);
+  }
+
+  insert(dataList[i] , list[i])
+  insert(colorList , randomColor() , count , false)
+  
+  label = "";
+  if(typeof labels == "string")
+    label = labels + " " +  ( addCounter ? i : "");
+  else label = labels[i];
+
+  
+
+  data.push({
+    type: "scatter",
+    mode: "lines",
+    fill: "tozeroy",
+    fillcolor: colorList[i],
+    name: label,
+    x: DUMMY_X,
+    y: dataList[i],
+    line: { color: colorList[i] }
+  });
+}
+
+var layout = {
+  title: "Basic Time Series",
+  legend: { orientation: "h" },
+  margin: {
+    l: 25,
+    r: 0,
+    b: 20,
+    t: 0,
+    pad: 0
+  }
+};
+
+$(".graphholder").append("<h4 align='left'  id='h"+id+"' ></h4><div id='"+id+"' style='width:100%; height:200px;'></div>");
+$("#h" + id).text(title);
+Plotly.newPlot(id , data, layout, {displayModeBar: false});
+
+}
+    
+</script>
+
+
+{% endblock %}

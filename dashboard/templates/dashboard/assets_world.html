@@ -1,0 +1,47 @@
+{% extends 'dashboard/header_footer.html' %}
+{% load static %}
+
+{% block title %}
+Assets World
+{% endblock %}
+
+{% block js  %}
+<script src="{% static 'dashboard/temporary/plotly.js' %}"></script>
+<style>
+  .inner-block{
+    position: relative;
+    padding: 0;
+    padding-top: 40px;
+  }
+</style>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block title_header %}World{% endblock %}
+{% block content %}
+
+<div id="graph"></div>
+
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="d-flex justify-content-center">
+      {{ india_map_plt|safe }} 
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="d-flex justify-content-center">
+      <embed style="width: 60%;" type="image/svg+xml" src= {{ world_map|safe }} />
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

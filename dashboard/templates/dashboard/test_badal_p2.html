@@ -1,0 +1,46 @@
+
+
+    {% extends 'dashboard/header_footer.html' %}
+    {% load static %}
+    
+    {% block title %}
+    Import
+    {% endblock %}
+    
+    {% block js  %}
+    
+    {% endblock %}
+    
+    {% block css %}
+    
+    {% endblock %}
+    
+    {% block content %}
+<h2>Assign Groups</h2>
+<h2>Assign Page</h2>
+<form method="POST">
+    {% csrf_token %}
+    <select name="group">
+        {% for grp in all_group %}
+        <option value="{{grp}}">
+          {{grp}}
+        </option>
+        
+        {% endfor %}
+    </select>
+    <select name="user">
+        {% for user in all_user %}
+        <option value="{{user.id}}">
+          {{user}}
+        </option>
+        
+        {% endfor %}
+    </select>
+    <input type="submit" value="Assign Group">
+</form>
+{% if msg %}
+<p>{{msg}}</p>
+{% endif %}
+
+
+{% endblock %}
